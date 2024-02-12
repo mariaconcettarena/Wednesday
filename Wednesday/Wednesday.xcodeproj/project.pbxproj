@@ -12,6 +12,9 @@
 		E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F42B7A1BC800EBF1E0 /* Item.swift */; };
 		E46569F72B7A1BCA00EBF1E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46569F62B7A1BCA00EBF1E0 /* Assets.xcassets */; };
 		E46569FA2B7A1BCA00EBF1E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46569F92B7A1BCA00EBF1E0 /* Preview Assets.xcassets */; };
+		E4656A012B7A1FA300EBF1E0 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A002B7A1FA300EBF1E0 /* Home.swift */; };
+		E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */; };
+		E4656A052B7A213F00EBF1E0 /* Scanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A042B7A213F00EBF1E0 /* Scanning.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,9 @@
 		E46569F42B7A1BC800EBF1E0 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		E46569F62B7A1BCA00EBF1E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E46569F92B7A1BCA00EBF1E0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E4656A002B7A1FA300EBF1E0 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
+		E4656A042B7A213F00EBF1E0 /* Scanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanning.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,9 @@
 				E46569F42B7A1BC800EBF1E0 /* Item.swift */,
 				E46569F62B7A1BCA00EBF1E0 /* Assets.xcassets */,
 				E46569F82B7A1BCA00EBF1E0 /* Preview Content */,
+				E4656A002B7A1FA300EBF1E0 /* Home.swift */,
+				E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */,
+				E4656A042B7A213F00EBF1E0 /* Scanning.swift */,
 			);
 			path = Wednesday;
 			sourceTree = "<group>";
@@ -140,8 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4656A052B7A213F00EBF1E0 /* Scanning.swift in Sources */,
+				E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */,
 				E46569F32B7A1BC800EBF1E0 /* ContentView.swift in Sources */,
 				E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */,
+				E4656A012B7A1FA300EBF1E0 /* Home.swift in Sources */,
 				E46569F12B7A1BC800EBF1E0 /* WednesdayApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

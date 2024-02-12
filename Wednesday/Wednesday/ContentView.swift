@@ -11,31 +11,44 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    
+    @State private var selectedTab: Int = 0 // Variabile di stato per tenere traccia della scheda selezionata
+
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        TabView (selection: $selectedTab){
+            NavigationView {
+                List {
+                    ForEach(items) { item in
+                        NavigationLink(destination: Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")) {
+                            Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        Button(action: addItem) {
+                            Label("Add Item", systemImage: "plus")
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .navigationTitle("Inci")
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+            .tabItem {
+                Label("Inci", systemImage: "list.bullet")
+            }.tag(0)
+            
+            Home().tabItem {
+                    Label("Home", systemImage: "house")
+                }.tag(1)
+            
+            Favourites().tabItem {
+                    Label("Favourites", systemImage: "star")
+                }.tag(2)
         }
     }
 

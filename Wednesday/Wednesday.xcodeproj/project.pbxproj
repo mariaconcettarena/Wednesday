@@ -15,6 +15,8 @@
 		E4656A012B7A1FA300EBF1E0 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A002B7A1FA300EBF1E0 /* Home.swift */; };
 		E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */; };
 		E4656A052B7A213F00EBF1E0 /* Scanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A042B7A213F00EBF1E0 /* Scanning.swift */; };
+		E4656A072B7A29BA00EBF1E0 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A062B7A29BA00EBF1E0 /* Product.swift */; };
+		E4656A092B7A2BBB00EBF1E0 /* InfoPrivacy.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4656A082B7A2BBB00EBF1E0 /* InfoPrivacy.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		E4656A002B7A1FA300EBF1E0 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		E4656A042B7A213F00EBF1E0 /* Scanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanning.swift; sourceTree = "<group>"; };
+		E4656A062B7A29BA00EBF1E0 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		E4656A082B7A2BBB00EBF1E0 /* InfoPrivacy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoPrivacy.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 		E46569EF2B7A1BC800EBF1E0 /* Wednesday */ = {
 			isa = PBXGroup;
 			children = (
+				E4656A082B7A2BBB00EBF1E0 /* InfoPrivacy.plist */,
 				E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */,
 				E46569F22B7A1BC800EBF1E0 /* ContentView.swift */,
 				E46569F42B7A1BC800EBF1E0 /* Item.swift */,
@@ -67,6 +72,7 @@
 				E4656A002B7A1FA300EBF1E0 /* Home.swift */,
 				E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */,
 				E4656A042B7A213F00EBF1E0 /* Scanning.swift */,
+				E4656A062B7A29BA00EBF1E0 /* Product.swift */,
 			);
 			path = Wednesday;
 			sourceTree = "<group>";
@@ -139,6 +145,7 @@
 			files = (
 				E46569FA2B7A1BCA00EBF1E0 /* Preview Assets.xcassets in Resources */,
 				E46569F72B7A1BCA00EBF1E0 /* Assets.xcassets in Resources */,
+				E4656A092B7A2BBB00EBF1E0 /* InfoPrivacy.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +162,7 @@
 				E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */,
 				E4656A012B7A1FA300EBF1E0 /* Home.swift in Sources */,
 				E46569F12B7A1BC800EBF1E0 /* WednesdayApp.swift in Sources */,
+				E4656A072B7A29BA00EBF1E0 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

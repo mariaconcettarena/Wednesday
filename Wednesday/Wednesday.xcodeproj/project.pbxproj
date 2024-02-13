@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C4869CA2B7A5BC000CBEDC2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */; };
+		E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FB0FB2B7ACAC100B431C7 /* Card.swift */; };
 		E46569F12B7A1BC800EBF1E0 /* WednesdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */; };
 		E46569F32B7A1BC800EBF1E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F22B7A1BC800EBF1E0 /* ContentView.swift */; };
 		E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F42B7A1BC800EBF1E0 /* Item.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		E43FB0FB2B7ACAC100B431C7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E46569ED2B7A1BC800EBF1E0 /* Wednesday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wednesday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WednesdayApp.swift; sourceTree = "<group>"; };
 		E46569F22B7A1BC800EBF1E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				E46569F62B7A1BCA00EBF1E0 /* Assets.xcassets */,
 				E46569F82B7A1BCA00EBF1E0 /* Preview Content */,
 				E4656A002B7A1FA300EBF1E0 /* Home.swift */,
+				E43FB0FB2B7ACAC100B431C7 /* Card.swift */,
 				E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */,
 				E4656A042B7A213F00EBF1E0 /* Scanning.swift */,
 				E4656A062B7A29BA00EBF1E0 /* Product.swift */,
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4656A052B7A213F00EBF1E0 /* Scanning.swift in Sources */,
+				E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */,
 				E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */,
 				E46569F32B7A1BC800EBF1E0 /* ContentView.swift in Sources */,
 				E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */,
@@ -303,6 +307,7 @@
 				DEVELOPMENT_TEAM = 595ULKU252;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = Please;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -332,6 +337,7 @@
 				DEVELOPMENT_TEAM = 595ULKU252;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = Please;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -25,7 +25,7 @@ struct Scanning: View {
                     Text("SCAN PRODUCT")
                        
                 } .foregroundColor(.white)
-                    .frame(width: 275, height: 50)
+                    .frame(width: 280, height: 50)
                     .background(Color.accentColor)
                     .cornerRadius(12)
             }

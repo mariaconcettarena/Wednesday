@@ -59,7 +59,7 @@ struct ContentView: View {
                 Label("Favourites", systemImage: "heart")
             }.tag(2)
             
-        }.navigationTitle("Scan")
+        }
     }
     
 }

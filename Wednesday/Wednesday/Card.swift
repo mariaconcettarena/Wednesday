@@ -12,9 +12,9 @@ import SwiftUI
 struct Card1: View {
     var body: some View {
         VStack {
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(resedaGreen.opacity(0.7))
-                .frame(width: 150, height: 100)
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundColor(verdeCard)
+                .frame(width: 100, height: 100)
                 .overlay(
                     Text("Card Title")
                         .font(.headline)
@@ -25,16 +25,16 @@ struct Card1: View {
         .frame(width: 150, height: 100)
         .background(Color.white)
         .cornerRadius(10)
-        .shadow(radius: 5)
+        
     }
 }
 
 
-struct Card2: View {
+/*struct Card2: View {
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(resedaGreen)
+                .foregroundColor(verdeCard)
                 .frame(width: 150, height: 200)
                 .overlay(
                     Text("Card Title")
@@ -48,16 +48,16 @@ struct Card2: View {
         .cornerRadius(10)
         .shadow(radius: 5)
     }
-}
+}*/
 
 
 #Preview{
     Card1()
 }
 
-#Preview{
+/*#Preview{
     Card2()
-}
+}*/
 
 
 

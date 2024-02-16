@@ -13,7 +13,7 @@ let resedaGreen = Color(red: 113/255, green: 119/255, blue: 68/255)
 let seashell = Color(red: 255/255, green: 244/255, blue: 236/255)
 
 
-struct Home: View {
+struct Inci: View {
     @State private var isShowingNextPage = false
     
     var body: some View {
@@ -72,15 +72,11 @@ struct Home: View {
                     .padding()
                     
                     
-                    
-                    
-                    
-                    
                     // Navigazione verso la paginaScanning()
                     NavigationLink("", destination: Scanning(), isActive: $isShowingNextPage)
                         .hidden()
                 }
-                .navigationTitle("Home")
+                .navigationTitle("Inci")
             }
         }
     }
@@ -89,5 +85,5 @@ struct Home: View {
 
 
 #Preview {
-    Home()
+    Inci()
 }

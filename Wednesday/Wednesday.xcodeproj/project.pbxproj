@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2C4869CA2B7A5BC000CBEDC2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */; };
+		E430E0202B7CDDED00C1B61C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E430E01F2B7CDDED00C1B61C /* Colors.swift */; };
 		E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FB0FB2B7ACAC100B431C7 /* Card.swift */; };
+		E447BB022B7E2B1D00A94E91 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E447BB012B7E2B1D00A94E91 /* SwiftSoup */; };
 		E46569F12B7A1BC800EBF1E0 /* WednesdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */; };
 		E46569F32B7A1BC800EBF1E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F22B7A1BC800EBF1E0 /* ContentView.swift */; };
 		E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F42B7A1BC800EBF1E0 /* Item.swift */; };
 		E46569F72B7A1BCA00EBF1E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46569F62B7A1BCA00EBF1E0 /* Assets.xcassets */; };
 		E46569FA2B7A1BCA00EBF1E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46569F92B7A1BCA00EBF1E0 /* Preview Assets.xcassets */; };
-		E4656A012B7A1FA300EBF1E0 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A002B7A1FA300EBF1E0 /* Home.swift */; };
+		E4656A012B7A1FA300EBF1E0 /* Inci.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A002B7A1FA300EBF1E0 /* Inci.swift */; };
 		E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */; };
 		E4656A052B7A213F00EBF1E0 /* Scanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A042B7A213F00EBF1E0 /* Scanning.swift */; };
 		E4656A072B7A29BA00EBF1E0 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A062B7A29BA00EBF1E0 /* Product.swift */; };
@@ -23,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		E430E01F2B7CDDED00C1B61C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E43FB0FB2B7ACAC100B431C7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E46569ED2B7A1BC800EBF1E0 /* Wednesday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wednesday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WednesdayApp.swift; sourceTree = "<group>"; };
@@ -30,7 +33,7 @@
 		E46569F42B7A1BC800EBF1E0 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		E46569F62B7A1BCA00EBF1E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E46569F92B7A1BCA00EBF1E0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E4656A002B7A1FA300EBF1E0 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		E4656A002B7A1FA300EBF1E0 /* Inci.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inci.swift; sourceTree = "<group>"; };
 		E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		E4656A042B7A213F00EBF1E0 /* Scanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanning.swift; sourceTree = "<group>"; };
 		E4656A062B7A29BA00EBF1E0 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E447BB022B7E2B1D00A94E91 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,18 +71,19 @@
 		E46569EF2B7A1BC800EBF1E0 /* Wednesday */ = {
 			isa = PBXGroup;
 			children = (
-				E4656A082B7A2BBB00EBF1E0 /* InfoPrivacy.plist */,
-				E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */,
-				E46569F22B7A1BC800EBF1E0 /* ContentView.swift */,
-				E46569F42B7A1BC800EBF1E0 /* Item.swift */,
 				E46569F62B7A1BCA00EBF1E0 /* Assets.xcassets */,
-				E46569F82B7A1BCA00EBF1E0 /* Preview Content */,
-				E4656A002B7A1FA300EBF1E0 /* Home.swift */,
 				E43FB0FB2B7ACAC100B431C7 /* Card.swift */,
+				E430E01F2B7CDDED00C1B61C /* Colors.swift */,
+				E46569F22B7A1BC800EBF1E0 /* ContentView.swift */,
 				E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */,
-				E4656A042B7A213F00EBF1E0 /* Scanning.swift */,
-				E4656A062B7A29BA00EBF1E0 /* Product.swift */,
+				E4656A002B7A1FA300EBF1E0 /* Inci.swift */,
+				E4656A082B7A2BBB00EBF1E0 /* InfoPrivacy.plist */,
+				E46569F42B7A1BC800EBF1E0 /* Item.swift */,
 				2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */,
+				E4656A062B7A29BA00EBF1E0 /* Product.swift */,
+				E4656A042B7A213F00EBF1E0 /* Scanning.swift */,
+				E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */,
+				E46569F82B7A1BCA00EBF1E0 /* Preview Content */,
 			);
 			path = Wednesday;
 			sourceTree = "<group>";
@@ -107,6 +112,9 @@
 			dependencies = (
 			);
 			name = Wednesday;
+			packageProductDependencies = (
+				E447BB012B7E2B1D00A94E91 /* SwiftSoup */,
+			);
 			productName = Wednesday;
 			productReference = E46569ED2B7A1BC800EBF1E0 /* Wednesday.app */;
 			productType = "com.apple.product-type.application";
@@ -135,6 +143,9 @@
 				Base,
 			);
 			mainGroup = E46569E42B7A1BC800EBF1E0;
+			packageReferences = (
+				E447BB002B7E2B1D00A94E91 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = E46569EE2B7A1BC800EBF1E0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -163,11 +174,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4656A052B7A213F00EBF1E0 /* Scanning.swift in Sources */,
+				E430E0202B7CDDED00C1B61C /* Colors.swift in Sources */,
 				E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */,
 				E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */,
 				E46569F32B7A1BC800EBF1E0 /* ContentView.swift in Sources */,
 				E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */,
-				E4656A012B7A1FA300EBF1E0 /* Home.swift in Sources */,
+				E4656A012B7A1FA300EBF1E0 /* Inci.swift in Sources */,
 				E46569F12B7A1BC800EBF1E0 /* WednesdayApp.swift in Sources */,
 				2C4869CA2B7A5BC000CBEDC2 /* Onboarding.swift in Sources */,
 				E4656A072B7A29BA00EBF1E0 /* Product.swift in Sources */,
@@ -378,6 +390,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E447BB002B7E2B1D00A94E91 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E447BB012B7E2B1D00A94E91 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E447BB002B7E2B1D00A94E91 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E46569E52B7A1BC800EBF1E0 /* Project object */;
 }

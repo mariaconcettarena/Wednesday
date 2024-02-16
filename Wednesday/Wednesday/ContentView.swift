@@ -20,11 +20,30 @@ struct ContentView: View {
         TabView (selection: $selectedTab){
             
             
+            
             NavigationView {
                 
-                //Text("homepage")
-                
-                
+                ZStack{
+                    sfondo.ignoresSafeArea()
+                    
+                    //Text("homepage")
+                    
+                    VStack(alignment: .leading, spacing: 15){
+                        Image("BunnyHome")
+                        
+                        
+                        Text("Hello!")
+                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .bold()
+                        
+                        Text("Scan barcode to get  full information about product.")
+                        
+                        Scanning()
+                        
+                    }
+                    
+                }
+               
             }
             
             
@@ -33,7 +52,7 @@ struct ContentView: View {
             }.tag(0)
             
             Inci().tabItem {
-                Label("Inci", systemImage: "list.bullet")
+                Label("Chronology", systemImage: "timer")
             }.tag(1)
             
             Favourites().tabItem {

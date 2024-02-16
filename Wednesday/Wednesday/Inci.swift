@@ -8,9 +8,6 @@
 import Foundation
 import SwiftUI
 
-//variabili per i colori
-let resedaGreen = Color(red: 113/255, green: 119/255, blue: 68/255)
-let seashell = Color(red: 255/255, green: 244/255, blue: 236/255)
 
 
 struct Inci: View {
@@ -21,7 +18,7 @@ struct Inci: View {
             ZStack {
                 
                 //SFONDO
-                seashell.ignoresSafeArea()
+               // seashell.ignoresSafeArea()
                 
                 VStack {
                     
@@ -30,29 +27,18 @@ struct Inci: View {
                     
                     
                     //PRIMA SCROLLVIEW
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 20) {
                             ForEach(0..<5) { index in
                                 Card1()
                             }
                         }
-                       .padding()
                     }
                     
                     
                     Text("Best sellers").font(.title2).bold().frame(alignment: .leading)
                         .padding(.leading,-180)
-                   
-                    
-                    //SECONDA SCROLLVIEW
-            /*        ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
-                            ForEach(0..<5) { index in
-                                Card2()
-                            }
-                        }
-                        .padding()
-                    }*/
+                
                     
                     
                     // Bottone SCANNING
@@ -65,7 +51,7 @@ struct Inci: View {
                             .resizable()
                             .frame(width: 70, height: 70)
                             .padding()
-                            .foregroundColor(resedaGreen)
+                           // .foregroundColor(resedaGreen)
                             .cornerRadius(10)
                             .font(.title)
                     }

@@ -21,8 +21,13 @@ struct Scanning: View {
                 Button(action: {
                     isShowingScanner = true
                 }) {
-                    Text("Avvia scansione")
-                }
+                    Image(systemName: "barcode.viewfinder")
+                    Text("SCAN PRODUCT")
+                       
+                } .foregroundColor(.white)
+                    .frame(width: 275, height: 50)
+                    .background(Color.accentColor)
+                    .cornerRadius(12)
             }
         }
         .sheet(isPresented: $isShowingScanner) {

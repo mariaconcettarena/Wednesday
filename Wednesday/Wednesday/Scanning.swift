@@ -119,3 +119,20 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     Scanning()
 }
 
+/*
+// Bottone SCANNING
+Button(action: {
+    
+    isShowingNextPage = true
+    
+}) {
+    Image(systemName: "barcode.viewfinder")
+        .resizable()
+        .frame(width: 70, height: 70)
+        .padding()
+       // .foregroundColor(resedaGreen)
+        .cornerRadius(10)
+        .font(.title)
+}
+.padding()
+*/

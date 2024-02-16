@@ -51,7 +51,7 @@ struct ContentView: View {
                 Label("Scan", systemImage: "barcode.viewfinder")
             }.tag(0)
             
-            Inci().tabItem {
+            Chronology().tabItem {
                 Label("Chronology", systemImage: "timer")
             }.tag(1)
             

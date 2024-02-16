@@ -45,14 +45,14 @@ struct Inci: View {
                    
                     
                     //SECONDA SCROLLVIEW
-                    ScrollView(.horizontal, showsIndicators: false) {
+            /*        ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
                             ForEach(0..<5) { index in
                                 Card2()
                             }
                         }
                         .padding()
-                    }
+                    }*/
                     
                     
                     // Bottone SCANNING

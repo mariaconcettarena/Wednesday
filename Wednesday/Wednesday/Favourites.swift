@@ -11,6 +11,8 @@ import SwiftUI
 struct Favourites: View {
     
     @State private var searchText = ""
+    @State private var filterOn = false
+    
     
     let products = ["Mascara", "Rossetto"]
     
@@ -20,39 +22,55 @@ struct Favourites: View {
         
         
         NavigationStack{
-          
+            
+            
+            
             
             List{
                 ForEach(searchResults, id: \.self) {
                     product in
-                    NavigationLink{
-                        Text(product)
-                    } label: {
+                    NavigationLink(destination: Text(product)) {
                         Text(product)
                     }
                 }
-            }
-            
-            Image(systemName: "line.3.horizontal.decrease.circle")
+            }.listStyle(.plain)
             
             
             
-            .navigationTitle("Favourites")
-            .searchable(text: $searchText)
+            
+            
+            
+                .navigationTitle("Favourites")
+                .searchable(text: $searchText)
+            
+                .toolbar{
+                    NavigationLink(destination: Category(), isActive: $filterOn){
+                        Button{
+                            filterOn.toggle()
+                            
+                        } label: {
+                            Image(systemName: "line.3.horizontal.decrease.circle")
+                        }
+                    }
+                }
+            
+            
         }
-       
+        
+        
         
     }
     
     var searchResults: [String] {
-            if searchText.isEmpty {
-                return products
-            } else {
-                return products.filter
-                { $0.contains(searchText)
-                }
+        if searchText.isEmpty {
+            return []
+        } else {
+            return products.filter
+            {
+                $0.contains(searchText)
             }
         }
+    }
 }
 
 

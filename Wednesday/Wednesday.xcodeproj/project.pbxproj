@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C4869CA2B7A5BC000CBEDC2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */; };
+		2CBFCFC72B80E0E20014E31C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCFC62B80E0E20014E31C /* Category.swift */; };
 		E430E0202B7CDDED00C1B61C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E430E01F2B7CDDED00C1B61C /* Colors.swift */; };
 		E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FB0FB2B7ACAC100B431C7 /* Card.swift */; };
 		E447BB022B7E2B1D00A94E91 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E447BB012B7E2B1D00A94E91 /* SwiftSoup */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		2CBFCFC62B80E0E20014E31C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E430E01F2B7CDDED00C1B61C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E43FB0FB2B7ACAC100B431C7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E46569ED2B7A1BC800EBF1E0 /* Wednesday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wednesday.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 				E4656A042B7A213F00EBF1E0 /* Scanning.swift */,
 				E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */,
 				E46569F82B7A1BCA00EBF1E0 /* Preview Content */,
+				2CBFCFC62B80E0E20014E31C /* Category.swift */,
 			);
 			path = Wednesday;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4656A052B7A213F00EBF1E0 /* Scanning.swift in Sources */,
+				2CBFCFC72B80E0E20014E31C /* Category.swift in Sources */,
 				E430E0202B7CDDED00C1B61C /* Colors.swift in Sources */,
 				E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */,
 				E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */,

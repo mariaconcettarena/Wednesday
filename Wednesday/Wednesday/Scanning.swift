@@ -18,7 +18,7 @@ struct Product: Codable {
     let image: String
     let category: String
     let country: String
-    let standard: Bool
+    let isCrueltyFree: Bool
     let others: String
 }
 
@@ -38,12 +38,18 @@ struct Scanning: View {
                     Text("Name: \(data.name)")
                     Text("Company: \(data.company)")
                     Text("Description: \(data.description)")
-                    Image("Image: \(data.image)" )
+                    if let decodedImage = self.decodeBase64ToImage(base64String: data.image) {
+                                           Image(uiImage: decodedImage)
+                                               .resizable()
+                                               .aspectRatio(contentMode: .fit)
+                                               .frame(width: 200, height: 200)
+                                               .padding()
+                                       }
                     Text("Category: \(data.category)")
                     Text("Country: \(data.country)")
-                    Text("IsCrueltyFree?: \(data.standard == true ? "Yes" : data.standard == false ? "No" : "Unknown")")
+                    Text("IsCrueltyFree?: \(data.isCrueltyFree == true ? "Yes" : data.isCrueltyFree == false ? "No" : "Unknown")")
                     Text("Others: \(data.others)")
-
+                    
                     
                 } else {
                     Text("Data not found")
@@ -56,7 +62,7 @@ struct Scanning: View {
                 }) {
                     Image(systemName: "barcode.viewfinder")
                     Text("SCAN PRODUCT")
-                       
+                    
                 } .foregroundColor(.white)
                     .frame(width: 280, height: 50)
                     .background(Color.accentColor)
@@ -67,27 +73,33 @@ struct Scanning: View {
             ScannerView(scannedCode: $scannedCode)
         }
         .onReceive(Just(scannedCode)) { code in
-                    guard let code = code else { return }
-                    fetchDataFromURL(barcode: code)
-                }
+            guard let code = code else { return }
+            fetchDataFromURL(barcode: code)
+        }
     }
     
+    func decodeBase64ToImage(base64String: String) -> UIImage? {
+        guard let imageData = Data(base64Encoded: base64String) else {
+            return nil
+        }
+        return UIImage(data: imageData)
+    }
     
     // Funzione per ottenere i dati dall'URL
-   private func fetchDataFromURL(barcode: String) {
+    private func fetchDataFromURL(barcode: String) {
         let baseURL = "https://myapisrv.obbar.it/api/Product/getProductByBarcode?barcode="
         
         guard let url = URL(string: baseURL + barcode) else {
             print("URL non valido")
             return
         }
-
+        
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
                 print("Errore durante il recupero dei dati:", error?.localizedDescription ?? "Errore sconosciuto")
                 return
             }
-
+            
             do {
                 // Decodifica dei dati JSON nella struttura Product e aggiornamento della proprietà @State
                 let decodedData = try JSONDecoder().decode(Product.self, from: data)
@@ -98,12 +110,16 @@ struct Scanning: View {
                 print("Errore durante la decodifica dei dati:", error)
             }
         }
-
+        
         task.resume()
     }
     
- 
+    
+   
+    
 }
+
+
 //FUNZIONI PER LA FOTOCAMERA
 struct ScannerView: UIViewControllerRepresentable {
     @Binding var scannedCode: String?
@@ -128,6 +144,7 @@ struct ScannerView: UIViewControllerRepresentable {
         }
         
         func didScanCode(_ code: String) {
+            print("Codice a barre scansionato:", code)
             parent.scannedCode = code
         }
     }
@@ -181,6 +198,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             delegate?.didScanCode(stringValue)
         }
     }
+    
+    
 }
 
 

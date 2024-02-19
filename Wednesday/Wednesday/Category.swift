@@ -9,7 +9,30 @@ import SwiftUI
 
 struct Category: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        
+        ScrollView(.vertical, showsIndicators: false) {
+
+            
+            ForEach(0..<10){
+                index in
+                
+                HStack{
+                    Image(systemName: "heart")
+                    
+                    VStack (alignment: .leading){
+                        Text("Title").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        Text("Subtitle")
+                    }
+                }
+                .frame(width: 390, height: 110)
+                .background(verdeCard)
+                .cornerRadius(20)
+            }
+            
+        }
+        
+       
     }
 }
 

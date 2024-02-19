@@ -3,7 +3,6 @@
 //  Wednesday
 //
 //  Created by Maria Concetta on 12/02/24.
-//
 
 import Foundation
 import SwiftUI
@@ -13,9 +12,10 @@ import Combine
 
 struct Product: Codable {
     let barcode: String
+    let name: String
     let company: String
     let description: String
-    //let image: String
+    let image: String
     let category: String
     let country: String
     let standard: Bool
@@ -35,8 +35,10 @@ struct Scanning: View {
                 
                 if let data = product {
                     Text("BARCODE: \(data.barcode)")
+                    Text("Name: \(data.name)")
                     Text("Company: \(data.company)")
                     Text("Description: \(data.description)")
+                    Image("Image: \(data.image)" )
                     Text("Category: \(data.category)")
                     Text("Country: \(data.country)")
                     Text("IsCrueltyFree?: \(data.standard == true ? "Yes" : data.standard == false ? "No" : "Unknown")")
@@ -102,7 +104,7 @@ struct Scanning: View {
     
  
 }
-
+//FUNZIONI PER LA FOTOCAMERA
 struct ScannerView: UIViewControllerRepresentable {
     @Binding var scannedCode: String?
     

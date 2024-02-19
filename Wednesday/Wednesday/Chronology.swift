@@ -13,20 +13,48 @@ import SwiftUI
 struct Chronology: View {
     @State private var isShowingNextPage = false
     
+    @State private var productFilter = ""
+    
     var body: some View {
         NavigationView {
             ZStack {
                 
                 VStack {
-                   
+                    
+                    
+                    TextField("Search", text: $productFilter)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.white)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(verde, lineWidth: 1) 
+                        )
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .frame(width: 330, height: 70)
 
+                       
+                        
+                    
                     
                     //PRIMA SCROLLVIEW
                     ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing: 20) {
-                            ForEach(0..<5) { index in
-                                Card1()
-                            }
+                        HStack(){
+                            VStack(spacing: 20) {
+                                ForEach(0..<5) { index in
+                                    Card1()
+                                }
+                            }.offset(x:30,y:10)
+                            
+                            
+                            VStack(spacing: 20) {
+                                ForEach(0..<5) { index in
+                                    Card1()
+                                }
+                            }.offset(x:10,y:40)
+                            .frame(maxWidth: .infinity)
                         }
                     }
                 

@@ -19,8 +19,6 @@ struct ContentView: View {
         
         TabView (selection: $selectedTab){
             
-            
-            
             NavigationView {
                 
                 ZStack{
@@ -31,19 +29,17 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 15){
                         Image("BunnyHome")
                         
-                        
                         Text("Hello!")
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .font(.title)
                             .bold()
                         
                         Text("Scan barcode to get  full information about product.")
                         
+                        //dati dalla scansione
                         Scanning()
                         
                     }
-                    
                 }
-               
             }
             
             

@@ -12,32 +12,38 @@ struct Card1: View {
         VStack {
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundColor(verdeCard)
-                    .frame(width: 120, height: 200)
+                    .frame(width: 150, height: 230)
                     .overlay(
                         
                         VStack{
                             
                             Rectangle()
+                                .frame(height: 25)
+                                .foregroundColor(verde)
+                                .frame(width: 150, height: 5)
+                                .offset(x:0,y:165)
+                            
+                            RoundedRectangle(cornerRadius: 20)
                                 .frame(height: 50)
                                 .foregroundColor(verde)
-                                .frame(width: 120, height: 100)
-                                .offset(x:0,y:100)
+                                .frame(width: 150, height: 125)
+                                .offset(x:0,y:105)
                             
                             Text("Card Title")
                                 .font(.subheadline).bold()
                                 .foregroundColor(verdeCard)
-                                .offset(x:0,y:22)
+                                .offset(x:0,y:18)
                             
                             Text("Card Subitle")
                                 .font(.footnote)
                                 .foregroundColor(verdeCard)
-                                .offset(x:0,y:22)
+                                .offset(x:0,y:16)
                         }
                     )
                     .padding()
                 
         }
-        .frame(width: 120, height: 200)
+        .frame(width: 150, height: 230)
         .background(Color.white)
         .cornerRadius(10)
     }

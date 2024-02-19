@@ -25,7 +25,21 @@ struct WednesdayApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
+            TabView{
+                ContentView().tabItem {
+                    Label("Scan", systemImage: "barcode.viewfinder")
+                }.tag(0)
+                
+                Chronology().tabItem {
+                    Label("Chronology", systemImage: "timer")
+                }.tag(1)
+                
+                Favourites().tabItem {
+                    Label("Favourites", systemImage: "heart")
+                }.tag(2)
+            }
+
         }
         .modelContainer(sharedModelContainer)
     }

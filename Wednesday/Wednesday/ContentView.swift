@@ -12,12 +12,12 @@ struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-    @State private var selectedTab: Int = 0
+//    @State private var selectedTab: Int = 0
     
     
     var body: some View {
         
-        TabView (selection: $selectedTab){
+   
             
             NavigationView {
                 
@@ -42,23 +42,11 @@ struct ContentView: View {
                 }
             }
             
-            
-            .tabItem {
-                Label("Scan", systemImage: "barcode.viewfinder")
-            }.tag(0)
-            
-            Chronology().tabItem {
-                Label("Chronology", systemImage: "timer")
-            }.tag(1)
-            
-            Favourites().tabItem {
-                Label("Favourites", systemImage: "heart")
-            }.tag(2)
-            
+
         }
     }
     
-}
+
 
 #Preview {
     ContentView()

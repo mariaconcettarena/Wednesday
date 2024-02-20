@@ -21,6 +21,7 @@
 		E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */; };
 		E4656A052B7A213F00EBF1E0 /* Scanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A042B7A213F00EBF1E0 /* Scanning.swift */; };
 		E4656A092B7A2BBB00EBF1E0 /* InfoPrivacy.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4656A082B7A2BBB00EBF1E0 /* InfoPrivacy.plist */; };
+		E4A9A90D2B84E58B00F0A579 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A9A90C2B84E58B00F0A579 /* ProductView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		E4656A042B7A213F00EBF1E0 /* Scanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanning.swift; sourceTree = "<group>"; };
 		E4656A082B7A2BBB00EBF1E0 /* InfoPrivacy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoPrivacy.plist; sourceTree = "<group>"; };
+		E4A9A90C2B84E58B00F0A579 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */,
 				E46569F82B7A1BCA00EBF1E0 /* Preview Content */,
 				2CBFCFC62B80E0E20014E31C /* Category.swift */,
+				E4A9A90C2B84E58B00F0A579 /* ProductView.swift */,
 			);
 			path = Wednesday;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */,
 				E46569F32B7A1BC800EBF1E0 /* ContentView.swift in Sources */,
 				E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */,
+				E4A9A90D2B84E58B00F0A579 /* ProductView.swift in Sources */,
 				E4656A012B7A1FA300EBF1E0 /* Chronology.swift in Sources */,
 				E46569F12B7A1BC800EBF1E0 /* WednesdayApp.swift in Sources */,
 				2C4869CA2B7A5BC000CBEDC2 /* Onboarding.swift in Sources */,

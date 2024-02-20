@@ -10,7 +10,7 @@ import AVFoundation
 import Combine
 
 
-struct Product: Codable {
+struct Product: Codable{
     let barcode: String
     let name: String
     let company: String
@@ -26,8 +26,9 @@ struct Product: Codable {
 struct Scanning: View {
     @State private var isShowingScanner = false
     @State private var scannedCode: String?
-    @State private var product: Product?
     
+    
+    @State var product: Product?
     
     
     
@@ -74,6 +75,7 @@ struct Scanning: View {
         .sheet(isPresented: $isShowingScanner) {
             ScannerView(scannedCode: $scannedCode)
         }
+       
       
         .onReceive(Just(scannedCode)) { code in
             guard let code = code else { return }

@@ -21,7 +21,7 @@ struct Category: View {
                     Image(systemName: "heart")
                     
                     VStack (alignment: .leading){
-                        Text("Title").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        Text("Title").font(.title)
                         Text("Subtitle")
                     }
                 }

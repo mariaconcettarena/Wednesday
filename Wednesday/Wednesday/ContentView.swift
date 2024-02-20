@@ -12,13 +12,14 @@ import AVKit
 
 struct ContentView: View {
     
+    
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     //    @State private var selectedTab: Int = 0
     
     @State private var isBunnyMoving = false
     
-    
+
     var body: some View {
         
         
@@ -47,17 +48,18 @@ struct ContentView: View {
                 .offset(x:-100,y:-250)
                 .shadow(radius: 10)
                 
-                //s
                 
-                Text("Hello!")
-                    .font(.title)
-                    .bold()
-                
-                Text("Scan barcode to get  full information about product.")
-                
-                //dati dalla scansione
-                Spacer()
-                Scanning()
+                VStack{
+                    Text("Hello!")
+                        .font(.title)
+                        .bold()
+                    
+                    Text("Scan barcode to get  full information about product.")
+                    
+                    //dati dalla scansione
+                    
+                    Scanning()
+                }
                 
             }
         }

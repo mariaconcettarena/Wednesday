@@ -29,6 +29,8 @@ struct Scanning: View {
     @State private var product: Product?
     
     
+    
+    
     var body: some View {
         VStack {
             if let code = scannedCode {
@@ -72,9 +74,11 @@ struct Scanning: View {
         .sheet(isPresented: $isShowingScanner) {
             ScannerView(scannedCode: $scannedCode)
         }
+      
         .onReceive(Just(scannedCode)) { code in
             guard let code = code else { return }
             fetchDataFromURL(barcode: code)
+        
         }
     }
     

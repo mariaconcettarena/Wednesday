@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Wednesday
+
+  Created by Michela D'Avino on 21/02/24.
+  
+*/
+
+"Hello!" = "Hello!";
+"Scan barcode to get full information about product" = "Scan barcode to get full information about product";
+"SCAN PRODUCT" = "SCAN PRODUCT";
+"Chronology" = "Chronology";
+"Favourites" = "Favourites";
+"Search" = "Search";

@@ -56,7 +56,7 @@ struct ContentView: View {
                         .font(.title)
                         .bold()
                     
-                    Text("Scan barcode to get  full information about product.")
+                    Text("Scan barcode to get full information about product")
                     
                     //dati dalla scansione
                     

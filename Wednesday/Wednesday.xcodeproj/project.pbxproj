@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C4869CA2B7A5BC000CBEDC2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */; };
 		2CBFCFC72B80E0E20014E31C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCFC62B80E0E20014E31C /* Category.swift */; };
+		2CD45C192B85FA360045E398 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CD45C1B2B85FA360045E398 /* Localizable.strings */; };
 		E430E0202B7CDDED00C1B61C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E430E01F2B7CDDED00C1B61C /* Colors.swift */; };
 		E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FB0FB2B7ACAC100B431C7 /* Card.swift */; };
 		E447BB022B7E2B1D00A94E91 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E447BB012B7E2B1D00A94E91 /* SwiftSoup */; };
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		2CBFCFC62B80E0E20014E31C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		2CD45C1A2B85FA360045E398 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2CD45C1C2B85FA380045E398 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E430E01F2B7CDDED00C1B61C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E43FB0FB2B7ACAC100B431C7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E46569ED2B7A1BC800EBF1E0 /* Wednesday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wednesday.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +60,7 @@
 		E46569E42B7A1BC800EBF1E0 = {
 			isa = PBXGroup;
 			children = (
+				2CD45C1B2B85FA360045E398 /* Localizable.strings */,
 				E46569EF2B7A1BC800EBF1E0 /* Wednesday */,
 				E46569EE2B7A1BC800EBF1E0 /* Products */,
 			);
@@ -144,6 +148,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = E46569E42B7A1BC800EBF1E0;
 			packageReferences = (
@@ -164,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E46569FA2B7A1BCA00EBF1E0 /* Preview Assets.xcassets in Resources */,
+				2CD45C192B85FA360045E398 /* Localizable.strings in Resources */,
 				E46569F72B7A1BCA00EBF1E0 /* Assets.xcassets in Resources */,
 				E4656A092B7A2BBB00EBF1E0 /* InfoPrivacy.plist in Resources */,
 			);
@@ -191,6 +197,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2CD45C1B2B85FA360045E398 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CD45C1A2B85FA360045E398 /* en */,
+				2CD45C1C2B85FA380045E398 /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E46569FB2B7A1BCA00EBF1E0 /* Debug */ = {
@@ -320,7 +338,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Wednesday/Preview Content\"";
-				DEVELOPMENT_TEAM = 595ULKU252;
+				DEVELOPMENT_TEAM = CS786L2XRU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -352,7 +370,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Wednesday/Preview Content\"";
-				DEVELOPMENT_TEAM = 595ULKU252;
+				DEVELOPMENT_TEAM = CS786L2XRU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";

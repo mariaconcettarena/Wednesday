@@ -30,7 +30,8 @@ struct WednesdayApp: App {
         WindowGroup {
             
             TabView{
-                ContentView(chronology: $chronology, favourite: $favourites).tabItem {
+                ContentView(chronology: $chronology, favourite: $favourites)
+                    .tabItem {
                     Label("Scan", systemImage: "barcode.viewfinder")
                 }.tag(0)
                 
@@ -45,5 +46,10 @@ struct WednesdayApp: App {
 
         }
         .modelContainer(sharedModelContainer)
+        
+        //solo per testare
+        //.environment(\.locale, .init(identifier: "it"))
     }
 }
+
+

@@ -39,7 +39,7 @@ struct WednesdayApp: App {
                     Label("Chronology", systemImage: "timer")
                 }.tag(1)
                 
-                Favourites(products: $favourites, chronology: $chronology).tabItem {
+                Favourites(products: $favourites, favourites: $chronology).tabItem {
                     Label("Favourites", systemImage: "heart")
                 }.tag(2)
             }

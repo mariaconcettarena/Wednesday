@@ -16,63 +16,51 @@ struct Chronology: View {
     @Binding public var favourites: [Product]
     @State private var productFilter = ""
     
-    var body: some View {
-        NavigationView {
-            ZStack {
+    var body: some View
+    {
+        NavigationView
+        {
+            VStack(alignment: .leading)
+            {
+                /* TextField("Search", text: $productFilter)
+                                        .padding()
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .fill(Color.white)
+                                        )
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(verde, lineWidth: 1)
+                                        )
+                                        .textFieldStyle(PlainTextFieldStyle())
+                                        .frame(width: 330, height: 70)*/
                 
-                VStack {
+                ScrollView()
+                {
+                    ForEach(products.indices, id:\.self)
+                    {
+                        index in
+                        Card1(product: products[index], favourites: $favourites)
+                    }.frame(maxWidth: .infinity)
                     
                     
-                    TextField("Search", text: $productFilter)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color.white)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(verde, lineWidth: 1) 
-                        )
-                        .textFieldStyle(PlainTextFieldStyle())
-                        .frame(width: 330, height: 70)
-
-                       
-                        
+                        .padding(.top, 60)
+                    //.offset(x:10,y:10)
                     
-                    
-                    //PRIMA SCROLLVIEW
-                    ScrollView(.vertical, showsIndicators: false) {
-                        HStack(){
-                            VStack(spacing: 20) {
-                                ForEach(0..<products.count)
-                                {
-                                    index in
-                                    Card1(product: products[index], favourites: $favourites)
-                                }
-                            }.offset(x:30,y:10)
-                            
-                            
-                           /* VStack(spacing: 20) {
-                                ForEach(0..<5) { index in
-                                    Card1()
-                                }
-                            }.offset(x:10,y:40)
-                            .frame(maxWidth: .infinity)*/
-                        }
-                    }
-                
-                
-                
-                    
-                    
-                    // Navigazione verso la paginaScanning()
+                    /*// Navigazione verso la paginaScanning()
                     NavigationLink("", destination: Scanning(chronology: $products, favourites: $favourites), isActive: $isShowingNextPage)
-                        .hidden()
-                }
-                .navigationTitle("Chronology")
+                        .hidden()*/
+                    
+                    
+                }.navigationTitle("Chronology")
+                
             }
+                    
+                }
+                
+            
         }
-    }
+   // }
 }
 
 
@@ -80,3 +68,4 @@ struct Chronology: View {
 /*#Preview {
     Chronology()
 }*/
+

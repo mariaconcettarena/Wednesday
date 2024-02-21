@@ -21,7 +21,7 @@ struct Product: Codable{
     let isCrueltyFree: Bool
     let others: String
 }
-
+let previewLayer = AVCaptureVideoPreviewLayer()
 
 struct Scanning: View {
     @State private var isShowingScanner = false
@@ -73,6 +73,7 @@ struct Scanning: View {
                     
                 } else {
                     Text("Data not found")
+                    
                 }
                 
                 
@@ -93,11 +94,12 @@ struct Scanning: View {
             ScannerView(scannedCode: $scannedCode)
         }
        
-      
         .onReceive(Just(scannedCode)) { code in
             guard let code = code else { return }
             fetchDataFromURL(barcode: code)
-        
+            isShowingScanner = false
+            
+            
         }
     }
     
@@ -179,6 +181,13 @@ struct ScannerView: UIViewControllerRepresentable {
     }
 }
 
+
+
+
+
+
+
+
 protocol ScannerViewControllerDelegate: AnyObject {
     func didScanCode(_ code: String)
 }
@@ -209,13 +218,24 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         } else {
             print("Could not add metadata output")
         }
-        
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
-        previewLayer.videoGravity = .resizeAspectFill
+        let previewWidth: CGFloat = 400
+        let previewHeight: CGFloat = 600
+        // Calculate the center position of the screen
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        let centerX = (screenWidth - previewWidth) / 2
+        let centerY = (screenHeight - previewHeight) / 2
+
+        // Set the frame of the preview layer
+        previewLayer.frame = CGRect(x: centerX, y: centerY, width: previewWidth, height: previewHeight)
+        previewLayer.session = captureSession
+        //previewLayer.frame = view.layer.bounds
+        //previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
         
         captureSession.startRunning()
+    
+        
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -224,7 +244,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             guard let stringValue = readableObject.stringValue else { return }
             
             captureSession.stopRunning()
-            delegate?.didScanCode(stringValue)
+            DispatchQueue.main.async {
+                        // Remove all sublayers including the previewLayer
+                self.view.layer.sublayers?.forEach { $0.removeFromSuperlayer()
+                   
+                }
+                        // Inform the delegate of the scanned code
+                        self.delegate?.didScanCode(stringValue)
+                    }
+            
+           // delegate?.didScanCode(stringValue)
         }
     }
     

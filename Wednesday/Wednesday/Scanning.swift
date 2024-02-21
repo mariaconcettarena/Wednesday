@@ -10,6 +10,9 @@ import AVFoundation
 import Combine
 
 
+//CODICE A BARRE SCANSIONATO -> variabile 'code'
+
+
 struct Product: Codable{
     let barcode: String
     let name: String
@@ -34,60 +37,65 @@ struct Scanning: View {
     
     
     var body: some View {
-        VStack {
-            if let code = scannedCode {
+        
+        VStack{
+        
+        
+        Button(action: {
+            isShowingScanner = true
+        }) {
+            Image(systemName: "barcode.viewfinder")
+            Text("SCAN PRODUCT")
+            
+        } .foregroundColor(.white)
+            .frame(width: 280, height: 50)
+            .background(Color.accentColor)
+            .cornerRadius(12)
+        
+        
+            VStack {
                 
-                if let data = product {
-                    Text("BARCODE: \(data.barcode)")
-                    Text("Name: \(data.name)")
-                    Text("Company: \(data.company)")
-                    Text("Description: \(data.description)")
-                    if let decodedImage = self.decodeBase64ToImage(base64String: data.image) {
-                                           Image(uiImage: decodedImage)
-                                               .resizable()
-                                               .aspectRatio(contentMode: .fit)
-                                               .frame(width: 200, height: 200)
-                                               .padding()
-                                       }
-                    Text("Category: \(data.category)")
-                    Text("Country: \(data.country)")
-                    Text("IsCrueltyFree?: \(data.isCrueltyFree == true ? "Yes" : data.isCrueltyFree == false ? "No" : "Unknown")")
-                    Text("Others: \(data.others)")
+                if let code = scannedCode {
                     
-                    Button (action:{
-                        if(!(favourites.contains(where: {$0.barcode == self.product?.barcode}))){
-
-                            favourites.append(self.product!)  }
-                        else
-                        {
-                            favourites.remove(at: (favourites.firstIndex(where: {$0.barcode == self.product?.barcode})!))
+                    if let data = product {
+                        Text("BARCODE: \(data.barcode)")
+                        Text("Name: \(data.name)")
+                        Text("Company: \(data.company)")
+                        Text("Description: \(data.description)")
+                        if let decodedImage = self.decodeBase64ToImage(base64String: data.image) {
+                            Image(uiImage: decodedImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 200, height: 200)
+                                .padding()
                         }
-                    }, label: {
-                        Image(systemName:
-                                (favourites.contains(where: {$0.barcode == self.product!.barcode})) ? "heart.circle.fill" : "heart.circle")
-                        .bold ()
-                        .font(.system(size: 25))
+                        Text("Category: \(data.category)")
+                        Text("Country: \(data.country)")
+                        Text("IsCrueltyFree?: \(data.isCrueltyFree == true ? "Yes" : data.isCrueltyFree == false ? "No" : "Unknown")")
+                        Text("Others: \(data.others)")
                         
-                    })
-                    
-                    
-                } else {
-                    Text("Data not found")
-                    
+                        Button (action:{
+                            if(!(favourites.contains(where: {$0.barcode == self.product?.barcode}))){
+                                
+                                favourites.append(self.product!)  }
+                            else
+                            {
+                                favourites.remove(at: (favourites.firstIndex(where: {$0.barcode == self.product?.barcode})!))
+                            }
+                        }, label: {
+                            Image(systemName:
+                                    (favourites.contains(where: {$0.barcode == self.product!.barcode})) ? "heart.circle.fill" : "heart.circle")
+                            .bold ()
+                            .font(.system(size: 25))
+                            
+                        })
+                        
+                        
+                    } else {
+                        Text("Data not found")
+                        
+                    }
                 }
-                
-                
-            } else {
-                Button(action: {
-                    isShowingScanner = true
-                }) {
-                    Image(systemName: "barcode.viewfinder")
-                    Text("SCAN PRODUCT")
-                    
-                } .foregroundColor(.white)
-                    .frame(width: 280, height: 50)
-                    .background(Color.accentColor)
-                    .cornerRadius(12)
             }
         }
         .sheet(isPresented: $isShowingScanner) {
@@ -98,8 +106,6 @@ struct Scanning: View {
             guard let code = code else { return }
             fetchDataFromURL(barcode: code)
             isShowingScanner = false
-            
-            
         }
     }
     
@@ -133,7 +139,7 @@ struct Scanning: View {
                     self.product = decodedData
                     
                     //se nella cronologia non è presente il barcode, viene aggiunto una sola volta
-                    if(!(chronology.contains(where: {$0.barcode == self.product?.barcode}))){
+                  if(!(chronology.contains(where: {$0.barcode == self.product?.barcode}))){
                         chronology.append(self.product!)
                     }
                 }
@@ -154,6 +160,7 @@ struct Scanning: View {
 //FUNZIONI PER LA FOTOCAMERA
 struct ScannerView: UIViewControllerRepresentable {
     @Binding var scannedCode: String?
+    
     
     func makeUIViewController(context: Context) -> ScannerViewController {
         let scannerViewController = ScannerViewController()

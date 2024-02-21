@@ -8,6 +8,8 @@ import Foundation
 import SwiftUI
 
 struct Card1: View {
+    @State public var product: Product
+    @Binding public var favourites: [Product]
     var body: some View {
         VStack {
                 RoundedRectangle(cornerRadius: 20)
@@ -29,15 +31,31 @@ struct Card1: View {
                                 .frame(width: 150, height: 125)
                                 .offset(x:0,y:105)
                             
-                            Text("Card Title")
+                            Text(product.name)
                                 .font(.subheadline).bold()
                                 .foregroundColor(verdeCard)
                                 .offset(x:0,y:18)
                             
-                            Text("Card Subitle")
+                            Text(product.company)
                                 .font(.footnote)
                                 .foregroundColor(verdeCard)
                                 .offset(x:0,y:16)
+                            
+                            Button (action:{
+                                if(!(favourites.contains(where: {$0.barcode == self.product.barcode}))){
+
+                                    favourites.append(self.product)  }
+                                else
+                                {
+                                    favourites.remove(at: (favourites.firstIndex(where: {$0.barcode == self.product.barcode})!))
+                                }
+                            }, label: {
+                                Image(systemName:
+                                        (favourites.contains(where: {$0.barcode == self.product.barcode})) ? "heart.circle.fill" : "heart.circle")
+                                .bold ()
+                                .font(.system(size: 25))
+                                
+                            })
                         }
                     )
                     .padding()
@@ -72,9 +90,9 @@ struct Card1: View {
  }*/
 
 
-#Preview{
+/*#Preview{
     Card1()
-}
+}*/
 
 /*#Preview{
  Card2()

@@ -22,20 +22,23 @@ struct WednesdayApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+    
+    @State public var chronology: [Product] = []
+    @State public var favourites: [Product] = []
 
     var body: some Scene {
         WindowGroup {
             
             TabView{
-                ContentView().tabItem {
+                ContentView(chronology: $chronology, favourite: $favourites).tabItem {
                     Label("Scan", systemImage: "barcode.viewfinder")
                 }.tag(0)
                 
-                Chronology().tabItem {
+                Chronology(products: $chronology, favourites: $favourites).tabItem {
                     Label("Chronology", systemImage: "timer")
                 }.tag(1)
                 
-                Favourites().tabItem {
+                Favourites(products: $favourites, chronology: $chronology).tabItem {
                     Label("Favourites", systemImage: "heart")
                 }.tag(2)
             }

@@ -18,6 +18,8 @@ struct ContentView: View {
     //    @State private var selectedTab: Int = 0
     
     @State private var isBunnyMoving = false
+    @Binding public var chronology: [Product]
+    @Binding public var favourite: [Product]
     
 
     var body: some View {
@@ -58,7 +60,7 @@ struct ContentView: View {
                     
                     //dati dalla scansione
                     
-                    Scanning()
+                    Scanning(chronology: $chronology, favourites: $favourite)
                 }
                 
             }
@@ -68,7 +70,7 @@ struct ContentView: View {
 
 
 
-#Preview {
+/*#Preview {
     ContentView()
         .modelContainer(for: Item.self, inMemory: true)
-}
+}*/

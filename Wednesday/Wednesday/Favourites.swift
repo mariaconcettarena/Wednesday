@@ -10,23 +10,64 @@ import SwiftUI
 
 struct Favourites: View {
     
-    @State private var searchText = ""
-    @State private var filterOn = false
+    @State private var isShowingNextPage = false
+    @Binding public var products: [Product]  // FAVOURITES
+    @Binding public var chronology: [Product]
+    @State private var productFilter = ""
     
-    
-    let products = ["Mascara", "Rossetto"]
-    
-    var body: some View {
-        
-        
-        
-        
-        NavigationStack{
+    var body: some View
+    {
+        NavigationView
+        {
+            ZStack
+            {
+                VStack
+                {
+                    TextField("Search", text: $productFilter).padding().background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
+                            .overlay(RoundedRectangle(cornerRadius: 20).stroke(verde, lineWidth: 1)).textFieldStyle(PlainTextFieldStyle()).frame(width: 330, height: 70)
+
+                    //PRIMA SCROLLVIEW
+                    ScrollView(.vertical, showsIndicators: false)
+                    {
+                        HStack()
+                        {
+                            VStack(spacing: 20)
+                            {
+                                ForEach(products.indices, id:\.self)
+                                { index in
+                                    Card1(product: products[index], favourites: $products)
+                                }
+                            }.offset(x:30,y:10)
+                                
+                                
+                             /*   VStack(spacing: 20) {
+                                    ForEach(0..<5) { index in
+                                        Card1()
+                                    }
+                                }.offset(x:10,y:40)
+                                .frame(maxWidth: .infinity) */
+                            }
+                        }
+                    
+                    
+                    
+                        
+                        
+                        // Navigazione verso la paginaScanning()
+                        NavigationLink("", destination: Scanning(chronology:$chronology, favourites: $products), isActive: $isShowingNextPage)
+                            .hidden()
+                    }
+                    .navigationTitle("Favourites")
+                }
+            }
+        }
+    }
+
             
             
             
             
-            List{
+            /*List{
                 ForEach(searchResults, id: \.self) {
                     product in
                     NavigationLink(destination: Text(product)) {
@@ -71,9 +112,9 @@ struct Favourites: View {
             }
         }
     }
-}
+}*/
 
-
+/*
 #Preview {
     Favourites()
-}
+}*/

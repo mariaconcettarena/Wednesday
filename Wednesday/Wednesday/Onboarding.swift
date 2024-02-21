@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Onboarding: View {
+    @Binding public var chronology: [Product]
+    @Binding public var favourites: [Product]
     var body: some View {
         
         NavigationStack{
@@ -47,7 +49,7 @@ struct Onboarding: View {
             .padding(.vertical, 50)
             
             
-            NavigationLink(destination: ContentView()) {
+            NavigationLink(destination: ContentView(chronology: $chronology, favourite: $favourites)) {
                 Text("Let's start!")
             }
             .frame(width: 115, height: 50)
@@ -63,6 +65,6 @@ struct Onboarding: View {
     }
 }
 
-#Preview {
+/*#Preview {
     Onboarding()
-}
+}*/

@@ -12,7 +12,8 @@ import SwiftUI
 
 struct Chronology: View {
     @State private var isShowingNextPage = false
-    
+    @Binding public var products: [Product]  // CHRONOLOGY
+    @Binding public var favourites: [Product]
     @State private var productFilter = ""
     
     var body: some View {
@@ -43,18 +44,20 @@ struct Chronology: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         HStack(){
                             VStack(spacing: 20) {
-                                ForEach(0..<5) { index in
-                                    Card1()
+                                ForEach(0..<products.count)
+                                {
+                                    index in
+                                    Card1(product: products[index], favourites: $favourites)
                                 }
                             }.offset(x:30,y:10)
                             
                             
-                            VStack(spacing: 20) {
+                           /* VStack(spacing: 20) {
                                 ForEach(0..<5) { index in
                                     Card1()
                                 }
                             }.offset(x:10,y:40)
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity)*/
                         }
                     }
                 
@@ -63,7 +66,7 @@ struct Chronology: View {
                     
                     
                     // Navigazione verso la paginaScanning()
-                    NavigationLink("", destination: Scanning(), isActive: $isShowingNextPage)
+                    NavigationLink("", destination: Scanning(chronology: $products, favourites: $favourites), isActive: $isShowingNextPage)
                         .hidden()
                 }
                 .navigationTitle("Chronology")
@@ -74,6 +77,6 @@ struct Chronology: View {
 
 
 
-#Preview {
+/*#Preview {
     Chronology()
-}
+}*/

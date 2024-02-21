@@ -29,7 +29,8 @@ struct Scanning: View {
     
     
     @State var product: Product?
-    
+    @Binding public var chronology: [Product]
+    @Binding public var favourites: [Product]
     
     
     var body: some View {
@@ -52,6 +53,22 @@ struct Scanning: View {
                     Text("Country: \(data.country)")
                     Text("IsCrueltyFree?: \(data.isCrueltyFree == true ? "Yes" : data.isCrueltyFree == false ? "No" : "Unknown")")
                     Text("Others: \(data.others)")
+                    
+                    Button (action:{
+                        if(!(favourites.contains(where: {$0.barcode == self.product?.barcode}))){
+
+                            favourites.append(self.product!)  }
+                        else
+                        {
+                            favourites.remove(at: (favourites.firstIndex(where: {$0.barcode == self.product?.barcode})!))
+                        }
+                    }, label: {
+                        Image(systemName:
+                                (favourites.contains(where: {$0.barcode == self.product!.barcode})) ? "heart.circle.fill" : "heart.circle")
+                        .bold ()
+                        .font(.system(size: 25))
+                        
+                    })
                     
                     
                 } else {
@@ -109,8 +126,14 @@ struct Scanning: View {
             do {
                 // Decodifica dei dati JSON nella struttura Product e aggiornamento della proprietà @State
                 let decodedData = try JSONDecoder().decode(Product.self, from: data)
-                DispatchQueue.main.async {
+                DispatchQueue.main.async
+                {
                     self.product = decodedData
+                    
+                    //se nella cronologia non è presente il barcode, viene aggiunto una sola volta
+                    if(!(chronology.contains(where: {$0.barcode == self.product?.barcode}))){
+                        chronology.append(self.product!)
+                    }
                 }
             } catch {
                 print("Errore durante la decodifica dei dati:", error)
@@ -213,8 +236,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
 
 
-#Preview {
+/*#Preview {
     Scanning()
-}
+}*/
 
 

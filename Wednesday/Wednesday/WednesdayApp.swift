@@ -25,6 +25,8 @@ struct WednesdayApp: App {
     
     @State public var chronology: [Product] = []
     @State public var favourites: [Product] = []
+    /*@State public var product = Product (barcode: "", name: "", company: "", description: "", image: "", category: "", country: "", isCrueltyFree: false, others: "")*/
+    
 
     var body: some Scene {
         WindowGroup {

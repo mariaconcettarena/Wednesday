@@ -7,12 +7,59 @@
 
 import SwiftUI
 
-struct ProductView: View {
+struct ProductView: View
+{
+    @Binding public var product: Product
+    var body: some View
+    {
 
-    var body: some View {
+        ZStack
+        {
+            VStack
+            {
+                Spacer()
+                if let decodedImage = self.decodeBase64ToImage(base64String: product.image)
+                {
+                    Image(uiImage: decodedImage).resizable(capInsets: EdgeInsets()).padding().scaledToFit()
+                        /*.resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 120, height: 150)
+                    //.frame(width: 120, height: 150)
+                        .padding().scaledToFit()*/
+                }
+                
+             /*   Image("foto").resizable(capInsets: EdgeInsets()).padding().scaledToFit()
+                    //.frame(width: 230,height: 330)*/
+                
+                VStack
+                {
+                    Spacer()
+                    VStack(alignment: .leading, spacing: 20)
+                    {
+                        Text(product.name).bold().font(.title3)
+                        
+                        Text(product.company)
+                            .padding(.bottom, 20)
+                        
+                        Text(product.description)
+                        
+                    }.frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .padding(.bottom, 80)
+                        .foregroundColor(.white)
+                        .background(Color(verde))
+                        .cornerRadius(30, corners: [.topLeft, .topRight])
+                }
+            }
+            //.edgesIgnoringSafeArea(.bottom)
+            //.background(Color(verde))
+            
+            
+        }
         
         
-        VStack{
+        /*VStack
+        {
        
             //sfondo verde
             RoundedRectangle(cornerRadius: 40)
@@ -38,11 +85,23 @@ struct ProductView: View {
             Text("Descrizione.....").offset(x:-135,y:-300).font(.subheadline)
             
             
-        }
+        }*/
         
     }
+    
+    func decodeBase64ToImage(base64String: String) -> UIImage?
+    {
+        guard let imageData = Data(base64Encoded: base64String)
+        else
+        {
+            return nil
+        }
+        return UIImage(data: imageData)
+    }
+    
+    
 }
 
-#Preview {
+/*#Preview {
     ProductView()
-}
+}*/

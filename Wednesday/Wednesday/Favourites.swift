@@ -16,12 +16,28 @@ struct Favourites: View {
     @Binding public var favourites: [Product]
     @State private var productFilter = ""
     
+    
+    
     var body: some View
     {
         NavigationView
         {
             VStack(alignment: .leading)
             {
+                
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        ForEach(0..<5) { index in
+                            Text("Hair")
+                                .font(.headline)
+                                .frame(width: 90, height: 30)
+                                .background(verdeCard)
+                                .cornerRadius(10.0)
+                                .padding(.vertical)
+                        }
+                    }
+                    .padding(.horizontal)
+                }
                 
                 ScrollView()
                 {

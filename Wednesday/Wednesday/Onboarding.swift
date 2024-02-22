@@ -13,7 +13,7 @@ struct Onboarding: View {
     var body: some View {
         
         NavigationStack{
-            Text("Cruelty free APP")
+            Text("BunCode")
                 .font(.title)
             
             
@@ -28,20 +28,13 @@ struct Onboarding: View {
                     .frame(width: 350, height: 30)
                 
                 
-                HStack{
-                    Image(systemName: "list.bullet")
-                    Text("Information")
-                }.font(.headline)
-                
-                Text("You can discover the INCI of the products.")
-                    .frame(width: 350, height: 30)
-                
+        
                 HStack{
                     Image(systemName: "suit.heart.fill")
                     Text("Favourites")
                 }.font(.headline)
                 
-                Text("You can save your product as favourite.")
+                Text("You can save your favourite product.")
                     .frame(width: 350, height: 30)
                
                 
@@ -53,7 +46,7 @@ struct Onboarding: View {
                 Text("Let's start!")
             }
             .frame(width: 115, height: 50)
-            .background(Color.blue)
+            .background(Color.accentColor)
             .foregroundColor(.white)
             .fontWeight(.semibold).clipShape(RoundedRectangle(cornerRadius: 10))
             

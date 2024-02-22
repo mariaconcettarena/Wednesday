@@ -61,7 +61,8 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                     Image(uiImage: decodedImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200)
+                        .frame(width: 120, height: 150)
+                        //.frame(width: 120, height: 150)
                         .padding()
                 }
                 
@@ -70,27 +71,28 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                 RoundedRectangle(cornerRadius: 10)
                     .fill(verde)
                     .frame(maxWidth: .infinity) // Imposta la larghezza massima del rettangolo verde
-                    .frame(height: 60)
+                    .frame(height: 70)
+                    //.frame(height: 50)
                     .overlay(
                         VStack(alignment: .center)
                         {
                             Text(product.name).scaleEffect(0.8)
                                 .foregroundColor(.white)
                                 .font(.headline)
-                                .lineLimit(nil)
+                                //.lineLimit(nil)
                             Text(product.company).scaleEffect(0.8)
                                 .foregroundColor(.white)
                                 .font(.subheadline)
                         }
-                            .padding(.leading)
+                            //.padding(.leading)
                     )
                 
                 
                 
             }
         }
-        .padding()
-        .frame(width: 150, height: 230)
+        .padding().frame(width: 90, height: 130)
+        //.frame(width: 150, height: 230)
         
     }
 

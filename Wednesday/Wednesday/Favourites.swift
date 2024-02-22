@@ -16,7 +16,7 @@ struct Favourites: View {
     @Binding public var favourites: [Product]
     @State private var productFilter = ""
     
-    
+    var category = ["Make up", "Skincare", "Bodycare", "Haircare"]
     
     var body: some View
     {
@@ -27,9 +27,12 @@ struct Favourites: View {
                 
                 ScrollView(.horizontal) {
                     HStack(spacing: 10) {
-                        ForEach(0..<5) { index in
-                            Text("Hair")
+                        ForEach(category, id: \.self) { index in
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Text(index)
+                            })
                                 .font(.headline)
+                                .foregroundColor(.black)
                                 .frame(width: 90, height: 30)
                                 .background(verdeCard)
                                 .cornerRadius(10.0)

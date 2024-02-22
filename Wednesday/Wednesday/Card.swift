@@ -78,11 +78,11 @@ struct Card1: View
                         {
                             Text(product.name).scaleEffect(0.8)
                                 .foregroundColor(.white)
-                                .font(.headline)
+                                .font(.headline).multilineTextAlignment(.center)
                                 //.lineLimit(nil)
                             Text(product.company).scaleEffect(0.8)
                                 .foregroundColor(.white)
-                                .font(.subheadline)
+                                .font(.subheadline).multilineTextAlignment(.center)
                         }
                             //.padding(.leading)
                     )

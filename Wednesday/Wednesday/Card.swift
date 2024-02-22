@@ -7,7 +7,7 @@
 import SwiftUI
 import Foundation
 
-struct Card1: View
+struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
 {
     @State public var product: Product
     @Binding public var favourites: [Product]
@@ -109,5 +109,5 @@ struct Card1: View
         
     
 }
-        
-  
+
+

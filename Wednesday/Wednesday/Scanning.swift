@@ -64,21 +64,7 @@ struct Scanning: View {
                         // Text("IsCrueltyFree?: \(data.isCrueltyFree == true ? "Yes" : data.isCrueltyFree == false ? "No" : "Unknown")")
                         // Text("Others: \(data.others)")
                         
-                        Button (action:{
-                            if(!(favourites.contains(where: {$0.barcode == self.product?.barcode}))){
-                                
-                                favourites.append(self.product!)  }
-                            else
-                            {
-                                favourites.remove(at: (favourites.firstIndex(where: {$0.barcode == self.product?.barcode})!))
-                            }
-                        }, label: {
-                            Image(systemName:
-                                    (favourites.contains(where: {$0.barcode == self.product!.barcode})) ? "heart.circle.fill" : "heart.circle")
-                            .bold ()
-                            .font(.system(size: 25))
-                            
-                        })
+                       
                         CardScan(prod: data)
                     }
                     else {
@@ -231,14 +217,14 @@ struct CardScan : View{
                         }
                     }
                     VStack{ //NOME + ISCRUELTYFREE
-                        Text(prod.name).foregroundColor(.black).font(.title).bold()
+                        Text(prod.name).foregroundColor(.black).font(.title3).bold().scaleEffect()
                         
                         HStack{
                             Image("BunnyHome").resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
                             
-                            Text("IsCrueltyFree?: \(prod.isCrueltyFree == true ? "Yes" : prod.isCrueltyFree == false ? "No" : "Unknown")")
+                            Text("IsCrueltyFree?  \(prod.isCrueltyFree == true ? "Yes" : prod.isCrueltyFree == false ? "No" : "Unknown")")
                         }
                     }.padding()
                 }

@@ -13,11 +13,14 @@ struct Chronology: View {
     @Binding public var products: [Product]  // CHRONOLOGY
     @Binding public var favourites: [Product]
     @State private var productFilter = ""
+    @Binding public var product: Product
+    //@State public var product: Product
     
     var body: some View
     {
         NavigationView
         {
+       
             VStack(alignment: .leading)
             {
                 /* TextField("Search", text: $productFilter)
@@ -35,47 +38,54 @@ struct Chronology: View {
                 
                 ScrollView()
                 {
-                    HStack
-                    {
-                        VStack(spacing: 20)
-                        {
-                            ForEach(products.indices, id:\.self)
-                            {
-                                index in
-                                if (index % 2 != 0)
-                                {
-                                    Card1(product: products[index], favourites: $favourites)
-                                }
-                            }.frame(maxWidth: .infinity)
-                            
-                            
-                                //.padding(.top, 60)
-                            .offset(x:30,y:10)
-                        }
-                        
-                        VStack(spacing: 10)
-                        {
-                            ForEach(products.indices, id:\.self)
-                            {
-                                index in
-                                if (index % 2 == 0)
-                                {
-                                    Card1(product: products[index], favourites: $favourites)
-                                }
-                            }.frame(maxWidth: .infinity)
-                            
-                            
-                                //.padding(.top, 60)
-                            .offset(x:10,y:40)
-                        }
-                        
-                    }.padding(.top, 80)
-                    /*// Navigazione verso la paginaScanning()
-                    NavigationLink("", destination: Scanning(chronology: $products, favourites: $favourites), isActive: $isShowingNextPage)
-                        .hidden()*/
+                   
                     
-                    
-                }.navigationTitle("Chronology").padding(.leading, -40)
+                        HStack
+                        {
+                            VStack(spacing: 200)
+                            {
+                                ForEach($products.indices, id:\.self)
+                                {
+                                    index in
+                                    
+                                    
+                                    if (index % 2 != 0)
+                                    {
+                                        Card1(favourites: $favourites, product: $products[index])
+                                    }
+                                    
+                                }.frame(maxWidth: .infinity)
+                                
+                                
+                                //.padding(.top, 60)
+                                    .offset(x:30,y:10)
+                            }
+                            
+                            VStack(spacing: 200)
+                            {
+                                ForEach($products.indices, id:\.self)
+                                {
+                                    index in
+                                    
+                                    if (index % 2 == 0)
+                                    {
+                                        Card1(favourites: $favourites, product: $products[index])
+                                    }
+                                    
+                                }.frame(maxWidth: .infinity)
+                                
+                                
+                                //.padding(.top, 60)
+                                    .offset(x:10,y:40)
+                            }
+                            
+                        }.padding(.top, 80)
+                        /*// Navigazione verso la paginaScanning()
+                         NavigationLink("", destination: Scanning(chronology: $products, favourites: $favourites), isActive: $isShowingNextPage)
+                         .hidden()*/
+                        
+                        
+                    }.navigationTitle("Chronology").padding(.leading, -40)
                 
             }
                     
@@ -83,7 +93,7 @@ struct Chronology: View {
                 
             
         }
-   // }
+    //}
 }
 
 

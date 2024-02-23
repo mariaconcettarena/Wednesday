@@ -25,7 +25,7 @@ struct WednesdayApp: App {
     
     @State public var chronology: [Product] = []
     @State public var favourites: [Product] = []
-    /*@State public var product = Product (barcode: "", name: "", company: "", description: "", image: "", category: "", country: "", isCrueltyFree: false, others: "")*/
+    @State public var product = Product (barcode: "", name: "", company: "", description: "", image: "", category: "", country: "", isCrueltyFree: false, others: "")
     
 
     var body: some Scene {
@@ -37,11 +37,11 @@ struct WednesdayApp: App {
                     Label("Scan", systemImage: "barcode.viewfinder")
                 }.tag(0)
                 
-                Chronology(products: $chronology, favourites: $favourites).tabItem {
+                Chronology(products: $chronology, favourites: $favourites, product: $product).tabItem {
                     Label("Chronology", systemImage: "timer")
                 }.tag(1)
                 
-                Favourites(products: $favourites, favourites: $chronology).tabItem {
+                Favourites(products: $favourites, favourites: $chronology, product: $product).tabItem {
                     Label("Favourites", systemImage: "heart")
                 }.tag(2)
             }

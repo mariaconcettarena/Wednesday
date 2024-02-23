@@ -36,17 +36,10 @@ struct Scanning: View {
     @Binding public var favourites: [Product]
     
     
-    @State private var isShowingCard = false
-    
-    
-    
-    
     
     var body: some View {
         
         VStack{
-            
-            
             Button(action: {
                 isShowingScanner = true
             }) {
@@ -60,17 +53,12 @@ struct Scanning: View {
             
             
             VStack {
-                
                 if scannedCode != nil {
-                    
-                   
-                    
                     if  let data = product {
-                       // Text("BARCODE: \(data.barcode)")
+                        // Text("BARCODE: \(data.barcode)")
                         // Text("Name: \(data.name)")
                         // Text("Company: \(data.company)")
                         // Text("Description: \(data.description)")
-                      
                         //  Text("Category: \(data.category)")
                         //  Text("Country: \(data.country)")
                         // Text("IsCrueltyFree?: \(data.isCrueltyFree == true ? "Yes" : data.isCrueltyFree == false ? "No" : "Unknown")")
@@ -91,19 +79,10 @@ struct Scanning: View {
                             .font(.system(size: 25))
                             
                         })
-                        
                         CardScan(prod: data)
                     }
-                    
-                    
-                    
-                    
-                    
-                    
                     else {
-                       // data = nil
                         Text("Data not found")
-                        
                     }
                 }
             }
@@ -112,21 +91,14 @@ struct Scanning: View {
             ScannerView(scannedCode: $scannedCode)
             
         }
-       // .sheet(isPresented: $isShowingCard) {
-         //   CardScan()
-       // }
-        
         .onReceive(Just(scannedCode)) { code in
             guard let code = code else { return }
             fetchDataFromURL(barcode: code)
             isShowingScanner = false
-            
         }
-        
-        
     }
     
- 
+    
     
     // Funzione per ottenere i dati dall'URL
     private func fetchDataFromURL(barcode: String) {
@@ -160,13 +132,8 @@ struct Scanning: View {
                 self.product=nil
             }
         }
-        
         task.resume()
     }
-    
-    
-    
-    
 }
 
 
@@ -203,17 +170,13 @@ struct ScannerView: UIViewControllerRepresentable {
 
 
 //CARD CHE COMPARE APPENA SCANSIONO
-
-struct CardScan : View{
+/*struct CardScan : View{
     
     @State public var prod: Product
     
-    
     var body : some View{
-    
+        
         ZStack{
-            
-           
             
             RoundedRectangle(cornerRadius: 20)
                 .foregroundColor(.white)
@@ -230,12 +193,59 @@ struct CardScan : View{
                     .padding()
             }
             
-            
         }.background(Color.clear)
     }
     
     
+    func decodeBase64ToImage(base64String: String) -> UIImage? {
+        guard let imageData = Data(base64Encoded: base64String) else {
+            return nil
+        }
+        return UIImage(data: imageData)
+    }
+}*/
+
+struct CardScan : View{
+    @State public var prod: Product
     
+    
+    var body : some View{
+        VStack{
+            
+            ZStack{
+                
+                RoundedRectangle(cornerRadius: 20)
+                    .foregroundColor(.white)
+                    .shadow(radius: 5).frame(width:350,height:120)
+                
+                HStack{
+                    ZStack{//QUADRATO VERDE + FOTO
+                        RoundedRectangle(cornerRadius: 20).foregroundColor(verdeCard) .shadow(radius: 5).frame(width:100,height:100).padding()
+                        
+                        if let decodedImage = self.decodeBase64ToImage(base64String: prod.image) {
+                            Image(uiImage: decodedImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 90, height: 90)
+                                .padding()
+                        }
+                    }
+                    VStack{ //NOME + ISCRUELTYFREE
+                        Text(prod.name).foregroundColor(.black).font(.title).bold()
+                        
+                        HStack{
+                            Image("BunnyHome").resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                            
+                            Text("IsCrueltyFree?: \(prod.isCrueltyFree == true ? "Yes" : prod.isCrueltyFree == false ? "No" : "Unknown")")
+                        }
+                    }.padding()
+                }
+                
+            }.background(Color.clear)
+        }.offset(x:0,y:100)
+    }
     
     
     func decodeBase64ToImage(base64String: String) -> UIImage? {
@@ -245,6 +255,8 @@ struct CardScan : View{
         return UIImage(data: imageData)
     }
 }
+
+
 
 
 

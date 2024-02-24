@@ -27,12 +27,13 @@ struct WednesdayApp: App {
     @State public var favourites: [Product] = []
     @State public var product = Product (barcode: "", name: "", company: "", description: "", image: "", category: "", country: "", isCrueltyFree: false, others: "")
     
+    @State public var found: Bool = false
 
     var body: some Scene {
         WindowGroup {
             
             TabView{
-                ContentView(chronology: $chronology, favourite: $favourites)
+                ContentView(chronology: $chronology, favourite: $favourites, product: $product, found: $found)
                     .tabItem {
                     Label("Scan", systemImage: "barcode.viewfinder")
                 }.tag(0)

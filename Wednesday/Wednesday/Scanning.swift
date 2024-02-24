@@ -31,9 +31,12 @@ struct Scanning: View {
     @State private var scannedCode: String?
     
     
-    @State public var product: Product?
     @Binding public var chronology: [Product]
     @Binding public var favourites: [Product]
+    
+    @Binding public var product : Product
+    
+    @Binding public var found : Bool
     
     
     
@@ -54,22 +57,14 @@ struct Scanning: View {
             
             VStack {
                 if scannedCode != nil {
-                    if  let data = product {
-                        // Text("BARCODE: \(data.barcode)")
-                        // Text("Name: \(data.name)")
-                        // Text("Company: \(data.company)")
-                        // Text("Description: \(data.description)")
-                        //  Text("Category: \(data.category)")
-                        //  Text("Country: \(data.country)")
-                        // Text("IsCrueltyFree?: \(data.isCrueltyFree == true ? "Yes" : data.isCrueltyFree == false ? "No" : "Unknown")")
-                        // Text("Others: \(data.others)")
-                        
-                       
-                        CardScan(prod: data)
+                  
+                    if found == true {
+                   
+                        CardScan(prod: $product)}
+                    else{
+                        Text("Sorry, this product is not in our database...")
                     }
-                    else {
-                        Text("Data not found")
-                    }
+                    
                 }
             }
         }
@@ -90,6 +85,8 @@ struct Scanning: View {
     private func fetchDataFromURL(barcode: String) {
         let baseURL = "https://myapisrv.obbar.it/api/Product/getProductByBarcode?barcode="
         
+        self.found = false
+        
         guard let url = URL(string: baseURL + barcode) else {
             print("URL non valido")
             return
@@ -106,16 +103,18 @@ struct Scanning: View {
                 let decodedData = try JSONDecoder().decode(Product.self, from: data)
                 DispatchQueue.main.async
                 {
-                    self.product = decodedData
+                    self.product = decodedData //riempimento prodotto appena lo scansiona
+                    self.found = true
                     
                     //se nella cronologia non è presente il barcode, viene aggiunto una sola volta
-                    if(!(chronology.contains(where: {$0.barcode == self.product?.barcode}))){
-                        chronology.append(self.product!)
+                    if(!(chronology.contains(where: {$0.barcode == self.product.barcode}))){
+                        chronology.append(self.product)
                     }
                 }
             } catch {
                 print("Errore durante la decodifica dei dati:", error)
-                self.product=nil
+                //self.product?=nil
+              
             }
         }
         task.resume()
@@ -156,43 +155,9 @@ struct ScannerView: UIViewControllerRepresentable {
 
 
 //CARD CHE COMPARE APPENA SCANSIONO
-/*struct CardScan : View{
-    
-    @State public var prod: Product
-    
-    var body : some View{
-        
-        ZStack{
-            
-            RoundedRectangle(cornerRadius: 20)
-                .foregroundColor(.white)
-                .shadow(radius: 5).frame(width:350,height:120)
-            
-            RoundedRectangle(cornerRadius: 20).foregroundColor(verdeCard) .shadow(radius: 5).frame(width:100,height:100).offset(x:-110,y:0)
-            
-            Text(prod.name).foregroundColor(.black).font(.largeTitle)
-            if let decodedImage = self.decodeBase64ToImage(base64String: prod.image) {
-                Image(uiImage: decodedImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200)
-                    .padding()
-            }
-            
-        }.background(Color.clear)
-    }
-    
-    
-    func decodeBase64ToImage(base64String: String) -> UIImage? {
-        guard let imageData = Data(base64Encoded: base64String) else {
-            return nil
-        }
-        return UIImage(data: imageData)
-    }
-}*/
 
 struct CardScan : View{
-    @State public var prod: Product
+    @Binding public var prod: Product
     
     
     var body : some View{
@@ -333,11 +298,5 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
 
 
-
-
-
-/*#Preview {
- Scanning()
- }*/
 
 

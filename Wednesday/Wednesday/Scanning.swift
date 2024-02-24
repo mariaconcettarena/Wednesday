@@ -204,32 +204,39 @@ struct CardScan : View{
                     .foregroundColor(.white)
                     .shadow(radius: 5).frame(width:350,height:120)
                 
-                HStack{
-                    ZStack{//QUADRATO VERDE + FOTO
-                        RoundedRectangle(cornerRadius: 20).foregroundColor(verdeCard) .shadow(radius: 5).frame(width:100,height:100).padding()
-                        
-                        if let decodedImage = self.decodeBase64ToImage(base64String: prod.image) {
-                            Image(uiImage: decodedImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 90, height: 90)
-                                .padding()
-                        }
-                    }
-                    VStack{ //NOME + ISCRUELTYFREE
-                        Text(prod.name).foregroundColor(.black).font(.title3).bold().scaleEffect()
-                        
-                        HStack{
-                            Image("BunnyHome").resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
-                            
-                            Text("IsCrueltyFree?  \(prod.isCrueltyFree == true ? "Yes" : prod.isCrueltyFree == false ? "No" : "Unknown")")
-                        }
-                    }.padding()
-                }
                 
-            }.background(Color.clear)
+                
+                NavigationLink(destination: ProductView(product: $prod)){
+                    
+                    HStack{
+                        ZStack{//QUADRATO VERDE + FOTO
+                            RoundedRectangle(cornerRadius: 20).foregroundColor(verdeCard) .shadow(radius: 5).frame(width:100,height:100).padding()
+                            
+                            if let decodedImage = self.decodeBase64ToImage(base64String: prod.image) {
+                                Image(uiImage: decodedImage)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 90, height: 90)
+                                    .padding()
+                            }
+                        }
+                        VStack{ //NOME + ISCRUELTYFREE
+                            Text(prod.name).foregroundColor(.black).font(.title3).bold().scaleEffect()
+                            
+                            HStack{
+                                Image("BunnyHome").resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+                                
+                                Text("IsCrueltyFree?  \(prod.isCrueltyFree == true ? "Yes" : prod.isCrueltyFree == false ? "No" : "Unknown")")
+                            }
+                        }.padding()
+                    }
+                    
+                }.background(Color.clear)
+                
+            }
+            
         }.offset(x:0,y:100)
     }
     

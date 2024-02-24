@@ -16,30 +16,100 @@ struct Chronology: View {
     @Binding public var product: Product
     //@State public var product: Product
     
+    
+    @State private var deleteCards = false
+    @State private var showAlert = false
+    
+    
     var body: some View
     {
         NavigationView
         {
-       
+            
             VStack(alignment: .leading)
             {
                 /* TextField("Search", text: $productFilter)
-                                        .padding()
-                                        .background(
-                                            RoundedRectangle(cornerRadius: 15)
-                                                .fill(Color.white)
-                                        )
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 20)
-                                                .stroke(verde, lineWidth: 1)
-                                        )
-                                        .textFieldStyle(PlainTextFieldStyle())
-                                        .frame(width: 330, height: 70)*/
+                 .padding()
+                 .background(
+                 RoundedRectangle(cornerRadius: 15)
+                 .fill(Color.white)
+                 )
+                 .overlay(
+                 RoundedRectangle(cornerRadius: 20)
+                 .stroke(verde, lineWidth: 1)
+                 )
+                 .textFieldStyle(PlainTextFieldStyle())
+                 
+                 .frame(width: 330, height: 70)*/
+                
+                //Struttura orizzontale per tasto "elimina cronologia" e "filtro"
+                
+                
+                HStack {
+                    Spacer()
+                    
+                    Menu {
+                        Button(action: {
+                            
+                        }) {
+                            Label("This week", systemImage: "")
+                        }
+                        Button(action: {
+                            
+                        }) {
+                            Label("This month", systemImage: "")
+                        }
+                        Button(action: {
+                            
+                        }) {
+                            Label("Last 3 months", systemImage: "")
+                        }
+                        Button(action: {
+                            
+                        }) {
+                            Label("Last 6 months", systemImage: "")
+                        }
+                        Button(action: {
+                            
+                        }) {
+                            Label("This year", systemImage: "")
+                        }
+                        
+                    } label: {
+                        Label("", systemImage: "line.3.horizontal.decrease.circle")
+                    }
+                    
+                    
+                    
+                    //Bottone per tasto elimina TO DO
+                    Image(systemName: "xmark.bin").foregroundColor(verde).onTapGesture {
+                        showAlert = true
+                    }.alert(isPresented: $showAlert){
+                        Alert(
+                            title: Text("Alert"),
+                            message: Text("All the products will be deleted"),
+                            primaryButton: .cancel(),
+                            secondaryButton: .destructive(Text("Delete all")) {
+                                deleteCards = true // Nascondi le card
+                                products.removeAll() // Rimuovi gli elementi dall'array
+                            }
+                        )
+                    }
+                    
+                    
+                }.padding(.horizontal)
+                    .padding(.bottom)
+                
+                
+                
+                
+                
+                
+                
                 
                 ScrollView()
                 {
-                   
-                    
+                    if !deleteCards{
                         HStack
                         {
                             VStack(spacing: 200)
@@ -83,22 +153,22 @@ struct Chronology: View {
                         /*// Navigazione verso la paginaScanning()
                          NavigationLink("", destination: Scanning(chronology: $products, favourites: $favourites), isActive: $isShowingNextPage)
                          .hidden()*/
-                        
-                        
-                    }.navigationTitle("Chronology").padding(.leading, -40)
+                    }
+                    
+                }.navigationTitle("Chronology").padding(.leading, -40)
                 
             }
-                    
-                }
-                
             
         }
+        
+        
+    }
     //}
 }
 
 
 
 /*#Preview {
-    Chronology()
-}*/
+ Chronology()
+ }*/
 

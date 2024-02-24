@@ -12,6 +12,15 @@ import Combine
 
 //CODICE A BARRE SCANSIONATO -> variabile 'code'
 
+//Per salvare e trasformare in stringa la data di scansione
+let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter
+}()
+
+
+
 
 struct Product: Codable{
     let barcode: String
@@ -22,20 +31,20 @@ struct Product: Codable{
     let category: String
     let country: String
     let isCrueltyFree: Bool
-    let others: String
+    var others: String //contiene la data di scansione del prodotto
 }
+
+
 let previewLayer = AVCaptureVideoPreviewLayer()
 
 struct Scanning: View {
     @State private var isShowingScanner = false
     @State private var scannedCode: String?
     
-    
     @Binding public var chronology: [Product]
     @Binding public var favourites: [Product]
     
     @Binding public var product : Product
-    
     @Binding public var found : Bool
     
     
@@ -108,7 +117,13 @@ struct Scanning: View {
                     
                     //se nella cronologia non è presente il barcode, viene aggiunto una sola volta
                     if(!(chronology.contains(where: {$0.barcode == self.product.barcode}))){
+                        
+                        //In questo punto prendo la data attuale e la metto nel campo product.others
+                        let now = Date()
+                        let formattedDate = dateFormatter.string(from: now)
+                        self.product.others = formattedDate
                         chronology.append(self.product)
+                        
                     }
                 }
             } catch {

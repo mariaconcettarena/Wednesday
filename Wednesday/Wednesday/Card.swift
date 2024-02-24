@@ -7,14 +7,21 @@
 import SwiftUI
 import Foundation
 
+
+
+
+
+
 struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
 {
     //@State public var product: Product
     @Binding public var favourites: [Product]
     @Binding public var product: Product
+   
     
     var body: some View
     {
+        
         //NavigationLink(destination: ProductView(product: $product))
         // {
         ZStack
@@ -73,6 +80,10 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                                 Text(product.company).scaleEffect(0.8)
                                     .foregroundColor(.white)
                                     .font(.subheadline).multilineTextAlignment(.center)
+                                
+                                
+                                //Aggiungo la data di scansione nel campo others
+                                Text(product.others) .foregroundColor(.white)
                             }
                             //.padding(.leading)
                         )

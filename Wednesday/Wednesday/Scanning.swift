@@ -22,6 +22,8 @@ let dateFormatter: DateFormatter = {
 
 
 
+
+
 struct Product: Codable{
     let barcode: String
     let name: String
@@ -227,6 +229,11 @@ struct CardScan : View{
         }
         return UIImage(data: imageData)
     }
+    
+    
+    
+   
+    
 }
 
 

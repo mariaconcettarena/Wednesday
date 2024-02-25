@@ -11,6 +11,10 @@ struct Onboarding: View {
     
     @Binding public var chronology: [Product]
     @Binding public var favourites: [Product]
+    @Binding public var product : Product
+    @Binding public var found : Bool
+    
+    
     
     var body: some View {
         
@@ -55,16 +59,19 @@ struct Onboarding: View {
                     }
                     .padding(.vertical)
                     
+//                    
+//                    NavigationLink(destination: ContentView(chronology: $chronology, favourite: $favourites, product: $product, found: $found)) {
+//                        Text("Let's start!")
+//                    }
+//                    .frame(width: 115, height: 50)
+//                    .background(Color.accentColor)
+//                    .foregroundColor(.white)
+//                    .fontWeight(.semibold).clipShape(RoundedRectangle(cornerRadius: 10))
+//                    
+//                    
                     
-                    NavigationLink(destination: ContentView(chronology: $chronology, favourite: $favourites)) {
-                        Text("Let's start!")
-                    }
-                    .frame(width: 115, height: 50)
-                    .background(Color.accentColor)
-                    .foregroundColor(.white)
-                    .fontWeight(.semibold).clipShape(RoundedRectangle(cornerRadius: 10))
-                    
-                    
+                 
+                
                 }
             }
             

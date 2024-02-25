@@ -13,6 +13,7 @@ struct WednesdayApp: App {
 //    per salvare e recuperare lo stato di visualizzazione dell'onboarding
     @AppStorage("hasShownOnboarding") var hasShownOnboarding = false
     
+    @State private var isPresentingOnboarding = false
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -31,24 +32,18 @@ struct WednesdayApp: App {
     @State public var favourites: [Product] = []
     @State public var product = Product (barcode: "", name: "", company: "", description: "", image: "", category: "", country: "", isCrueltyFree: false, others: "")
     
-
+    @State public var found : Bool = false
+    
     var body: some Scene {
         
        
         WindowGroup {
             
-            if !hasShownOnboarding {
-                            Onboarding(chronology: $chronology, favourites: $favourites)
-                                .onDisappear {
-                                    // Quando l'onboarding viene chiuso, impostiamo hasShownOnboarding su true
-                                    hasShownOnboarding = true
-                                    
-                                }
-            } else {
+
                 
                 TabView{
                     
-                    ContentView(chronology: $chronology, favourite: $favourites)
+                    ContentView(chronology: $chronology, favourite: $favourites, product: $product, found: $found)
                         .tabItem {
                             Label("Scan", systemImage: "barcode.viewfinder")
                         }.tag(0)
@@ -61,9 +56,17 @@ struct WednesdayApp: App {
                         Label("Favourites", systemImage: "heart")
                     }.tag(2)
                 }
+                .sheet(isPresented: $isPresentingOnboarding){
+                    Onboarding(chronology: $chronology, favourites: $favourites, product: $product, found: $found)
+                }.onAppear{
+                    if !hasShownOnboarding{
+                        isPresentingOnboarding = true
+                        hasShownOnboarding = true
+                    }
+                }
             }
+        
 
-        }
         .modelContainer(sharedModelContainer)
         
         //solo per testare

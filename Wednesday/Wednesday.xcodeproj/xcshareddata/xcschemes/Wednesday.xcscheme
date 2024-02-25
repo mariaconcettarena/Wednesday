@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E46569EC2B7A1BC800EBF1E0"
-               BuildableName = "Wednesday.app"
-               BlueprintName = "Wednesday"
+               BuildableName = "BunCode.app"
+               BlueprintName = "BunCode"
                ReferencedContainer = "container:Wednesday.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,8 +44,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E46569EC2B7A1BC800EBF1E0"
-            BuildableName = "Wednesday.app"
-            BlueprintName = "Wednesday"
+            BuildableName = "BunCode.app"
+            BlueprintName = "BunCode"
             ReferencedContainer = "container:Wednesday.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E46569EC2B7A1BC800EBF1E0"
-            BuildableName = "Wednesday.app"
-            BlueprintName = "Wednesday"
+            BuildableName = "BunCode.app"
+            BlueprintName = "BunCode"
             ReferencedContainer = "container:Wednesday.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

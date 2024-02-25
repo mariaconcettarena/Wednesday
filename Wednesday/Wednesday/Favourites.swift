@@ -107,7 +107,7 @@ struct Favourites: View {
                          .hidden()*/
                         
                         
-                    }.navigationTitle("Chronology").padding(.leading, -40)
+                    }.navigationTitle("Favourites").padding(.leading, -40)
                 
             }
                     

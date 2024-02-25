@@ -30,7 +30,7 @@
 		2CD45C1C2B85FA380045E398 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E430E01F2B7CDDED00C1B61C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E43FB0FB2B7ACAC100B431C7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		E46569ED2B7A1BC800EBF1E0 /* Wednesday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wednesday.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E46569ED2B7A1BC800EBF1E0 /* BunCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BunCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WednesdayApp.swift; sourceTree = "<group>"; };
 		E46569F22B7A1BC800EBF1E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E46569F42B7A1BC800EBF1E0 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		E46569EE2B7A1BC800EBF1E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E46569ED2B7A1BC800EBF1E0 /* Wednesday.app */,
+				E46569ED2B7A1BC800EBF1E0 /* BunCode.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,9 +103,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E46569EC2B7A1BC800EBF1E0 /* Wednesday */ = {
+		E46569EC2B7A1BC800EBF1E0 /* BunCode */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E46569FD2B7A1BCA00EBF1E0 /* Build configuration list for PBXNativeTarget "Wednesday" */;
+			buildConfigurationList = E46569FD2B7A1BCA00EBF1E0 /* Build configuration list for PBXNativeTarget "BunCode" */;
 			buildPhases = (
 				E46569E92B7A1BC800EBF1E0 /* Sources */,
 				E46569EA2B7A1BC800EBF1E0 /* Frameworks */,
@@ -115,12 +115,12 @@
 			);
 			dependencies = (
 			);
-			name = Wednesday;
+			name = BunCode;
 			packageProductDependencies = (
 				E447BB012B7E2B1D00A94E91 /* SwiftSoup */,
 			);
 			productName = Wednesday;
-			productReference = E46569ED2B7A1BC800EBF1E0 /* Wednesday.app */;
+			productReference = E46569ED2B7A1BC800EBF1E0 /* BunCode.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -155,7 +155,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E46569EC2B7A1BC800EBF1E0 /* Wednesday */,
+				E46569EC2B7A1BC800EBF1E0 /* BunCode */,
 			);
 		};
 /* End PBXProject section */
@@ -334,7 +334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Wednesday/Preview Content\"";
-				DEVELOPMENT_TEAM = 595ULKU252;
+				DEVELOPMENT_TEAM = CS786L2XRU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -366,7 +366,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Wednesday/Preview Content\"";
-				DEVELOPMENT_TEAM = 595ULKU252;
+				DEVELOPMENT_TEAM = CS786L2XRU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -402,7 +402,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E46569FD2B7A1BCA00EBF1E0 /* Build configuration list for PBXNativeTarget "Wednesday" */ = {
+		E46569FD2B7A1BCA00EBF1E0 /* Build configuration list for PBXNativeTarget "BunCode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E46569FE2B7A1BCA00EBF1E0 /* Debug */,

@@ -10,6 +10,10 @@ import SwiftData
 
 @main
 struct WednesdayApp: App {
+//    per salvare e recuperare lo stato di visualizzazione dell'onboarding
+    @AppStorage("hasShownOnboarding") var hasShownOnboarding = false
+    
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -29,28 +33,41 @@ struct WednesdayApp: App {
     
 
     var body: some Scene {
+        
+       
         WindowGroup {
             
-            TabView{
-                ContentView(chronology: $chronology, favourite: $favourites)
-                    .tabItem {
-                    Label("Scan", systemImage: "barcode.viewfinder")
-                }.tag(0)
+            if !hasShownOnboarding {
+                            Onboarding(chronology: $chronology, favourites: $favourites)
+                                .onDisappear {
+                                    // Quando l'onboarding viene chiuso, impostiamo hasShownOnboarding su true
+                                    hasShownOnboarding = true
+                                    
+                                }
+            } else {
                 
-                Chronology(products: $chronology, favourites: $favourites, product: $product).tabItem {
-                    Label("Chronology", systemImage: "timer")
-                }.tag(1)
-                
-                Favourites(products: $favourites, favourites: $favourites, product: $product).tabItem {
-                    Label("Favourites", systemImage: "heart")
-                }.tag(2)
+                TabView{
+                    
+                    ContentView(chronology: $chronology, favourite: $favourites)
+                        .tabItem {
+                            Label("Scan", systemImage: "barcode.viewfinder")
+                        }.tag(0)
+                    
+                    Chronology(products: $chronology, favourites: $favourites, product: $product).tabItem {
+                        Label("Chronology", systemImage: "timer")
+                    }.tag(1)
+                    
+                    Favourites(products: $favourites, favourites: $favourites, product: $product).tabItem {
+                        Label("Favourites", systemImage: "heart")
+                    }.tag(2)
+                }
             }
 
         }
         .modelContainer(sharedModelContainer)
         
         //solo per testare
-        //.environment(\.locale, .init(identifier: "it"))
+        .environment(\.locale, .init(identifier: "en"))
     }
 }
 

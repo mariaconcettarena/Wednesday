@@ -8,56 +8,70 @@
 import SwiftUI
 
 struct Onboarding: View {
+    
     @Binding public var chronology: [Product]
     @Binding public var favourites: [Product]
+    
     var body: some View {
         
         NavigationStack{
-            Text("BunCode")
-                .font(.title)
-            
-            
-            VStack(alignment: .listRowSeparatorLeading ,spacing: 5){
+            ZStack{
                 
-                HStack{
-                    Image(systemName: "barcode.viewfinder")
-                    Text("Scanning")
-                }.font(.headline)
+                sfondo.ignoresSafeArea()
                 
-                Text("You can scan the barcode of the products.")
-                    .frame(width: 350, height: 30)
-                
-                
-        
-                HStack{
-                    Image(systemName: "suit.heart.fill")
-                    Text("Favourites")
-                }.font(.headline)
-                
-                Text("You can save your favourite product.")
-                    .frame(width: 350, height: 30)
-               
-                
+                VStack{
+                    
+                    
+                    Image("BunnyHome")
+                        .aspectRatio(contentMode: .fit)
+                    Text("BunCode")
+                        .font(.largeTitle)
+                    
+                    
+                    
+                    VStack(alignment: .listRowSeparatorLeading ){
+                        
+                        HStack{
+                            Image(systemName: "barcode.viewfinder")
+                            Text("Scanning")
+                        }.font(.title3).bold()
+                            .foregroundColor(.accentColor)
+                        
+                        Text("You can scan the barcode of the products.")
+                            .frame(width: 350, height: 20)
+                        
+                        
+                        
+                        HStack{
+                            Image(systemName: "suit.heart.fill")
+                            Text("Favourites")
+                        }.font(.title3).bold()
+                            .foregroundColor(.accentColor)
+                        
+                        Text("You can save your products as favourite.")
+                            .frame(width: 350, height: 20)
+                        
+                        
+                    }
+                    .padding(.vertical)
+                    
+                    
+                    NavigationLink(destination: ContentView(chronology: $chronology, favourite: $favourites)) {
+                        Text("Let's start!")
+                    }
+                    .frame(width: 115, height: 50)
+                    .background(Color.accentColor)
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold).clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                    
+                }
             }
-            .padding(.vertical, 50)
-            
-            
-            NavigationLink(destination: ContentView(chronology: $chronology, favourite: $favourites)) {
-                Text("Let's start!")
-            }
-            .frame(width: 115, height: 50)
-            .background(Color.accentColor)
-            .foregroundColor(.white)
-            .fontWeight(.semibold).clipShape(RoundedRectangle(cornerRadius: 10))
-            
-            
             
         }
-        
-        
     }
 }
 
-/*#Preview {
-    Onboarding()
-}*/
+//#Preview {
+//    Onboarding()
+//}

@@ -20,6 +20,9 @@ struct ContentView: View {
     @State private var isBunnyMoving = false
     @Binding public var chronology: [Product]
     @Binding public var favourite: [Product]
+    @Binding public var product: Product
+    
+    @Binding public var found : Bool
     
 
     var body: some View {
@@ -60,7 +63,7 @@ struct ContentView: View {
                     
                     //dati dalla scansione
                     
-                    Scanning(chronology: $chronology, favourites: $favourite)
+                    Scanning(chronology: $chronology, favourites: $favourite, product: $product , found: $found)
                 }
                 
             }

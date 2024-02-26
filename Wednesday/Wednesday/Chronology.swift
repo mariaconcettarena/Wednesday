@@ -127,7 +127,9 @@ struct Chronology: View {
                                     
                                     if (index % 2 != 0)
                                     {
-                                        Card1(favourites: $favourites, product: $products[index])
+                                        if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == ""){
+                                            Card1(favourites: $favourites, product: $products[index])
+                                        }
                                     }
                                     
                                 }.frame(maxWidth: .infinity)
@@ -145,7 +147,10 @@ struct Chronology: View {
                                     
                                     if (index % 2 == 0)
                                     {
-                                        Card1(favourites: $favourites, product: $products[index])
+                                        if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == ""){
+                                        
+                                            Card1(favourites: $favourites, product: $products[index])
+                                        }
                                     }
                                     
                                 }.frame(maxWidth: .infinity)

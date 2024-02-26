@@ -13,20 +13,21 @@ struct Favourites: View {
     @Binding public var products: [Product]  // CHRONOLOGY
     @Binding public var favourites: [Product]
     @State private var productFilter = ""
+    @State private var categoryFilter = ""
     @Binding public var product: Product
     
     
     var body: some View
     {
         
-        var category = ["Make up", "Skincare", "Bodycare", "Haircare"]
+        var category = ["All","Make up", "Skincare", "Bodycare", "Hair"]
         
         NavigationView
         {
        
-            VStack(alignment: .leading)
+            VStack
             {
-                /* TextField("Search", text: $productFilter)
+                TextField("Search", text: $productFilter)
                                         .padding()
                                         .background(
                                             RoundedRectangle(cornerRadius: 15)
@@ -37,14 +38,16 @@ struct Favourites: View {
                                                 .stroke(verde, lineWidth: 1)
                                         )
                                         .textFieldStyle(PlainTextFieldStyle())
-                                        .frame(width: 330, height: 70)*/
+                                        .frame(width: 330, height: 70)
                 
 
                     
                     ScrollView(.horizontal) {
                         HStack(spacing: 10) {
                             ForEach(category, id: \.self) { index in
-                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Button(action: {
+                                    categoryFilter = index
+                                }, label: {
                                     Text(index)
                                 })
                                     .font(.headline)
@@ -53,6 +56,7 @@ struct Favourites: View {
                                     .background(verdeCard)
                                     .cornerRadius(10.0)
                                     .padding(.vertical)
+                                  
                             }
                         }
                         .padding(.horizontal)
@@ -73,7 +77,13 @@ struct Favourites: View {
                                     
                                     if (index % 2 != 0)
                                     {
-                                        Card1(favourites: $favourites, product: $products[index])
+                                       if(product.category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
+                                        {
+                                           if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" )
+                                           {
+                                               Card1(favourites: $favourites, product: $products[index])
+                                           }
+                                       }
                                     }
                                     
                                 }.frame(maxWidth: .infinity)
@@ -91,7 +101,13 @@ struct Favourites: View {
                                     
                                     if (index % 2 == 0)
                                     {
-                                        Card1(favourites: $favourites, product: $products[index])
+                                        if(product.category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
+                                        {
+                                            if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
+                                            {
+                                                Card1(favourites: $favourites, product: $products[index])
+                                            }
+                                        }
                                     }
                                     
                                 }.frame(maxWidth: .infinity)

@@ -21,9 +21,6 @@ let dateFormatter: DateFormatter = {
 
 
 
-
-
-
 struct Product: Codable{
     let barcode: String
     let name: String
@@ -47,8 +44,8 @@ struct Scanning: View {
     @Binding public var favourites: [Product]
     
     @Binding public var product : Product
-    @Binding public var found : Bool
-    
+    @State public var found : Bool = true
+    @State private var hasScanned = false
     
     
     var body: some View {
@@ -56,6 +53,7 @@ struct Scanning: View {
         VStack{
             Button(action: {
                 isShowingScanner = true
+                
             }) {
                 Image(systemName: "barcode.viewfinder")
                 Text("SCAN PRODUCT")
@@ -67,36 +65,45 @@ struct Scanning: View {
             
             
             VStack {
-                if scannedCode != nil {
-                  
-                    if found == true {
+                Text("Waiting for correct code scanning...").opacity(hasScanned ? 0 : 1) // Nasconde il testo se haScanned è true
+                if (scannedCode != nil)  {
                    
-                        CardScan(prod: $product)}
-                    else{
-                        Text("Sorry, this product is not in our database...")
+                    if found {
+                        CardScan(prod: $product)
+                            .onAppear {
+                                hasScanned = true // Imposta hasScanned a true quando viene visualizzato CardScan
+                            }
+                        
                     }
                     
+                    else {
+                        Text("Sorry, this product is not in our database...")
+                            .opacity(found ? 0 : 1) // Nasconde il testo se found è true
+                    }
                 }
             }
         }
         .sheet(isPresented: $isShowingScanner) {
-            ScannerView(scannedCode: $scannedCode)
-            
+            ScannerView(scannedCode: $scannedCode).onAppear{
+                hasScanned=false
+            }
         }
         .onReceive(Just(scannedCode)) { code in
             guard let code = code else { return }
             fetchDataFromURL(barcode: code)
             isShowingScanner = false
+            hasScanned=true
+            
         }
     }
     
     
     
     // Funzione per ottenere i dati dall'URL
+    //DOVE METTO FOUND = FALSE ??????
+    
     private func fetchDataFromURL(barcode: String) {
         let baseURL = "https://myapisrv.obbar.it/api/Product/getProductByBarcode?barcode="
-        
-        self.found = false
         
         guard let url = URL(string: baseURL + barcode) else {
             print("URL non valido")
@@ -115,7 +122,7 @@ struct Scanning: View {
                 DispatchQueue.main.async
                 {
                     self.product = decodedData //riempimento prodotto appena lo scansiona
-                    self.found = true
+                    found = true
                     
                     //se nella cronologia non è presente il barcode, viene aggiunto una sola volta
                     if(!(chronology.contains(where: {$0.barcode == self.product.barcode}))){
@@ -125,14 +132,18 @@ struct Scanning: View {
                         let formattedDate = dateFormatter.string(from: now)
                         self.product.others = formattedDate
                         chronology.append(self.product)
-                        
+                        found = true
                     }
+                    
                 }
+                
+               
+                
             } catch {
                 print("Errore durante la decodifica dei dati:", error)
-                //self.product?=nil
-              
-            }
+                
+            }//qui no
+            
         }
         task.resume()
     }
@@ -232,7 +243,7 @@ struct CardScan : View{
     
     
     
-   
+    
     
 }
 

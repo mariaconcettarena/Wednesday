@@ -68,7 +68,7 @@ struct ContentView: View {
                     //dati dalla scansione
                     
                     
-                    Scanning(chronology: $chronology, favourites: $favourite, product: $product , found: $found)
+                    Scanning(chronology: $chronology, favourites: $favourite, product: $product)
                 }
                 .padding(.horizontal)
               

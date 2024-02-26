@@ -83,7 +83,7 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                                 
                                 
                                 //Aggiungo la data di scansione nel campo others
-                                Text(product.others) .foregroundColor(.white)
+                                //Text(product.others) .foregroundColor(.white)
                             }
                             //.padding(.leading)
                         )

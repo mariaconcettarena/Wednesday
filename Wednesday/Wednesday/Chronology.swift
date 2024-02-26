@@ -16,7 +16,7 @@ struct Chronology: View {
     @Binding public var favourites: [Product]
     @State private var productFilter = ""
     @Binding public var product: Product
-    //@State public var product: Product
+    
     
     
     @State private var deleteCards = false
@@ -34,10 +34,11 @@ struct Chronology: View {
                 
                 //Struttura orizzontale per Searchbar, tasto "elimina cronologia" e "filtro"
                 
-                HStack {
+                HStack 
+                {
                     Spacer()
                     
-                    //per ora ancora non fuziona, è solo grafico
+                    //Struttura search bar
                     TextField("Search", text: $productFilter)
                      .padding()
                      .background(
@@ -124,9 +125,10 @@ struct Chronology: View {
                                 {
                                     index in
                                     
-                                    
+                                    //per avere il design sfasato, utilizziamo due indici. Questo è l'indice dispari
                                     if (index % 2 != 0)
                                     {
+                                        /* logica search bar: se il nome del prodotto in minuscolo contiene il productFilter(ciò che scriviamo) in minuscolo oppure non sciviamo nulla, visualizziamo la card */
                                         if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == ""){
                                             Card1(favourites: $favourites, product: $products[index])
                                         }

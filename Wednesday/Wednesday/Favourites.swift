@@ -27,9 +27,8 @@ struct Favourites: View {
        
             VStack
             {
-                TextField("Search", text: $productFilter)
-                                        .padding()
-                                        .background(
+                //search bar
+                TextField("Search", text: $productFilter).padding().background(
                                             RoundedRectangle(cornerRadius: 15)
                                                 .fill(Color.white)
                                         )
@@ -41,10 +40,13 @@ struct Favourites: View {
                                         .frame(width: 330, height: 70)
                 
 
-                    
-                    ScrollView(.horizontal) {
-                        HStack(spacing: 10) {
-                            ForEach(category, id: \.self) { index in
+                    //scroll orizzontale con le categorie
+                    ScrollView(.horizontal)
+                    {
+                        HStack(spacing: 10) 
+                        {
+                            ForEach(category, id: \.self) 
+                            { index in
                                 Button(action: {
                                     categoryFilter = index
                                 }, label: {
@@ -77,8 +79,10 @@ struct Favourites: View {
                                     
                                     if (index % 2 != 0)
                                     {
+                                        /* visualizziamo la card se il bottone della categorie coincide col product category,se non premiamo nessun bottone o se selezioniamo All */
                                        if(product.category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
                                         {
+                                           //filtro per search bar
                                            if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" )
                                            {
                                                Card1(favourites: $favourites, product: $products[index])

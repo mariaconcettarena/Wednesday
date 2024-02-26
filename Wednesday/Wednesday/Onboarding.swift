@@ -15,6 +15,9 @@ struct Onboarding: View {
     @Binding public var found : Bool
     
     
+    @Binding var isPresentingOnboarding : Bool
+    
+    
     
     var body: some View {
         
@@ -59,25 +62,30 @@ struct Onboarding: View {
                     }
                     .padding(.vertical)
                     
-//                    
-//                    NavigationLink(destination: ContentView(chronology: $chronology, favourite: $favourites, product: $product, found: $found)) {
-//                        Text("Let's start!")
-//                    }
-//                    .frame(width: 115, height: 50)
-//                    .background(Color.accentColor)
-//                    .foregroundColor(.white)
-//                    .fontWeight(.semibold).clipShape(RoundedRectangle(cornerRadius: 10))
-//                    
-//                    
                     
-                 
-                
+                    
+                    Button(action: {
+                        isPresentingOnboarding = false // Imposta il valore su false per chiudere l'onboarding
+                    }) {
+                        Text("Let's start!")
+                            .frame(width: 115, height: 50)
+                            .background(Color.accentColor)
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
                 }
             }
+    
+            
+            
             
         }
     }
+    
 }
+
+
 
 //#Preview {
 //    Onboarding()

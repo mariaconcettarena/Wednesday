@@ -56,15 +56,16 @@ struct WednesdayApp: App {
                     }.tag(2)
                 }
                .sheet(isPresented: $isPresentingOnboarding){
-                    Onboarding(chronology: $chronology, favourites: $favourites, product: $product, found: $found)
+                   Onboarding(chronology: $chronology, favourites: $favourites, product: $product, found: $found, isPresentingOnboarding: $isPresentingOnboarding)
                 }.onAppear
                 {
-                    /*
+                    
                     if !hasShownOnboarding
                     {
                         isPresentingOnboarding = true
                         hasShownOnboarding = true
-                    }*/
+                    }
+                    
                     let tabBarAppearance = UITabBarAppearance()
                     tabBarAppearance.configureWithOpaqueBackground()
                     UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance

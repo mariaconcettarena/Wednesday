@@ -37,32 +37,41 @@ struct WednesdayApp: App {
     var body: some Scene {
         
        
-        WindowGroup {
-            
-
-                
-                TabView{
+        WindowGroup 
+        {
+        
+            TabView
+            {
                     
-                    ContentView(chronology: $chronology, favourite: $favourites, product: $product, found: $found)
-                        .tabItem {
+                ContentView(chronology: $chronology, favourite: $favourites, product: $product, found: $found).tabItem {
                             Label("Scan", systemImage: "barcode.viewfinder")
                         }.tag(0)
                     
-                    Chronology(products: $chronology, favourites: $favourites, product: $product).tabItem {
+                Chronology(products: $chronology, favourites: $favourites, product: $product).tabItem {
                         Label("Chronology", systemImage: "timer")
                     }.tag(1)
                     
-                    Favourites(products: $favourites, favourites: $favourites, product: $product).tabItem {
+                Favourites(products: $favourites, favourites: $favourites, product: $product).tabItem {
                         Label("Favourites", systemImage: "heart")
                     }.tag(2)
                 }
-                .sheet(isPresented: $isPresentingOnboarding){
+               .sheet(isPresented: $isPresentingOnboarding){
                     Onboarding(chronology: $chronology, favourites: $favourites, product: $product, found: $found)
-                }.onAppear{
-                    if !hasShownOnboarding{
+                }.onAppear
+                {
+                    /*
+                    if !hasShownOnboarding
+                    {
                         isPresentingOnboarding = true
                         hasShownOnboarding = true
-                    }
+                    }*/
+                    let tabBarAppearance = UITabBarAppearance()
+                    tabBarAppearance.configureWithOpaqueBackground()
+                    UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+                    // correct the transparency bug for Navigation bars
+                    let navigationBarAppearance = UINavigationBarAppearance()
+                    navigationBarAppearance.configureWithOpaqueBackground()
+                    //UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
                 }
             }
         

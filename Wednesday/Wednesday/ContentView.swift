@@ -54,17 +54,24 @@ struct ContentView: View {
                 .shadow(radius: 10)
                 
                 
-                VStack{
+                
+                VStack(alignment: .center){
                     Text("Hello!")
                         .font(.title)
                         .bold()
+                        
+                        
                     
-                    Text("Scan barcode to get full information about product")
-                    
+                    Text("Scan barcode to get full information about product.")
+                        .padding(.vertical, 5)
+                        
                     //dati dalla scansione
+                    
                     
                     Scanning(chronology: $chronology, favourites: $favourite, product: $product , found: $found)
                 }
+                .padding(.horizontal)
+              
                 
             }
         }

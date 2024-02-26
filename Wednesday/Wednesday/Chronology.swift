@@ -34,13 +34,13 @@ struct Chronology: View {
                 
                 //Struttura orizzontale per Searchbar, tasto "elimina cronologia" e "filtro"
                 
-                HStack 
+                HStack
                 {
-                    Spacer()
+//                    Spacer()
                     
                     //Struttura search bar
-                    TextField("Search", text: $productFilter)
-                     .padding()
+                    TextField(" Search", text: $productFilter)
+                        .padding(.vertical, 7)
                      .background(
                      RoundedRectangle(cornerRadius: 15)
                      .fill(Color.white)
@@ -51,61 +51,15 @@ struct Chronology: View {
                      )
                      .textFieldStyle(PlainTextFieldStyle())
                      
-                     .frame(width: 300, height: 70)
+                     .frame(width: 370, height: 60)
                     
                     
+                
+    
                     
-                    Menu {
-                        Button(action: {
-                            filterByDate(days: 7)
-                        }) {
-                            Label("This week", systemImage: "")
-                        }
-                        Button(action: {
-                            filterByDate(days: 30)
-                        }) {
-                            Label("This month", systemImage: "")
-                        }
-                        Button(action: {
-                            filterByDate(days: 90)
-                        }) {
-                            Label("Last 3 months", systemImage: "")
-                        }
-                        Button(action: {
-                            filterByDate(days: 180)
-                        }) {
-                            Label("Last 6 months", systemImage: "")
-                        }
-                        Button(action: {
-                            filterByDate(days: 365)
-                        }) {
-                            Label("This year", systemImage: "")
-                        }
-                        
-                    } label: {
-                        Label("", systemImage: "line.3.horizontal.decrease.circle")
-                    }
-                    
-                    
-                    
-                    //Bottone per tasto elimina TO DO
-                    Image(systemName: "xmark.bin").foregroundColor(verde).onTapGesture {
-                        showAlert = true
-                    }.alert(isPresented: $showAlert){
-                        Alert(
-                            title: Text("Alert"),
-                            message: Text("All the products will be deleted"),
-                            primaryButton: .cancel(),
-                            secondaryButton: .destructive(Text("Delete all")) {
-                                deleteCards = true // Nascondi le card
-                                products.removeAll() // Rimuovi gli elementi dall'array
-                            }
-                        )
-                    }
-                    
-                    
-                }.padding(.horizontal)
-                    .padding(.bottom)
+                }
+                .padding(.horizontal)
+//                    .padding(.bottom)
                 
                 
                 
@@ -169,6 +123,59 @@ struct Chronology: View {
                     }
                     
                 }.navigationTitle("Chronology").padding(.leading, -40)
+                
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing){
+                            Menu {
+                                Button(action: {
+                                    filterByDate(days: 7)
+                                }) {
+                                    Label("This week", systemImage: "")
+                                }
+                                Button(action: {
+                                    filterByDate(days: 30)
+                                }) {
+                                    Label("This month", systemImage: "")
+                                }
+                                Button(action: {
+                                    filterByDate(days: 90)
+                                }) {
+                                    Label("Last 3 months", systemImage: "")
+                                }
+                                Button(action: {
+                                    filterByDate(days: 180)
+                                }) {
+                                    Label("Last 6 months", systemImage: "")
+                                }
+                                Button(action: {
+                                    filterByDate(days: 365)
+                                }) {
+                                    Label("This year", systemImage: "")
+                                }
+                                
+                            } label: {
+                                Label("", systemImage: "line.3.horizontal.decrease.circle")
+                            }
+                            
+                            
+                        }
+                        
+                        ToolbarItem(placement: .navigationBarTrailing){
+                            Image(systemName: "xmark.bin").foregroundColor(verde).onTapGesture {
+                                showAlert = true
+                            }.alert(isPresented: $showAlert){
+                                Alert(
+                                    title: Text("Alert"),
+                                    message: Text("All the products will be deleted"),
+                                    primaryButton: .cancel(),
+                                    secondaryButton: .destructive(Text("Delete all")) {
+                                        deleteCards = true // Nascondi le card
+                                        products.removeAll() // Rimuovi gli elementi dall'array
+                                    }
+                                )
+                            }
+                        }
+                    }
                 
             }
             

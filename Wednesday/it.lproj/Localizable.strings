@@ -6,7 +6,7 @@
   
 */
 "Hello!" = "Ciao!";
-"Scan barcode to get full information about product" = "Scannerizza il barcode per avere ulteriori informazioni sul prodotto";
+"Scan barcode to get full information about product." = "Scannerizza il barcode per avere ulteriori informazioni sul prodotto.";
 "SCAN PRODUCT" = "SCAN PRODOTTO";
 "Chronology" = "Cronologia";
 "Favourites" = "Preferiti";

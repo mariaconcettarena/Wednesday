@@ -27,7 +27,7 @@ struct Product: Codable{
     let company: String
     let description: String
     let image: String
-    let category: String
+    var category: String
     let country: String
     let isCrueltyFree: Bool
     var others: String //contiene la data di scansione del prodotto
@@ -218,9 +218,26 @@ struct CardScan : View{
                             Text(prod.name).foregroundColor(.black).font(.title3).bold().scaleEffect()
                             
                             HStack{
-                                Image("BunnyHome").resizable()
-                                    .scaledToFit()
-                                    .frame(width: 30, height: 30)
+                                if prod.category == "Hair"{
+                                    Image("Hair").resizable()
+                                        .scaledToFit()
+                                        .frame(width: 35, height: 35)
+                                }
+                                else if prod.category == "Body"{
+                                    Image("Bodycare").resizable()
+                                        .scaledToFit()
+                                        .frame(width: 40, height: 40)
+                                }else if prod.category == "Make-up"{
+                                    Image("Makeup").resizable()
+                                        .scaledToFit()
+                                        .frame(width: 40, height: 40)
+                                }
+                                else{
+                                    Image("BunnyHome").resizable()
+                                        .scaledToFit()
+                                        .frame(width: 40, height: 40)
+                                }
+                                
                                 
                                 Text("IsCrueltyFree?  \(prod.isCrueltyFree == true ? "Yes" : prod.isCrueltyFree == false ? "No" : "Unknown")")
                             }

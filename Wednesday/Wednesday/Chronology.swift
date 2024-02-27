@@ -49,7 +49,7 @@ struct Chronology: View {
                      )
                      .textFieldStyle(PlainTextFieldStyle())
                      
-                     .frame(width: 370, height: 60)
+                     .frame(width: 370, height: 80)
                     
                 }
                 .padding(.horizontal)
@@ -66,7 +66,7 @@ struct Chronology: View {
                 {
                     if !deleteCards{
                         HStack
-                        {
+                        {   //VASTACK Dispari (sinistra)
                             VStack(spacing: 200)
                             {
                                 ForEach($products.indices, id:\.self)
@@ -86,9 +86,10 @@ struct Chronology: View {
                                 
                                 
                                 //.padding(.top, 60)
-                                    .offset(x:30,y:10)
+                                    .offset(x:40,y:10)
                             }
                             
+                            //VASTACK Pari (destra)
                             VStack(spacing: 200)
                             {
                                 ForEach($products.indices, id:\.self)

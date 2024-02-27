@@ -90,7 +90,8 @@ struct Favourites: View {
                                 
                             }.frame(maxWidth: .infinity)
                             
-                                .offset(x:30,y:10)
+                                
+                                .offset(x:40,y:10)
                         }
                         
                         VStack(spacing: 200)

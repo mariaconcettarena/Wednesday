@@ -9,9 +9,6 @@ import Foundation
 
 
 
-
-
-
 struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
 {
     //@State public var product: Product
@@ -25,9 +22,12 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
         // {
         ZStack
         {
+         
+            //sfondo della card, verdechiaro
             RoundedRectangle(cornerRadius: 20)
                 .foregroundColor(verdeCard)
-                .shadow(radius: 5)
+                .shadow(radius: 5).frame(height:230)
+            
             NavigationLink(destination: ProductView(product: $product))
             {
                 VStack
@@ -51,33 +51,40 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                                     (favourites.contains(where: {$0.barcode == self.product.barcode})) ? "heart.fill" : "heart")
                             .bold ()
                             .font(.system(size: 20))
+                            .scaledToFit()
                             
-                        })
+                        }).offset(x:-10, y: 10) // Sposto il bottone un pò piu dentro la card
                     }
-                    
                     
                     if let decodedImage = self.decodeBase64ToImage(base64String: product.image)
                     {
                         Image(uiImage: decodedImage)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 120, height: 150)
+                            .frame(width: 120, height: 130)
                         //.frame(width: 120, height: 150)
                             .padding()
                     }
                     
-                    RoundedRectangle(cornerRadius: 10)
+                    ZStack{
+                        //rettangolino verde che sta sopra il roundedrectangle
+                    Rectangle().foregroundColor(verde).frame(maxWidth: .infinity)
+                        .frame(height: 25).offset(x:0,y:-15)
+                    
+                        //roundedrectangle
+                    RoundedRectangle(cornerRadius: 20)
                         .fill(verde)
                         .frame(maxWidth: .infinity) // Imposta la larghezza massima del rettangolo verde
-                        .frame(height: 70)
+                        .frame(height: 40)
                     //.frame(height: 50)
                         .overlay(
                             VStack(alignment: .center)
-                            {
+                            {   //nome prodotto
                                 Text(product.name).scaleEffect(0.8)
                                     .foregroundColor(.white)
                                     .font(.headline).multilineTextAlignment(.center)
                                 //.lineLimit(nil)
+                                //company
                                 Text(product.company).scaleEffect(0.8)
                                     .foregroundColor(.white)
                                     .font(.subheadline).multilineTextAlignment(.center)
@@ -89,9 +96,10 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                             //.padding(.leading)
                         )
                 }
+                }
             }
         }
-        .padding().frame(width: 90, height: 130)
+        .padding().frame(width: 90, height: 110)
         //.frame(width: 150, height: 230)
         
         //}
@@ -116,13 +124,8 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
         }
     }
 
-  
-    
-
-    
-    
-    
     
 }
+
 
 

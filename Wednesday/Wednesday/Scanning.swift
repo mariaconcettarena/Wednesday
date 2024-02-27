@@ -10,8 +10,6 @@ import AVFoundation
 import Combine
 
 
-//CODICE A BARRE SCANSIONATO -> variabile 'code'
-
 //Per salvare e trasformare in stringa la data di scansione
 let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
@@ -45,7 +43,6 @@ struct Scanning: View {
     
     @Binding public var product : Product
     @State public var found : Bool = true
-    @State private var hasScanned = false
     
     
     var body: some View {
@@ -65,37 +62,30 @@ struct Scanning: View {
             
             
             VStack {
-                Text("Waiting for correct code scanning...").opacity(hasScanned ? 0 : 1) // Nasconde il testo se haScanned è true
                 if (scannedCode != nil)  {
                     
                     if found {
                         CardScan(prod: $product)
-                            .onAppear {
-                                hasScanned = true // Imposta hasScanned a true quando viene visualizzato CardScan
-                            }
-                        
                     }
                     
                     else {
-                        Text("Sorry, this product is not in our database...")
-                            .opacity(found ? 0 : 1) // Nasconde il testo se found è true
-                        Image("sad").resizable()
-                            .scaledToFill()
-                            .frame(width: 50, height: 50)
+                        ZStack{
+                            Text("Sorry, this product is not in our database...")
+                                .opacity(found ? 0 : 1) // Nasconde il testo se found è true
+                            Image("sad").resizable()
+                                .scaledToFill()
+                            .frame(width: 80, height: 80)}
                     }
                 }
             }
         }
         .sheet(isPresented: $isShowingScanner) {
-            ScannerView(scannedCode: $scannedCode).onAppear{
-                hasScanned=false
-            }
+            ScannerView(scannedCode: $scannedCode)
         }
         .onReceive(Just(scannedCode)) { code in
             guard let code = code else { return }
             fetchDataFromURL(barcode: code)
             isShowingScanner = false
-            hasScanned=true
             
         }
     }

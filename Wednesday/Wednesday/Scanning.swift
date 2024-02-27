@@ -67,7 +67,7 @@ struct Scanning: View {
             VStack {
                 Text("Waiting for correct code scanning...").opacity(hasScanned ? 0 : 1) // Nasconde il testo se haScanned è true
                 if (scannedCode != nil)  {
-                   
+                    
                     if found {
                         CardScan(prod: $product)
                             .onAppear {
@@ -79,6 +79,9 @@ struct Scanning: View {
                     else {
                         Text("Sorry, this product is not in our database...")
                             .opacity(found ? 0 : 1) // Nasconde il testo se found è true
+                        Image("sad").resizable()
+                            .scaledToFill()
+                            .frame(width: 50, height: 50)
                     }
                 }
             }
@@ -100,7 +103,6 @@ struct Scanning: View {
     
     
     // Funzione per ottenere i dati dall'URL
-    //DOVE METTO FOUND = FALSE ??????
     
     private func fetchDataFromURL(barcode: String) {
         let baseURL = "https://myapisrv.obbar.it/api/Product/getProductByBarcode?barcode="
@@ -136,13 +138,13 @@ struct Scanning: View {
                     
                 }
                 
-               
+                
                 
             } catch {
                 print("Errore durante la decodifica dei dati:", error)
                 DispatchQueue.main.async {
-                              self.found = false // Imposta found a false se il prodotto non è stato trovato
-                          }
+                    self.found = false // Imposto found a false se il prodotto non è stato trovato
+                }
             }
             
         }
@@ -217,7 +219,7 @@ struct CardScan : View{
                         VStack{ //NOME + ISCRUELTYFREE
                             Text(prod.name).foregroundColor(.black).font(.title3).bold().scaleEffect()
                             
-                            HStack{
+                            HStack{ //cambio l'immagine del coniglio in base alla categoria del prodotto scansionato
                                 if prod.category == "Hair"{
                                     Image("Hair").resizable()
                                         .scaledToFit()
@@ -226,20 +228,23 @@ struct CardScan : View{
                                 else if prod.category == "Body"{
                                     Image("Bodycare").resizable()
                                         .scaledToFit()
-                                        .frame(width: 40, height: 40)
+                                        .frame(width: 35, height: 35)
                                 }else if prod.category == "Make-up"{
                                     Image("Makeup").resizable()
                                         .scaledToFit()
-                                        .frame(width: 40, height: 40)
-                                }
-                                else{
+                                        .frame(width: 35, height: 35)
+                                }else if prod.category == "Skincare"{
+                                    Image("Skincare").resizable()
+                                        .scaledToFit()
+                                        .frame(width: 35, height: 35)
+                                }else{
                                     Image("BunnyHome").resizable()
                                         .scaledToFit()
-                                        .frame(width: 40, height: 40)
+                                        .frame(width: 35, height: 35)
                                 }
                                 
                                 
-                                Text("IsCrueltyFree?  \(prod.isCrueltyFree == true ? "Yes" : prod.isCrueltyFree == false ? "No" : "Unknown")")
+                                Text((prod.isCrueltyFree == true ? "Cruelty-free" : prod.isCrueltyFree == false ? "No" : "Unknown"))
                             }
                         }.padding()
                     }
@@ -258,10 +263,6 @@ struct CardScan : View{
         }
         return UIImage(data: imageData)
     }
-    
-    
-    
-    
     
 }
 

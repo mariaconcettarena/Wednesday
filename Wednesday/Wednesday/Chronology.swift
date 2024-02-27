@@ -36,8 +36,6 @@ struct Chronology: View {
                 
                 HStack
                 {
-//                    Spacer()
-                    
                     //Struttura search bar
                     TextField(" Search", text: $productFilter)
                         .padding(.vertical, 7)
@@ -52,10 +50,6 @@ struct Chronology: View {
                      .textFieldStyle(PlainTextFieldStyle())
                      
                      .frame(width: 370, height: 60)
-                    
-                    
-                
-    
                     
                 }
                 .padding(.horizontal)

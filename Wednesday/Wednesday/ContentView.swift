@@ -15,7 +15,6 @@ struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-    //    @State private var selectedTab: Int = 0
     
     @State private var isBunnyMoving = false
     @Binding public var chronology: [Product]

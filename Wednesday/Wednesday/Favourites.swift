@@ -43,7 +43,7 @@ struct Favourites: View {
                 
                 
                 //scroll orizzontale con le categorie
-                ScrollView(.horizontal)
+                ScrollView(.horizontal, showsIndicators: false)
                 {
                     HStack(spacing: 5)
                     {

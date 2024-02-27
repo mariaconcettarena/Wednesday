@@ -45,6 +45,7 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                             {
                                 favourites.remove(at: (favourites.firstIndex(where: {$0.barcode == self.product.barcode})!))
                             }
+                            saveFavouritesToUserDefaults()
                         }, label: {
                             Image(systemName:
                                     (favourites.contains(where: {$0.barcode == self.product.barcode})) ? "heart.fill" : "heart")
@@ -107,7 +108,15 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
     }
     
     
-    
+    // Aggiungi le funzioni di salvataggio e caricamento dei preferiti dalle UserDefaults
+    func saveFavouritesToUserDefaults() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(favourites) {
+            UserDefaults.standard.set(encoded, forKey: "favourites")
+        }
+    }
+
+  
     
 
     

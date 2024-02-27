@@ -125,24 +125,15 @@ struct Favourites: View {
                     
                     
                 }.navigationTitle("Favourites").padding(.leading, -40)
-                
+                    .onAppear{
+                        loadFavouritesFromUserDefaults()
+                    }
             }
             
         }
         
     }
     
-    
-    
-    
-    // Aggiungi le funzioni di salvataggio e caricamento dei preferiti dalle UserDefaults
-    func saveFavouritesToUserDefaults() {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(favourites) {
-            UserDefaults.standard.set(encoded, forKey: "favourites")
-        }
-    }
-
     func loadFavouritesFromUserDefaults() {
         if let data = UserDefaults.standard.data(forKey: "favourites") {
             let decoder = JSONDecoder()
@@ -151,6 +142,9 @@ struct Favourites: View {
             }
         }
     }
+    
+    
+
     
     
     

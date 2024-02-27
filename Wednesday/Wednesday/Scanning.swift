@@ -132,7 +132,6 @@ struct Scanning: View {
                         let formattedDate = dateFormatter.string(from: now)
                         self.product.others = formattedDate
                         chronology.append(self.product)
-                        found = true
                     }
                     
                 }
@@ -141,8 +140,10 @@ struct Scanning: View {
                 
             } catch {
                 print("Errore durante la decodifica dei dati:", error)
-                
-            }//qui no
+                DispatchQueue.main.async {
+                              self.found = false // Imposta found a false se il prodotto non è stato trovato
+                          }
+            }
             
         }
         task.resume()

@@ -24,7 +24,6 @@ struct Favourites: View {
         
         NavigationView
         {
-            
             VStack
             {
                 //search bar
@@ -68,8 +67,6 @@ struct Favourites: View {
                 
                 ScrollView()
                 {
-                    
-                    
                     HStack
                     {
                         VStack(spacing: 200)
@@ -77,7 +74,6 @@ struct Favourites: View {
                             ForEach($products.indices, id:\.self)
                             {
                                 index in
-                                
                                 
                                 if (index % 2 != 0)
                                 {
@@ -94,8 +90,6 @@ struct Favourites: View {
                                 
                             }.frame(maxWidth: .infinity)
                             
-                            
-                            //.padding(.top, 60)
                                 .offset(x:30,y:10)
                         }
                         
@@ -112,6 +106,7 @@ struct Favourites: View {
                                         if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
                                         {
                                             Card1(favourites: $favourites, product: $products[index])
+                                           
                                         }
                                     }
                                 }
@@ -135,9 +130,30 @@ struct Favourites: View {
             
         }
         
-        
     }
-    //}
+    
+    
+    
+    
+    // Aggiungi le funzioni di salvataggio e caricamento dei preferiti dalle UserDefaults
+    func saveFavouritesToUserDefaults() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(favourites) {
+            UserDefaults.standard.set(encoded, forKey: "favourites")
+        }
+    }
+
+    func loadFavouritesFromUserDefaults() {
+        if let data = UserDefaults.standard.data(forKey: "favourites") {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([Product].self, from: data) {
+                favourites = decoded
+            }
+        }
+    }
+    
+    
+    
 }
 
 

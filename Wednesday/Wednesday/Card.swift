@@ -17,7 +17,6 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
     //@State public var product: Product
     @Binding public var favourites: [Product]
     @Binding public var product: Product
-   
     
     var body: some View
     {
@@ -40,7 +39,8 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                         Button (action:{
                             if(!(favourites.contains(where: {$0.barcode == self.product.barcode}))){
                                 
-                                favourites.append(self.product)  }
+                                favourites.append(self.product)
+                            }
                             else
                             {
                                 favourites.remove(at: (favourites.firstIndex(where: {$0.barcode == self.product.barcode})!))
@@ -105,6 +105,13 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
         }
         return UIImage(data: imageData)
     }
+    
+    
+    
+    
+
+    
+    
     
     
 }

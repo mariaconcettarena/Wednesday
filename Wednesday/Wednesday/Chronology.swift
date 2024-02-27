@@ -179,15 +179,36 @@ struct Chronology: View {
                 
             }
             
+        } .onAppear {
+            loadProductsFromUserDefaults()
+        }
+        .onDisappear {
+            saveProductsToUserDefaults()
         }
         
         
     }
     //}
     
+    //
+    func saveProductsToUserDefaults() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(products) {
+            UserDefaults.standard.set(encoded, forKey: "products")
+        }
+    }
+
+    func loadProductsFromUserDefaults() {
+        if let data = UserDefaults.standard.data(forKey: "products") {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([Product].self, from: data) {
+                products = decoded
+            }
+        }
+    }
+
     
-    
-    
+    //
     
     
     //funzione per filtrare i prodotti in base alla data

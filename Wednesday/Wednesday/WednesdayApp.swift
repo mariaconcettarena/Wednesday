@@ -33,21 +33,23 @@ struct WednesdayApp: App {
     @State public var product = Product (barcode: "", name: "", company: "", description: "", image: "", category: "", country: "", isCrueltyFree: false, others: "")
     
     @State public var found : Bool = false
+    @State public var deleteChronology : Bool = false
+
     
     var body: some Scene {
         
        
-        WindowGroup 
+        WindowGroup
         {
         
             TabView
             {
                     
-                ContentView(chronology: $chronology, favourite: $favourites, product: $product, found: $found).tabItem {
+                ContentView(chronology: $chronology, favourite: $favourites, product: $product, deleteChronology: $deleteChronology).tabItem {
                             Label("Scan", systemImage: "barcode.viewfinder")
                         }.tag(0)
                     
-                Chronology(products: $chronology, favourites: $favourites, product: $product).tabItem {
+                Chronology(products: $chronology, favourites: $favourites, product: $product, deleteChronology: $deleteChronology).tabItem {
                         Label("Chronology", systemImage: "timer")
                     }.tag(1)
                     

@@ -43,14 +43,16 @@ struct Scanning: View {
     
     @Binding public var product : Product
     @State public var found : Bool = true
-    
+    @Binding public var deleteChronology : Bool
+
     
     var body: some View {
         
         VStack{
             Button(action: {
                 isShowingScanner = true
-                
+                deleteChronology = false
+
             }) {
                 Image(systemName: "barcode.viewfinder")
                 Text("SCAN PRODUCT")
@@ -65,7 +67,9 @@ struct Scanning: View {
                 if (scannedCode != nil)  {
                     
                     if found {
+                        
                         CardScan(prod: $product)
+                        
                     }
                     
                     else {
@@ -86,6 +90,17 @@ struct Scanning: View {
             guard let code = code else { return }
             fetchDataFromURL(barcode: code)
             isShowingScanner = false
+            
+            if(!(chronology.contains(where: {$0.barcode == self.product.barcode})) && !deleteChronology){
+                
+                //In questo punto prendo la data attuale e la metto nel campo product.others
+                let now = Date()
+                let formattedDate = dateFormatter.string(from: now)
+                self.product.others = formattedDate
+                chronology.append(self.product)
+                
+            }
+            
             
         }
     }
@@ -113,18 +128,11 @@ struct Scanning: View {
                 let decodedData = try JSONDecoder().decode(Product.self, from: data)
                 DispatchQueue.main.async
                 {
+                    
                     self.product = decodedData //riempimento prodotto appena lo scansiona
                     found = true
-                    
                     //se nella cronologia non è presente il barcode, viene aggiunto una sola volta
-                    if(!(chronology.contains(where: {$0.barcode == self.product.barcode}))){
-                        
-                        //In questo punto prendo la data attuale e la metto nel campo product.others
-                        let now = Date()
-                        let formattedDate = dateFormatter.string(from: now)
-                        self.product.others = formattedDate
-                        chronology.append(self.product)
-                    }
+                   
                     
                 }
                 
@@ -337,6 +345,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     
 }
+
 
 
 

@@ -67,7 +67,7 @@ struct Favourites: View {
                 
                 ScrollView()
                 {
-                    HStack
+                    HStack(spacing: 10)
                     {
                         VStack(spacing: 200)
                         {
@@ -75,13 +75,13 @@ struct Favourites: View {
                             {
                                 index in
                                 
-                                if (index % 2 != 0)
+                                if(index % 2 == 0)
                                 {
                                     /* visualizziamo la card se il bottone della categorie coincide col product category,se non premiamo nessun bottone o se selezioniamo All */
                                     if(product.category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
                                     {
                                         //filtro per search bar
-                                        if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" )
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
                                         {
                                             Card1(favourites: $favourites, product: $products[index])
                                         }
@@ -90,8 +90,8 @@ struct Favourites: View {
                                 
                             }.frame(maxWidth: .infinity)
                             
-                                
-                                .offset(x:40,y:10)
+                                .offset(x:30,y:20)
+                               // .offset(x:40,y:10)
                         }
                         
                         VStack(spacing: 200)
@@ -100,11 +100,11 @@ struct Favourites: View {
                             {
                                 index in
                                 
-                                if (index % 2 == 0)
+                                if (index % 2 != 0)
                                 {
                                     if(product.category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
                                     {
-                                        if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
                                         {
                                             Card1(favourites: $favourites, product: $products[index])
                                            
@@ -113,10 +113,10 @@ struct Favourites: View {
                                 }
                                 
                             }.frame(maxWidth: .infinity)
-                            
+                                .offset(x: 20, y:60)
                             
                             //.padding(.top, 60)
-                                .offset(x:10,y:40)
+                                //.offset(x:10,y:40)
                         }
                         
                     }.padding(.top, 80)

@@ -17,9 +17,10 @@ struct Chronology: View {
     @State private var productFilter = ""
     @Binding public var product: Product
     
+    @Binding public var deleteChronology : Bool
+
     
-    
-    @State private var deleteCards = false
+    //@State private var deleteCards = false
     @State private var showAlert = false
     
     
@@ -64,8 +65,8 @@ struct Chronology: View {
                 
                 ScrollView()
                 {
-                    if !deleteCards{
-                        HStack
+                    //if !deleteCards{
+                        HStack(spacing: 10)
                         {   //VASTACK Dispari (sinistra)
                             VStack(spacing: 200)
                             {
@@ -74,19 +75,19 @@ struct Chronology: View {
                                     index in
                                     
                                     //per avere il design sfasato, utilizziamo due indici. Questo è l'indice dispari
-                                    if (index % 2 != 0)
+                                    if (index % 2 == 0)
                                     {
                                         /* logica search bar: se il nome del prodotto in minuscolo contiene il productFilter(ciò che scriviamo) in minuscolo oppure non sciviamo nulla, visualizziamo la card */
-                                        if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == ""){
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == ""){
                                             Card1(favourites: $favourites, product: $products[index])
                                         }
                                     }
                                     
                                 }.frame(maxWidth: .infinity)
                                 
-                                
+                                    .offset(x:30,y:20)
                                 //.padding(.top, 60)
-                                    .offset(x:40,y:10)
+                                  //  .offset(x:40,y:10)
                             }
                             
                             //VASTACK Pari (destra)
@@ -96,9 +97,9 @@ struct Chronology: View {
                                 {
                                     index in
                                     
-                                    if (index % 2 == 0)
+                                    if (index % 2 != 0)
                                     {
-                                        if(((product.name.lowercased()).contains(productFilter.lowercased())) || productFilter == ""){
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == ""){
                                         
                                             Card1(favourites: $favourites, product: $products[index])
                                         }
@@ -106,16 +107,16 @@ struct Chronology: View {
                                     
                                 }.frame(maxWidth: .infinity)
                                 
-                                
+                                    .offset(x: 20, y:60)
                                 //.padding(.top, 60)
-                                    .offset(x:10,y:40)
+                                  //  .offset(x:10,y:40)
                             }
                             
-                        }.padding(.top, 80)
+                        }.padding(.top, 60)
                         /*// Navigazione verso la paginaScanning()
                          NavigationLink("", destination: Scanning(chronology: $products, favourites: $favourites), isActive: $isShowingNextPage)
                          .hidden()*/
-                    }
+                    //}
                     
                 }.navigationTitle("Chronology").padding(.leading, -40)
                 
@@ -164,8 +165,9 @@ struct Chronology: View {
                                     message: Text("All the products will be deleted"),
                                     primaryButton: .cancel(),
                                     secondaryButton: .destructive(Text("Delete all")) {
-                                        deleteCards = true // Nascondi le card
-                                        products.removeAll() // Rimuovi gli elementi dall'array
+                                        //deleteCards = true // Nascondi le card
+                                        products.removeAll()
+                                        deleteChronology = true
                                     }
                                 )
                             }

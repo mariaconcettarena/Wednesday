@@ -20,8 +20,7 @@ struct ContentView: View {
     @Binding public var chronology: [Product]
     @Binding public var favourite: [Product]
     @Binding public var product: Product
-    
-    @Binding public var found : Bool
+    @Binding public var deleteChronology: Bool
     
 
     var body: some View {
@@ -67,7 +66,7 @@ struct ContentView: View {
                     //dati dalla scansione
                     
                     
-                    Scanning(chronology: $chronology, favourites: $favourite, product: $product)
+                    Scanning(chronology: $chronology, favourites: $favourite, product: $product,deleteChronology: $deleteChronology)
                 }
                 .padding(.horizontal)
               

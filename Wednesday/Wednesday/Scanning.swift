@@ -4,10 +4,10 @@
 //
 //  Created by Maria Concetta on 12/02/24.
 
-import Foundation
 import SwiftUI
 import AVFoundation
 import Combine
+import CoreHaptics
 
 
 //Per salvare e trasformare in stringa la data di scansione
@@ -47,13 +47,14 @@ struct Scanning: View {
 
     
     var body: some View {
-        
+     
         VStack{
             Button(action: {
                 isShowingScanner = true
                 deleteChronology = false
 
             }) {
+                
                 Image(systemName: "barcode.viewfinder")
                 Text("SCAN PRODUCT")
                 
@@ -61,15 +62,13 @@ struct Scanning: View {
                 .frame(width: 280, height: 50)
                 .background(Color.accentColor)
                 .cornerRadius(12)
+                .offset(y:90)
             
             
             VStack {
                 if (scannedCode != nil)  {
-                    
                     if found {
-                        
                         CardScan(prod: $product)
-                        
                     }
                     
                     else {
@@ -78,7 +77,8 @@ struct Scanning: View {
                                 .opacity(found ? 0 : 1) // Nasconde il testo se found è true
                             Image("sad").resizable()
                                 .scaledToFill()
-                            .frame(width: 80, height: 80)}
+                                .frame(width: 80, height: 80)
+                        }
                     }
                 }
             }
@@ -204,14 +204,14 @@ struct CardScan : View{
                     
                     HStack{
                         ZStack{//QUADRATO VERDE + FOTO
-                            RoundedRectangle(cornerRadius: 20).foregroundColor(verdeCard) .shadow(radius: 5).frame(width:100,height:100).padding()
+                            RoundedRectangle(cornerRadius: 20).foregroundColor(verdeCard) .shadow(radius: 5).frame(width:100,height:100).padding().offset(x:-5)
                             
                             if let decodedImage = self.decodeBase64ToImage(base64String: prod.image) {
                                 Image(uiImage: decodedImage)
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 90, height: 90)
-                                    .padding()
+                                    .padding().offset(x:-5)
                             }
                         }
                         VStack{ //NOME + ISCRUELTYFREE
@@ -282,10 +282,14 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     weak var delegate: ScannerViewControllerDelegate?
     var captureSession: AVCaptureSession!
     
+    var hapticEngine: CHHapticEngine? //per la vibrazione
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCamera()
+        
+        setupHaptics()
     }
     
     func setupCamera() {
@@ -324,6 +328,24 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
     }
     
+    
+    //vibrazione
+    func setupHaptics() {
+           // Controllo della disponibilità dell'haptic engine
+           guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+
+           do {
+               // Creazione dell'haptic engine
+               hapticEngine = try CHHapticEngine()
+
+               // Avvio dell'haptic engine
+               try hapticEngine?.start()
+           } catch let error {
+               print("Errore durante l'inizializzazione dell'haptic engine: \(error.localizedDescription)")
+           }
+       }
+    
+    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
@@ -337,11 +359,45 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 }
                 // Inform the delegate of the scanned code
                 self.delegate?.didScanCode(stringValue)
+                
+                // Attiva una piccola vibrazione
+                           self.triggerHapticFeedback()
             }
             
             // delegate?.didScanCode(stringValue)
         }
     }
+    
+    //
+    func triggerHapticFeedback() {
+        // Controlla se l'haptic engine è disponibile
+        guard let hapticEngine = hapticEngine else { return }
+
+        // Definisci un evento haptic con intensità e durata maggiori
+        let event = CHHapticEvent(eventType: .hapticContinuous, parameters: [
+            CHHapticEventParameter(parameterID: .hapticIntensity, value: 1), // Intensità massima
+            CHHapticEventParameter(parameterID: .hapticSharpness, value: 1) // Massima nitidezza
+        ], relativeTime: 0, duration: 0.5) // Durata della vibrazione: 0.5 secondi
+
+        do {
+            // Crea un pattern haptic semplice con un singolo evento
+            let pattern = try CHHapticPattern(events: [event], parameters: [])
+
+            // Crea un player haptic con il pattern creato
+            let player = try hapticEngine.makePlayer(with: pattern)
+
+            // Avvia la riproduzione del feedback haptic
+            try player.start(atTime: CHHapticTimeImmediate)
+        } catch let error {
+            print("Errore durante la riproduzione del feedback haptic: \(error.localizedDescription)")
+        }
+    }
+
+    
+    
+    
+    
+    
     
     
 }

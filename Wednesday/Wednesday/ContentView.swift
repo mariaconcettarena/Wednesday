@@ -22,7 +22,7 @@ struct ContentView: View {
     @Binding public var product: Product
     @Binding public var deleteChronology: Bool
     
-
+    
     var body: some View {
         
         
@@ -35,11 +35,14 @@ struct ContentView: View {
                 //Text("homepage")
                 
                 VStack(alignment: .leading, spacing: 15){
+                    
                     Image("Bunny")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 200)
+                        .frame(width: 120, height: 250)
                         .offset(x: isBunnyMoving ? 100 : 100, y: isBunnyMoving ? 50 : 100)
+                    
+                    
                     
                 } .onAppear {
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
@@ -52,24 +55,22 @@ struct ContentView: View {
                 .shadow(radius: 10)
                 
                 
-                
+                Spacer()
                 VStack(alignment: .center){
+                    
                     Text("Hello!")
                         .font(.title)
-                        .bold()
-                        
+                        .bold().offset(x:-100,y:70)
                         
                     
                     Text("Scan barcode to get full information about product.")
-                        .padding(.vertical, 5)
-                        
+                        .padding(.vertical, 5).offset(y:50)
+                    
                     //dati dalla scansione
-                    
-                    
                     Scanning(chronology: $chronology, favourites: $favourite, product: $product,deleteChronology: $deleteChronology)
                 }
                 .padding(.horizontal)
-              
+                
                 
             }
         }
@@ -79,6 +80,6 @@ struct ContentView: View {
 
 
 /*#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
-}*/
+ ContentView()
+ .modelContainer(for: Item.self, inMemory: true)
+ }*/

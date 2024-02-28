@@ -78,7 +78,7 @@ struct Favourites: View {
                                 if(index % 2 == 0)
                                 {
                                     /* visualizziamo la card se il bottone della categorie coincide col product category,se non premiamo nessun bottone o se selezioniamo All */
-                                    if(product.category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
+                                    if(products[index].category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
                                     {
                                         //filtro per search bar
                                         if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
@@ -102,7 +102,7 @@ struct Favourites: View {
                                 
                                 if (index % 2 != 0)
                                 {
-                                    if(product.category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
+                                    if(products[index].category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
                                     {
                                         if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
                                         {

@@ -21,15 +21,10 @@ struct ProductView: View
                 if let decodedImage = self.decodeBase64ToImage(base64String: product.image)
                 {
                     Image(uiImage: decodedImage).resizable(capInsets: EdgeInsets()).padding().scaledToFit()
-                        /*.resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 120, height: 150)
-                    //.frame(width: 120, height: 150)
-                        .padding().scaledToFit()*/
+                  
                 }
                 
-             /*   Image("foto").resizable(capInsets: EdgeInsets()).padding().scaledToFit()
-                    //.frame(width: 230,height: 330)*/
+        
                 
                 VStack
                 {

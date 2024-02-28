@@ -7,18 +7,21 @@
 
 import Foundation
 import SwiftUI
-
+import NavigationSearchBar
 
 
 struct Chronology: View {
     @State private var isShowingNextPage = false
     @Binding public var products: [Product]  // CHRONOLOGY
     @Binding public var favourites: [Product]
+    
     @State private var productFilter = ""
+    @State var scopeSelection: Int = 0
+    
     @Binding public var product: Product
     
     @Binding public var deleteChronology : Bool
-
+    
     
     @State private var showAlert = false
     
@@ -33,120 +36,136 @@ struct Chronology: View {
             {
                 
                 //Struttura orizzontale per Searchbar, tasto "elimina cronologia" e "filtro"
-             
+                
                 
                 
                 ScrollView()
                 {
                     //if !deleteCards{
-                        HStack(spacing: 10)
-                        {   //VASTACK Dispari (sinistra)
-                            VStack(spacing: 200)
+                    HStack(spacing: 10)
+                    {   //VASTACK Dispari (sinistra)
+                        VStack(spacing: 200)
+                        {
+                            ForEach($products.indices, id:\.self)
                             {
-                                ForEach($products.indices, id:\.self)
-                                {
-                                    index in
-                                    
-                                    //per avere il design sfasato, utilizziamo due indici. Questo è l'indice dispari
-                                    if (index % 2 == 0)
-                                    {
-                                        /* logica search bar: se il nome del prodotto in minuscolo contiene il productFilter(ciò che scriviamo) in minuscolo oppure non sciviamo nulla, visualizziamo la card */
-                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased()))){
-                                            Card1(favourites: $favourites, product: $products[index])
-                                        }
-                                    }
-                                    
-                                }.frame(maxWidth: .infinity)
+                                index in
                                 
-                                    .offset(x:30,y:20)
-                                //.padding(.top, 60)
-                                  //  .offset(x:40,y:10)
-                            }
-                            
-                            //VASTACK Pari (destra)
-                            VStack(spacing: 200)
-                            {
-                                ForEach($products.indices, id:\.self)
+                                //per avere il design sfasato, utilizziamo due indici. Questo è l'indice dispari
+                                if (index % 2 == 0)
                                 {
-                                    index in
-                                    
-                                    if (index % 2 != 0)
-                                    {
-                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased()))){
+                                    /* logica search bar: se il nome del prodotto in minuscolo contiene il productFilter(ciò che scriviamo) in minuscolo oppure non sciviamo nulla, visualizziamo la card */
+                                    if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased()))){
+                                        Card1(favourites: $favourites, product: $products[index])
+                                    }
+                                }
+                                
+                            }.frame(maxWidth: .infinity)
+                            
+                                .offset(x:30,y:20)
+                            //.padding(.top, 60)
+                            //  .offset(x:40,y:10)
+                        }
+                        
+                        //VASTACK Pari (destra)
+                        VStack(spacing: 200)
+                        {
+                            ForEach($products.indices, id:\.self)
+                            {
+                                index in
+                                
+                                if (index % 2 != 0)
+                                {
+                                    if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased()))){
                                         
-                                            Card1(favourites: $favourites, product: $products[index])
-                                        }
+                                        Card1(favourites: $favourites, product: $products[index])
                                     }
-                                    
-                                }.frame(maxWidth: .infinity)
+                                }
                                 
-                                    .offset(x: 20, y:60)
-                                //.padding(.top, 60)
-                                  //  .offset(x:10,y:40)
-                            }
+                            }.frame(maxWidth: .infinity)
                             
-                        }.padding(.top, 60)
-                      
-                    //}
+                                .offset(x: 20, y:60)
+                            //.padding(.top, 60)
+                            //  .offset(x:10,y:40)
+                        }
+                        
+                    }.padding(.top, 60)
+                    
+                    
                     
                     Spacer(minLength:300)
                     
-                }.navigationTitle("Chronology").padding(.leading, -40)
-                    .searchable(text: $productFilter)
+                }
+                .navigationTitle("Chronology").padding(.leading, -40)
+                .navigationSearchBar(text: $productFilter, scopeSelection: $scopeSelection, options: [
+                    .automaticallyShowsSearchBar: true,
+                    .obscuresBackgroundDuringPresentation: true,
+                    .hidesNavigationBarDuringPresentation: true,
+                    .hidesSearchBarWhenScrolling: false,
+                    .placeholder: "Search"],
+                    actions: [
+                        .onCancelButtonClicked: {
+                            print("Cancel")
+                        },
+                        .onSearchButtonClicked: {
+                            print("Search")
+                        }])
                 
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing){
-                            Menu {
-                                Button(action: {
-                                    filterByDate(days: 7)
-                                }) {
-                                    Label("This week", systemImage: "")
-                                }
-                                Button(action: {
-                                    filterByDate(days: 30)
-                                }) {
-                                    Label("This month", systemImage: "")
-                                }
-                                Button(action: {
-                                    filterByDate(days: 90)
-                                }) {
-                                    Label("Last 3 months", systemImage: "")
-                                }
-                                Button(action: {
-                                    filterByDate(days: 180)
-                                }) {
-                                    Label("Last 6 months", systemImage: "")
-                                }
-                                Button(action: {
-                                    filterByDate(days: 365)
-                                }) {
-                                    Label("This year", systemImage: "")
-                                }
-                                
-                            } label: {
-                                Label("", systemImage: "line.3.horizontal.decrease.circle")
+                
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Menu {
+                            Button(action: {
+                                filterByDate(days: 7)
+                            }) {
+                                Label("This week", systemImage: "")
+                            }
+                            Button(action: {
+                                filterByDate(days: 30)
+                            }) {
+                                Label("This month", systemImage: "")
+                            }
+                            Button(action: {
+                                filterByDate(days: 90)
+                            }) {
+                                Label("Last 3 months", systemImage: "")
+                            }
+                            Button(action: {
+                                filterByDate(days: 180)
+                            }) {
+                                Label("Last 6 months", systemImage: "")
+                            }
+                            Button(action: {
+                                filterByDate(days: 365)
+                            }) {
+                                Label("This year", systemImage: "")
                             }
                             
-                            
+                        } label: {
+                            Label("", systemImage: "line.3.horizontal.decrease.circle")
                         }
                         
-                        ToolbarItem(placement: .navigationBarTrailing){
-                            Image(systemName: "xmark.bin").foregroundColor(verde).onTapGesture {
-                                showAlert = true
-                            }.alert(isPresented: $showAlert){
-                                Alert(
-                                    title: Text("Alert"),
-                                    message: Text("All the products will be deleted"),
-                                    primaryButton: .cancel(),
-                                    secondaryButton: .destructive(Text("Delete all")) {
-                                        //deleteCards = true // Nascondi le card
-                                        products.removeAll()
-                                        deleteChronology = true
-                                    }
-                                )
-                            }
+                        
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Image(systemName: "xmark.bin").foregroundColor(verde).onTapGesture {
+                            showAlert = true
+                        }.alert(isPresented: $showAlert){
+                            Alert(
+                                title: Text("Alert"),
+                                message: Text("All the products will be deleted"),
+                                primaryButton: .cancel(),
+                                secondaryButton: .destructive(Text("Delete all")) {
+                                    //deleteCards = true // Nascondi le card
+                                    products.removeAll()
+                                    deleteChronology = true
+                                }
+                            )
                         }
                     }
+                }
+                
+                
                 
             }
             
@@ -155,10 +174,8 @@ struct Chronology: View {
         }
         .onDisappear {
             saveProductsToUserDefaults()
-        } .onTapGesture {
-            // Nasconde la tastiera quando si clicca sulla vista
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        }
+        } 
+
         
         
     }
@@ -171,7 +188,7 @@ struct Chronology: View {
             UserDefaults.standard.set(encoded, forKey: "products")
         }
     }
-
+    
     func loadProductsFromUserDefaults() {
         if let data = UserDefaults.standard.data(forKey: "products") {
             let decoder = JSONDecoder()
@@ -180,7 +197,7 @@ struct Chronology: View {
             }
         }
     }
-
+    
     
     //
     
@@ -202,7 +219,7 @@ struct Chronology: View {
     func extractDate(from others: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-       
+        
         // Prova a convertire la stringa in un oggetto Date utilizzando il DateFormatter
         if let date = dateFormatter.date(from: others) {
             print("data convertita per il filtro:")
@@ -215,9 +232,9 @@ struct Chronology: View {
         }
     }
     
-  
     
-
+    
+    
 }
 
 

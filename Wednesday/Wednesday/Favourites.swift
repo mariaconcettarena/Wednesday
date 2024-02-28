@@ -7,12 +7,14 @@
 
 import Foundation
 import SwiftUI
+import NavigationSearchBar
 
 struct Favourites: View {
     @State private var isShowingNextPage = false
     @Binding public var products: [Product]  // CHRONOLOGY
     @Binding public var favourites: [Product]
     @State private var productFilter = ""
+    @State private var scopeSelection : Int = 0
     @State private var categoryFilter = ""
     @Binding public var product: Product
     
@@ -111,15 +113,24 @@ struct Favourites: View {
                     
                     Spacer(minLength: 300)
                 }.navigationTitle("Favourites").padding(.leading, -40)
-                    .searchable(text: $productFilter)
+                    
+                    .navigationSearchBar(text: $productFilter, scopeSelection: $scopeSelection, options: [
+                        .automaticallyShowsSearchBar: true,
+                        .obscuresBackgroundDuringPresentation: true,
+                        .hidesNavigationBarDuringPresentation: true,
+                        .hidesSearchBarWhenScrolling: false,
+                        .placeholder: "Search"],
+                        actions: [
+                            .onCancelButtonClicked: {
+                                print("Cancel")
+                            },
+                            .onSearchButtonClicked: {
+                                print("Search")
+                            }])
                     .onAppear{
                         loadFavouritesFromUserDefaults()
                     }
-                    .onTapGesture {
-                        // Nasconde la tastiera quando si clicca sulla vista
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                        
-                    }
+                  
             }
             
         }

@@ -18,8 +18,7 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
     var body: some View
     {
         
-        //NavigationLink(destination: ProductView(product: $product))
-        // {
+        
         ZStack
         {
          

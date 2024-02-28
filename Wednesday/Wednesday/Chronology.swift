@@ -118,6 +118,8 @@ struct Chronology: View {
                          .hidden()*/
                     //}
                     
+                    Spacer(minLength:300)
+                    
                 }.navigationTitle("Chronology").padding(.leading, -40)
                 
                     .toolbar {

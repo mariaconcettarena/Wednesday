@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2C4869CA2B7A5BC000CBEDC2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */; };
+		2CB1EC062B8F536F006ABDC4 /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 2CB1EC052B8F536F006ABDC4 /* NavigationSearchBar */; };
 		2CD45C192B85FA360045E398 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CD45C1B2B85FA360045E398 /* Localizable.strings */; };
 		E430E0202B7CDDED00C1B61C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E430E01F2B7CDDED00C1B61C /* Colors.swift */; };
 		E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FB0FB2B7ACAC100B431C7 /* Card.swift */; };
 		E447BB022B7E2B1D00A94E91 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E447BB012B7E2B1D00A94E91 /* SwiftSoup */; };
 		E46569F12B7A1BC800EBF1E0 /* WednesdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */; };
 		E46569F32B7A1BC800EBF1E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F22B7A1BC800EBF1E0 /* ContentView.swift */; };
-		E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46569F42B7A1BC800EBF1E0 /* Item.swift */; };
 		E46569F72B7A1BCA00EBF1E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46569F62B7A1BCA00EBF1E0 /* Assets.xcassets */; };
 		E46569FA2B7A1BCA00EBF1E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46569F92B7A1BCA00EBF1E0 /* Preview Assets.xcassets */; };
 		E4656A012B7A1FA300EBF1E0 /* Chronology.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4656A002B7A1FA300EBF1E0 /* Chronology.swift */; };
@@ -33,7 +33,6 @@
 		E46569ED2B7A1BC800EBF1E0 /* BunCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BunCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WednesdayApp.swift; sourceTree = "<group>"; };
 		E46569F22B7A1BC800EBF1E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E46569F42B7A1BC800EBF1E0 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		E46569F62B7A1BCA00EBF1E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E46569F92B7A1BCA00EBF1E0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E4656A002B7A1FA300EBF1E0 /* Chronology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chronology.swift; sourceTree = "<group>"; };
@@ -48,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB1EC062B8F536F006ABDC4 /* NavigationSearchBar in Frameworks */,
 				E447BB022B7E2B1D00A94E91 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,7 +82,6 @@
 				E4656A022B7A1FAF00EBF1E0 /* Favourites.swift */,
 				E4656A002B7A1FA300EBF1E0 /* Chronology.swift */,
 				E4656A082B7A2BBB00EBF1E0 /* InfoPrivacy.plist */,
-				E46569F42B7A1BC800EBF1E0 /* Item.swift */,
 				2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */,
 				E4656A042B7A213F00EBF1E0 /* Scanning.swift */,
 				E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */,
@@ -118,6 +117,7 @@
 			name = BunCode;
 			packageProductDependencies = (
 				E447BB012B7E2B1D00A94E91 /* SwiftSoup */,
+				2CB1EC052B8F536F006ABDC4 /* NavigationSearchBar */,
 			);
 			productName = Wednesday;
 			productReference = E46569ED2B7A1BC800EBF1E0 /* BunCode.app */;
@@ -150,6 +150,7 @@
 			mainGroup = E46569E42B7A1BC800EBF1E0;
 			packageReferences = (
 				E447BB002B7E2B1D00A94E91 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				2CB1EC042B8F536F006ABDC4 /* XCRemoteSwiftPackageReference "NavigationSearchBar" */,
 			);
 			productRefGroup = E46569EE2B7A1BC800EBF1E0 /* Products */;
 			projectDirPath = "";
@@ -184,7 +185,6 @@
 				E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */,
 				E4656A032B7A1FAF00EBF1E0 /* Favourites.swift in Sources */,
 				E46569F32B7A1BC800EBF1E0 /* ContentView.swift in Sources */,
-				E46569F52B7A1BC800EBF1E0 /* Item.swift in Sources */,
 				E4A9A90D2B84E58B00F0A579 /* ProductView.swift in Sources */,
 				E4656A012B7A1FA300EBF1E0 /* Chronology.swift in Sources */,
 				E46569F12B7A1BC800EBF1E0 /* WednesdayApp.swift in Sources */,
@@ -334,7 +334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Wednesday/Preview Content\"";
-				DEVELOPMENT_TEAM = 595ULKU252;
+				DEVELOPMENT_TEAM = CS786L2XRU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BunCode;
@@ -367,7 +367,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Wednesday/Preview Content\"";
-				DEVELOPMENT_TEAM = 595ULKU252;
+				DEVELOPMENT_TEAM = CS786L2XRU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BunCode;
@@ -417,6 +417,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2CB1EC042B8F536F006ABDC4 /* XCRemoteSwiftPackageReference "NavigationSearchBar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markvanwijnen/NavigationSearchBar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
 		E447BB002B7E2B1D00A94E91 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -428,6 +436,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2CB1EC052B8F536F006ABDC4 /* NavigationSearchBar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CB1EC042B8F536F006ABDC4 /* XCRemoteSwiftPackageReference "NavigationSearchBar" */;
+			productName = NavigationSearchBar;
+		};
 		E447BB012B7E2B1D00A94E91 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E447BB002B7E2B1D00A94E91 /* XCRemoteSwiftPackageReference "SwiftSoup" */;

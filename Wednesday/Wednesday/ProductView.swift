@@ -36,12 +36,50 @@ struct ProductView: View
                     Spacer()
                     VStack(alignment: .leading, spacing: 20)
                     {
-                        Text(product.name).bold().font(.title3)
+                        Text(product.name).bold().font(.title2)
                         
-                        Text(product.company)
-                            .padding(.bottom, 20)
+                        Text("\(product.company), \(product.country)").fontWeight(.semibold)
+
+                        Text(product.description).lineLimit(nil).multilineTextAlignment(.leading).fixedSize(horizontal: false, vertical: true)
                         
-                        Text(product.description)
+                        Text(product.category)
+                       
+                        HStack{
+                            Spacer()
+                            
+                            if product.category == "Hair"{
+                                Image("Hair").resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                            }
+                            else if product.category == "Body"{
+                                Image("Bodycare").resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                            }else if product.category == "Make-up"{
+                                Image("Makeup").resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                            }else if product.category == "Skincare"{
+                                Image("Skincare").resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                            }else if product.category == "Perfume"{
+                                Image("Perfume").resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                            }
+                            else{
+                                Image("BunnyHome").resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                            }
+                        }
+                            
+                            
+                        
+                        
+                      
                         
                     }.frame(maxWidth: .infinity, alignment: .leading)
                         .padding()

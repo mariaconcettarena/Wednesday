@@ -6,15 +6,13 @@
 //
 
 import SwiftUI
-import SwiftData
 import AVFoundation
 import AVKit
 
 struct ContentView: View {
     
     
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+
     
     @State private var isBunnyMoving = false
     @Binding public var chronology: [Product]

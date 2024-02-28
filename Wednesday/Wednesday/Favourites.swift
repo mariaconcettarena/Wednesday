@@ -7,12 +7,14 @@
 
 import Foundation
 import SwiftUI
+import NavigationSearchBar
 
 struct Favourites: View {
     @State private var isShowingNextPage = false
     @Binding public var products: [Product]  // CHRONOLOGY
     @Binding public var favourites: [Product]
     @State private var productFilter = ""
+    @State private var scopeSelection : Int = 0
     @State private var categoryFilter = ""
     @Binding public var product: Product
     
@@ -20,26 +22,13 @@ struct Favourites: View {
     var body: some View
     {
         
-        var category = ["All","Make-up", "Skincare", "Bodycare", "Hair"]
+        var category = ["All","Make-up", "Skincare", "Bodycare", "Hair", "Perfume"]
         
         NavigationView
         {
             VStack
             {
-                //search bar
-                TextField(" Search", text: $productFilter)
-                    .padding(.vertical, 7)
-                    .background(
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color.white)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(verde, lineWidth: 1)
-                    )
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .frame(width: 370, height: 60)
-                
+          
                 
                 //scroll orizzontale con le categorie
                 ScrollView(.horizontal, showsIndicators: false)
@@ -81,7 +70,7 @@ struct Favourites: View {
                                     if(products[index].category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
                                     {
                                         //filtro per search bar
-                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased())))
                                         {
                                             Card1(favourites: $favourites, product: $products[index])
                                         }
@@ -104,7 +93,7 @@ struct Favourites: View {
                                 {
                                     if(products[index].category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
                                     {
-                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased())))
                                         {
                                             Card1(favourites: $favourites, product: $products[index])
                                            
@@ -120,15 +109,28 @@ struct Favourites: View {
                         }
                         
                     }.padding(.top, 80)
-                    /*// Navigazione verso la paginaScanning()
-                     NavigationLink("", destination: Scanning(chronology: $products, favourites: $favourites), isActive: $isShowingNextPage)
-                     .hidden()*/
+                 
                     
-                    
+                    Spacer(minLength: 300)
                 }.navigationTitle("Favourites").padding(.leading, -40)
+                    
+                    .navigationSearchBar(text: $productFilter, scopeSelection: $scopeSelection, options: [
+                        .automaticallyShowsSearchBar: true,
+                        .obscuresBackgroundDuringPresentation: true,
+                        .hidesNavigationBarDuringPresentation: true,
+                        .hidesSearchBarWhenScrolling: false,
+                        .placeholder: "Search"],
+                        actions: [
+                            .onCancelButtonClicked: {
+                                print("Cancel")
+                            },
+                            .onSearchButtonClicked: {
+                                print("Search")
+                            }])
                     .onAppear{
                         loadFavouritesFromUserDefaults()
                     }
+                  
             }
             
         }

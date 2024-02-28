@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftData
+
 
 @main
 struct WednesdayApp: App {
@@ -15,18 +15,7 @@ struct WednesdayApp: App {
     
     @State private var isPresentingOnboarding = false
     
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
     
     @State public var chronology: [Product] = []
     @State public var favourites: [Product] = []
@@ -77,9 +66,7 @@ struct WednesdayApp: App {
                     //UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
                 }
             }
-        
 
-        .modelContainer(sharedModelContainer)
         
         //solo per testare
         .environment(\.locale, .init(identifier: "en"))

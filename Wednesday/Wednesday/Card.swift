@@ -11,15 +11,14 @@ import Foundation
 
 struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
 {
-    //@State public var product: Product
+    
     @Binding public var favourites: [Product]
     @Binding public var product: Product
     
     var body: some View
     {
         
-        //NavigationLink(destination: ProductView(product: $product))
-        // {
+        
         ZStack
         {
          

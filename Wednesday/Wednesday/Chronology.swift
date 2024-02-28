@@ -33,33 +33,7 @@ struct Chronology: View {
             {
                 
                 //Struttura orizzontale per Searchbar, tasto "elimina cronologia" e "filtro"
-                
-//                HStack
-//                {
-//                    //Struttura search bar
-//                    TextField(" Search", text: $productFilter)
-//                        .padding(.vertical, 7)
-//                     .background(
-//                     RoundedRectangle(cornerRadius: 15)
-//                     .fill(Color.white)
-//                     )
-//                     .overlay(
-//                     RoundedRectangle(cornerRadius: 20)
-//                     .stroke(verde, lineWidth: 1)
-//                     )
-//                     .textFieldStyle(PlainTextFieldStyle())
-//                     
-//                     .frame(width: 370, height: 80)
-//                    
-//                }
-//                .padding(.horizontal)
-////                    .padding(.bottom)
-//                
-//                
-//                
-//                
-//                
-//                
+             
                 
                 
                 ScrollView()

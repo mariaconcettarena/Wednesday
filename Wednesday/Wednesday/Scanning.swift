@@ -32,6 +32,7 @@ struct Product: Codable{
 }
 
 
+
 let previewLayer = AVCaptureVideoPreviewLayer()
 
 struct Scanning: View {
@@ -44,15 +45,18 @@ struct Scanning: View {
     @Binding public var product : Product
     @State public var found : Bool = true
     @Binding public var deleteChronology : Bool
-
+    
+    @State public var isWaiting: Bool = true
+    
+    @State public var isRotating : Bool = false
     
     var body: some View {
-     
+        
         VStack{
             Button(action: {
                 isShowingScanner = true
                 deleteChronology = false
-
+                
             }) {
                 
                 Image(systemName: "barcode.viewfinder")
@@ -68,7 +72,26 @@ struct Scanning: View {
             VStack {
                 if (scannedCode != nil)  {
                     if found {
-                        CardScan(prod: $product)
+                        if isWaiting{
+                           
+                            Image(systemName: "arrow.clockwise.circle")
+                                .resizable().frame(width: 50, height: 50).foregroundColor(verde).padding()
+                                .rotationEffect(.degrees(isRotating ? 360 : 0))
+                                .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
+                                .offset(y:100)
+                                .onAppear{
+                                    self.isRotating = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                        withAnimation {
+                                            isWaiting = false
+                                        }
+                                    }
+                                }
+                        }
+                        else{
+                            CardScan(prod: $product)
+                        }
+                        
                     }
                     
                     else {
@@ -112,6 +135,7 @@ struct Scanning: View {
     private func fetchDataFromURL(barcode: String) {
         let baseURL = "https://myapisrv.obbar.it/api/Product/getProductByBarcode?barcode="
         
+        
         guard let url = URL(string: baseURL + barcode) else {
             print("URL non valido")
             return
@@ -124,16 +148,13 @@ struct Scanning: View {
             }
             
             do {
+                
                 // Decodifica dei dati JSON nella struttura Product e aggiornamento della proprietà @State
                 let decodedData = try JSONDecoder().decode(Product.self, from: data)
                 DispatchQueue.main.async
                 {
-                    
                     self.product = decodedData //riempimento prodotto appena lo scansiona
-                    found = true
-                    //se nella cronologia non è presente il barcode, viene aggiunto una sola volta
-                   
-                    
+                    found = true//se nella cronologia non è presente il barcode, viene aggiunto una sola volta
                 }
                 
                 
@@ -142,6 +163,7 @@ struct Scanning: View {
                 print("Errore durante la decodifica dei dati:", error)
                 DispatchQueue.main.async {
                     self.found = false // Imposto found a false se il prodotto non è stato trovato
+                    isWaiting = true
                 }
             }
             
@@ -178,6 +200,7 @@ struct ScannerView: UIViewControllerRepresentable {
         func didScanCode(_ code: String) {
             print("Codice a barre scansionato:", code)
             parent.scannedCode = code
+            
         }
     }
 }
@@ -331,19 +354,19 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     //vibrazione
     func setupHaptics() {
-           // Controllo della disponibilità dell'haptic engine
-           guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
-
-           do {
-               // Creazione dell'haptic engine
-               hapticEngine = try CHHapticEngine()
-
-               // Avvio dell'haptic engine
-               try hapticEngine?.start()
-           } catch let error {
-               print("Errore durante l'inizializzazione dell'haptic engine: \(error.localizedDescription)")
-           }
-       }
+        // Controllo della disponibilità dell'haptic engine
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+        
+        do {
+            // Creazione dell'haptic engine
+            hapticEngine = try CHHapticEngine()
+            
+            // Avvio dell'haptic engine
+            try hapticEngine?.start()
+        } catch let error {
+            print("Errore durante l'inizializzazione dell'haptic engine: \(error.localizedDescription)")
+        }
+    }
     
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -361,7 +384,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 self.delegate?.didScanCode(stringValue)
                 
                 // Attiva una piccola vibrazione
-                           self.triggerHapticFeedback()
+                self.triggerHapticFeedback()
             }
             
             // delegate?.didScanCode(stringValue)
@@ -372,27 +395,27 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     func triggerHapticFeedback() {
         // Controlla se l'haptic engine è disponibile
         guard let hapticEngine = hapticEngine else { return }
-
+        
         // Definisci un evento haptic con intensità e durata maggiori
         let event = CHHapticEvent(eventType: .hapticContinuous, parameters: [
             CHHapticEventParameter(parameterID: .hapticIntensity, value: 1), // Intensità massima
             CHHapticEventParameter(parameterID: .hapticSharpness, value: 1) // Massima nitidezza
         ], relativeTime: 0, duration: 0.5) // Durata della vibrazione: 0.5 secondi
-
+        
         do {
             // Crea un pattern haptic semplice con un singolo evento
             let pattern = try CHHapticPattern(events: [event], parameters: [])
-
+            
             // Crea un player haptic con il pattern creato
             let player = try hapticEngine.makePlayer(with: pattern)
-
+            
             // Avvia la riproduzione del feedback haptic
             try player.start(atTime: CHHapticTimeImmediate)
         } catch let error {
             print("Errore durante la riproduzione del feedback haptic: \(error.localizedDescription)")
         }
     }
-
+    
     
     
     

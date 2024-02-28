@@ -47,7 +47,7 @@ struct WednesdayApp: App {
                     }.tag(2)
                 }
                .sheet(isPresented: $isPresentingOnboarding){
-                   Onboarding(chronology: $chronology, favourites: $favourites, product: $product, found: $found, isPresentingOnboarding: $isPresentingOnboarding)
+                /*   Onboarding(chronology: $chronology, favourites: $favourites, product: $product, found: $found, isPresentingOnboarding: $isPresentingOnboarding)*/
                 }.onAppear
                 {
                     

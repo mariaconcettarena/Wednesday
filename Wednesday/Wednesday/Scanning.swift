@@ -56,7 +56,6 @@ struct Scanning: View {
             Button(action: {
                 isShowingScanner = true
                 deleteChronology = false
-                
             }) {
                 
                 Image(systemName: "barcode.viewfinder")
@@ -71,9 +70,10 @@ struct Scanning: View {
             
             VStack {
                 if (scannedCode != nil)  {
+                    
                     if found {
+                        
                         if isWaiting{
-                           
                             Image(systemName: "arrow.clockwise.circle")
                                 .resizable().frame(width: 50, height: 50).foregroundColor(verde).padding()
                                 .rotationEffect(.degrees(isRotating ? 360 : 0))
@@ -90,29 +90,35 @@ struct Scanning: View {
                         }
                         else{
                             CardScan(prod: $product)
+                            
                         }
                         
                     }
                     
                     else {
-                        ZStack{
+                        VStack{
                             Text("Sorry, this product is not in our database...")
                                 .opacity(found ? 0 : 1) // Nasconde il testo se found è true
                             Image("sad").resizable()
                                 .scaledToFill()
-                                .frame(width: 80, height: 80)
-                        }
+                                .frame(width: 80, height: 80).shadow(radius: 10)
+                        }.offset(y:100)
+                        
                     }
+                    
                 }
+                
             }
         }
         .sheet(isPresented: $isShowingScanner) {
             ScannerView(scannedCode: $scannedCode)
+           
         }
         .onReceive(Just(scannedCode)) { code in
             guard let code = code else { return }
             fetchDataFromURL(barcode: code)
             isShowingScanner = false
+            
             
             if(!(chronology.contains(where: {$0.barcode == self.product.barcode})) && !deleteChronology){
                 
@@ -121,7 +127,6 @@ struct Scanning: View {
                 let formattedDate = dateFormatter.string(from: now)
                 self.product.others = formattedDate
                 chronology.append(self.product)
-                
             }
             
             
@@ -133,6 +138,7 @@ struct Scanning: View {
     // Funzione per ottenere i dati dall'URL
     
     private func fetchDataFromURL(barcode: String) {
+        
         let baseURL = "https://myapisrv.obbar.it/api/Product/getProductByBarcode?barcode="
         
         
@@ -156,8 +162,6 @@ struct Scanning: View {
                     self.product = decodedData //riempimento prodotto appena lo scansiona
                     found = true//se nella cronologia non è presente il barcode, viene aggiunto una sola volta
                 }
-                
-                
                 
             } catch {
                 print("Errore durante la decodifica dei dati:", error)

@@ -16,10 +16,13 @@ struct Onboarding: View {
     
     
     @Binding public var isPresentingOnboarding : Bool
-    
+    @State private var currentIndex = 0
     
     
     var body: some View {
+        
+        let images: [String] = ["mov1","mov2"]
+        
         
         NavigationStack{
             ZStack{
@@ -29,8 +32,20 @@ struct Onboarding: View {
                 VStack{
                     
                     
-                    Image("BunnyHome")
-                        .aspectRatio(contentMode: .fit)
+                  /*  Image("BunnyHome")
+                        .aspectRatio(contentMode: .fit)*/
+                    
+                    Image(images[currentIndex])
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .onReceive(timer) { _ in
+                                    // Ogni volta che il timer si attiva, passa all'immagine successiva
+                                    currentIndex = (currentIndex + 1) % images.count
+                                }
+                    
+                    
+                    
+                    
                     Text("BunCode")
                         .font(.largeTitle).bold()
                     
@@ -92,6 +107,7 @@ struct Onboarding: View {
             
         }
     }
+    let timer = Timer.publish(every: 0.4, on: .main, in: .common).autoconnect()
     
 }
 

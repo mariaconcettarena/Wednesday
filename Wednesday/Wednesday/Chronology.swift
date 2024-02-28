@@ -183,6 +183,9 @@ struct Chronology: View {
         }
         .onDisappear {
             saveProductsToUserDefaults()
+        } .onTapGesture {
+            // Nasconde la tastiera quando si clicca sulla vista
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         
         

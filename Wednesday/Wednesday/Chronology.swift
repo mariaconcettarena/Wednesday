@@ -20,7 +20,6 @@ struct Chronology: View {
     @Binding public var deleteChronology : Bool
 
     
-    //@State private var deleteCards = false
     @State private var showAlert = false
     
     
@@ -35,32 +34,32 @@ struct Chronology: View {
                 
                 //Struttura orizzontale per Searchbar, tasto "elimina cronologia" e "filtro"
                 
-                HStack
-                {
-                    //Struttura search bar
-                    TextField(" Search", text: $productFilter)
-                        .padding(.vertical, 7)
-                     .background(
-                     RoundedRectangle(cornerRadius: 15)
-                     .fill(Color.white)
-                     )
-                     .overlay(
-                     RoundedRectangle(cornerRadius: 20)
-                     .stroke(verde, lineWidth: 1)
-                     )
-                     .textFieldStyle(PlainTextFieldStyle())
-                     
-                     .frame(width: 370, height: 80)
-                    
-                }
-                .padding(.horizontal)
-//                    .padding(.bottom)
-                
-                
-                
-                
-                
-                
+//                HStack
+//                {
+//                    //Struttura search bar
+//                    TextField(" Search", text: $productFilter)
+//                        .padding(.vertical, 7)
+//                     .background(
+//                     RoundedRectangle(cornerRadius: 15)
+//                     .fill(Color.white)
+//                     )
+//                     .overlay(
+//                     RoundedRectangle(cornerRadius: 20)
+//                     .stroke(verde, lineWidth: 1)
+//                     )
+//                     .textFieldStyle(PlainTextFieldStyle())
+//                     
+//                     .frame(width: 370, height: 80)
+//                    
+//                }
+//                .padding(.horizontal)
+////                    .padding(.bottom)
+//                
+//                
+//                
+//                
+//                
+//                
                 
                 
                 ScrollView()
@@ -78,7 +77,7 @@ struct Chronology: View {
                                     if (index % 2 == 0)
                                     {
                                         /* logica search bar: se il nome del prodotto in minuscolo contiene il productFilter(ciò che scriviamo) in minuscolo oppure non sciviamo nulla, visualizziamo la card */
-                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == ""){
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased()))){
                                             Card1(favourites: $favourites, product: $products[index])
                                         }
                                     }
@@ -99,7 +98,7 @@ struct Chronology: View {
                                     
                                     if (index % 2 != 0)
                                     {
-                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == ""){
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased()))){
                                         
                                             Card1(favourites: $favourites, product: $products[index])
                                         }
@@ -113,14 +112,13 @@ struct Chronology: View {
                             }
                             
                         }.padding(.top, 60)
-                        /*// Navigazione verso la paginaScanning()
-                         NavigationLink("", destination: Scanning(chronology: $products, favourites: $favourites), isActive: $isShowingNextPage)
-                         .hidden()*/
+                      
                     //}
                     
                     Spacer(minLength:300)
                     
                 }.navigationTitle("Chronology").padding(.leading, -40)
+                    .searchable(text: $productFilter)
                 
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing){
@@ -243,7 +241,7 @@ struct Chronology: View {
         }
     }
     
-    //funzione che filtra in base al nome del prodotto TO DO
+  
     
 
 }

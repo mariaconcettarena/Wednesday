@@ -26,20 +26,7 @@ struct Favourites: View {
         {
             VStack
             {
-                //search bar
-                TextField(" Search", text: $productFilter)
-                    .padding(.vertical, 7)
-                    .background(
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color.white)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(verde, lineWidth: 1)
-                    )
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .frame(width: 370, height: 60)
-                
+          
                 
                 //scroll orizzontale con le categorie
                 ScrollView(.horizontal, showsIndicators: false)
@@ -81,7 +68,7 @@ struct Favourites: View {
                                     if(products[index].category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
                                     {
                                         //filtro per search bar
-                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased())))
                                         {
                                             Card1(favourites: $favourites, product: $products[index])
                                         }
@@ -104,7 +91,7 @@ struct Favourites: View {
                                 {
                                     if(products[index].category == categoryFilter || categoryFilter == "" || categoryFilter == "All")
                                     {
-                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "")
+                                        if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased())))
                                         {
                                             Card1(favourites: $favourites, product: $products[index])
                                            
@@ -120,14 +107,18 @@ struct Favourites: View {
                         }
                         
                     }.padding(.top, 80)
-                    /*// Navigazione verso la paginaScanning()
-                     NavigationLink("", destination: Scanning(chronology: $products, favourites: $favourites), isActive: $isShowingNextPage)
-                     .hidden()*/
+                 
                     
-                    
+                    Spacer(minLength: 300)
                 }.navigationTitle("Favourites").padding(.leading, -40)
+                    .searchable(text: $productFilter)
                     .onAppear{
                         loadFavouritesFromUserDefaults()
+                    }
+                    .onTapGesture {
+                        // Nasconde la tastiera quando si clicca sulla vista
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        
                     }
             }
             

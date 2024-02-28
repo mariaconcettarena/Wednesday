@@ -54,9 +54,9 @@ struct Favourites: View {
                                 Text(index)
                             })
                             .font(.headline)
-                            .foregroundColor(.black)
+                            .foregroundColor(categoryFilter == index ? Color.white : Color.black)
                             .frame(width: 90, height: 30)
-                            .background(verdeCard)
+                            .background(categoryFilter == index ? verde : verdeCard)
                             .cornerRadius(10.0)
                             .padding(.vertical,1)
                             

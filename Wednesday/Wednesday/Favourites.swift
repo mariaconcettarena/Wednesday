@@ -49,6 +49,11 @@ struct Favourites: View {
                             .cornerRadius(10.0)
                             .padding(.vertical,1)
                             
+                        }.onAppear {
+                            if categoryFilter == nil || categoryFilter == ""
+                            {
+                                categoryFilter = "All"
+                            }
                         }
                     }
                     .padding(.horizontal)

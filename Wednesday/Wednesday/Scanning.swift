@@ -120,7 +120,7 @@ struct Scanning: View {
             isShowingScanner = false
             
             
-            if(!(chronology.contains(where: {$0.barcode == self.product.barcode})) && !deleteChronology){
+            if(!(chronology.contains(where: {$0.barcode == self.product.barcode})) && !deleteChronology && found){
                 
                 //In questo punto prendo la data attuale e la metto nel campo product.others
                 let now = Date()

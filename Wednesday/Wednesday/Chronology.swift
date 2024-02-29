@@ -183,22 +183,17 @@ struct Chronology: View {
     }
     //}
     
-    //
-   /* func saveProductsToUserDefaults() {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(products) {
-            UserDefaults.standard.set(encoded, forKey: "products")
-        }
-    }*/
-    
+    //  FUNC LOAD
     func loadProductsFromUserDefaults() {
         if let data = UserDefaults.standard.data(forKey: "products") {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([Product].self, from: data) {
-                products = decoded
+                // Filtra i prodotti vuoti prima di assegnarli a products
+                products = decoded.filter { !$0.name.isEmpty } // Aggiungi eventuali altri controlli se necessario
             }
         }
     }
+    //FUNC SAVE
     func saveProductsToUserDefaults() {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(products) {
@@ -206,7 +201,7 @@ struct Chronology: View {
         }
     }
     
-    //
+    
     
     
     //funzione per filtrare i prodotti in base alla data

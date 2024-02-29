@@ -21,7 +21,7 @@ struct Onboarding: View {
     
     var body: some View {
         
-        let images: [String] = ["mov1","mov2"]
+        let images: [String] = ["an1","an2", "an3"]
         
         
         NavigationStack{

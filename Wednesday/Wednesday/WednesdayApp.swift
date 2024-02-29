@@ -15,8 +15,6 @@ struct WednesdayApp: App {
     
     @State private var isPresentingOnboarding = false
     
-
-    
     @State public var chronology: [Product] = []
     @State public var favourites: [Product] = []
     @State public var product = Product (barcode: "", name: "", company: "", description: "", image: "", category: "", country: "", isCrueltyFree: false, others: "")
@@ -47,7 +45,7 @@ struct WednesdayApp: App {
                     }.tag(2)
                 }
                .sheet(isPresented: $isPresentingOnboarding){
-                /*   Onboarding(chronology: $chronology, favourites: $favourites, product: $product, found: $found, isPresentingOnboarding: $isPresentingOnboarding)*/
+                //  Onboarding()
                 }.onAppear
                 {
                     

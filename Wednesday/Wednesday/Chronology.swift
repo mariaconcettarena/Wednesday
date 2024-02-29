@@ -159,6 +159,8 @@ struct Chronology: View {
                                     //deleteCards = true // Nascondi le card
                                     products.removeAll()
                                     deleteChronology = true
+                                    saveProductsToUserDefaults()
+                                
                                 }
                             )
                         }
@@ -172,9 +174,9 @@ struct Chronology: View {
         } .onAppear {
             loadProductsFromUserDefaults()
         }
-        .onDisappear {
+     /*   .onDisappear {
             saveProductsToUserDefaults()
-        } 
+        } */
 
         
         
@@ -182,12 +184,12 @@ struct Chronology: View {
     //}
     
     //
-    func saveProductsToUserDefaults() {
+   /* func saveProductsToUserDefaults() {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(products) {
             UserDefaults.standard.set(encoded, forKey: "products")
         }
-    }
+    }*/
     
     func loadProductsFromUserDefaults() {
         if let data = UserDefaults.standard.data(forKey: "products") {
@@ -197,7 +199,12 @@ struct Chronology: View {
             }
         }
     }
-    
+    func saveProductsToUserDefaults() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(products) {
+            UserDefaults.standard.set(encoded, forKey: "products")
+        }
+    }
     
     //
     

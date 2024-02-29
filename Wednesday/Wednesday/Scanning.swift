@@ -127,9 +127,18 @@ struct Scanning: View {
                 let formattedDate = dateFormatter.string(from: now)
                 self.product.others = formattedDate
                 chronology.append(self.product)
+                saveProductsToUserDefaults()
             }
             
             
+        }
+    }
+    
+    //save
+    func saveProductsToUserDefaults() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(chronology) {
+            UserDefaults.standard.set(encoded, forKey: "products")
         }
     }
     

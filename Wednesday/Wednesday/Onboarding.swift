@@ -27,7 +27,11 @@ struct Onboarding: View {
         NavigationStack{
             ZStack{
                 
-                sfondo.ignoresSafeArea()
+                //sfondo.ignoresSafeArea()
+                Image("back")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .edgesIgnoringSafeArea(.all)
                 
                 VStack{
                     
@@ -35,13 +39,13 @@ struct Onboarding: View {
                   /*  Image("BunnyHome")
                         .aspectRatio(contentMode: .fit)*/
                     
-                    Image(images[currentIndex])
+                  /*  Image(images[currentIndex])
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .onReceive(timer) { _ in
                                     // Ogni volta che il timer si attiva, passa all'immagine successiva
                                     currentIndex = (currentIndex + 1) % images.count
-                                }
+                                }*/
                     
                     
                     

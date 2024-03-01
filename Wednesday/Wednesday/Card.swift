@@ -87,6 +87,7 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                                 Text(product.company).scaleEffect(0.8)
                                     .foregroundColor(.white)
                                     .font(.subheadline).multilineTextAlignment(.center)
+                                    .offset(y:-5)
                                 
                                 
                                 //Aggiungo la data di scansione nel campo others

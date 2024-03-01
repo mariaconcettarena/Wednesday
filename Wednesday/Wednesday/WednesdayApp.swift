@@ -31,7 +31,6 @@ struct WednesdayApp: App {
         
             TabView
             {
-                    
                 ContentView(chronology: $chronology, favourite: $favourites, product: $product, deleteChronology: $deleteChronology).tabItem {
                             Label("Scan", systemImage: "barcode.viewfinder")
                         }.tag(0)
@@ -45,7 +44,7 @@ struct WednesdayApp: App {
                     }.tag(2)
                 }
                .sheet(isPresented: $isPresentingOnboarding){
-                //  Onboarding()
+                  Onboarding(isPresentingOnboarding: $isPresentingOnboarding)
                 }.onAppear
                 {
                     

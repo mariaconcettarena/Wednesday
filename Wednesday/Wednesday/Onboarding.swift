@@ -16,12 +16,12 @@ struct Onboarding: View {
     
     
     @Binding public var isPresentingOnboarding : Bool
-    @State private var currentIndex = 0
+    
     
     
     var body: some View {
         
-        let images: [String] = ["an1","an2", "an3"]
+       
         
         
         NavigationStack{
@@ -33,63 +33,45 @@ struct Onboarding: View {
                                 .aspectRatio(contentMode: .fill)
                                 .edgesIgnoringSafeArea(.all)
                 
-                VStack{
-                    
-                    
-                  /*  Image("BunnyHome")
-                        .aspectRatio(contentMode: .fit)*/
-                    
-                  /*  Image(images[currentIndex])
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .onReceive(timer) { _ in
-                                    // Ogni volta che il timer si attiva, passa all'immagine successiva
-                                    currentIndex = (currentIndex + 1) % images.count
-                                }*/
-                    
-                    
-                    
-                    
-                    Text("BunCode")
-                        .font(.largeTitle).bold()
-                    
-                    
                     
                     VStack(alignment: .listRowSeparatorLeading ){
                         
+                        Text("BunCode")
+                            .font(.largeTitle).bold().padding()
+                        
                         HStack{
-                            Image(systemName: "barcode.viewfinder")
-                            Text("Scan")
+                            Image(systemName: "barcode.viewfinder").offset(x:30)
+                            Text("Scan").offset(x:30)
                         }.font(.title3).bold()
                             .foregroundColor(.accentColor)
                         
-                        Text("You can scan the barcode of the products.")
-                            .frame(width: 350, height: 20)
+                        Text("You can scan the barcode of the items.")
+                            .frame(width: 350, height: 20).padding(.bottom)
                         
                         
                         HStack{
-                            Image(systemName: "timer")
-                            Text("Chronology")
+                            Image(systemName: "timer").offset(x:30)
+                            Text("Chronology").offset(x:30)
                         }.font(.title3).bold()
                             .foregroundColor(.accentColor)
                         
-                        Text("You can see all the scanned products.")
-                            .frame(width: 350, height: 20)
+                        Text("You can see all the scanned items.")
+                            .frame(width: 350, height: 20).padding(.bottom)
                         
                         
                         
                         HStack{
-                            Image(systemName: "suit.heart")
-                            Text("Favourites")
+                            Image(systemName: "suit.heart").offset(x:30)
+                            Text("Favourites").offset(x:30)
                         }.font(.title3).bold()
                             .foregroundColor(.accentColor)
                         
-                        Text("You can save your products as favourite.")
-                            .frame(width: 350, height: 20)
+                        Text("You can save your items as favourite.")
+                            .frame(width: 350, height: 20).padding(.bottom)
                         
                         
-                    }
-                    .padding(.vertical)
+                    }.offset(y:50)
+                    .padding()
                     
                     
                     
@@ -97,22 +79,16 @@ struct Onboarding: View {
                         isPresentingOnboarding = false // Imposta il valore su false per chiudere l'onboarding
                     }) {
                         Text("Let's start!")
-                            .frame(width: 115, height: 50)
+                        
+                            .frame(width: 290, height: 50)
                             .background(Color.accentColor)
                             .foregroundColor(.white)
                             .fontWeight(.semibold)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-                    }
-                }
+                    }.offset(y:260)
             }
-    
-            
-            
-            
         }
     }
-    let timer = Timer.publish(every: 0.4, on: .main, in: .common).autoconnect()
-    
 }
 
 

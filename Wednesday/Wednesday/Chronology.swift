@@ -36,15 +36,12 @@ struct Chronology: View {
             {
                 
                 //Struttura orizzontale per Searchbar, tasto "elimina cronologia" e "filtro"
-                
-                
-                
                 ScrollView()
                 {
                     //if !deleteCards{
                     HStack(spacing: 10)
                     {   //VASTACK Dispari (sinistra)
-                        VStack(spacing: 200)
+                        VStack(spacing: 150)
                         {
                             ForEach($products.indices, id:\.self)
                             {
@@ -67,7 +64,7 @@ struct Chronology: View {
                         }
                         
                         //VASTACK Pari (destra)
-                        VStack(spacing: 200)
+                        VStack(spacing: 150)
                         {
                             ForEach($products.indices, id:\.self)
                             {
@@ -83,7 +80,7 @@ struct Chronology: View {
                                 
                             }.frame(maxWidth: .infinity)
                             
-                                .offset(x: 20, y:60)
+                                .offset(x: 7, y:50)
                             //.padding(.top, 60)
                             //  .offset(x:10,y:40)
                         }
@@ -235,7 +232,7 @@ struct Chronology: View {
     }
     
     
-    
+   
     
 }
 

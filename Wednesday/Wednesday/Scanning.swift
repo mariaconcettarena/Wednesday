@@ -51,87 +51,87 @@ struct Scanning: View {
     @State public var isRotating : Bool = false
     
     var body: some View {
-        
-        VStack{
-            Button(action: {
-                isShowingScanner = true
-                deleteChronology = false
-            }) {
-                
-                Image(systemName: "barcode.viewfinder")
-                Text("SCAN PRODUCT")
-                
-            } .foregroundColor(.white)
-                .frame(width: 280, height: 50)
-                .background(Color.accentColor)
-                .cornerRadius(12)
-                .offset(y:90)
+       // NavigationView{
             
-            
-            VStack {
-                if (scannedCode != nil)  {
+            VStack{
+                Button(action: {
+                    isShowingScanner = true
+                    deleteChronology = false
+                }) {
                     
-                    if found {
+                    Image(systemName: "barcode.viewfinder")
+                    Text("SCAN PRODUCT")
+                    
+                } .foregroundColor(.white)
+                    .frame(width: 280, height: 50)
+                    .background(Color.accentColor)
+                    .cornerRadius(12)
+                    .offset(y:90)
+                
+                
+                VStack {
+                    if (scannedCode != nil)  {
                         
-                        if isWaiting{
-                            Image(systemName: "arrow.clockwise.circle")
-                                .resizable().frame(width: 50, height: 50).foregroundColor(verde).padding()
-                                .rotationEffect(.degrees(isRotating ? 360 : 0))
-                                .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
-                                .offset(y:100)
-                                .onAppear{
-                                    self.isRotating = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                        withAnimation {
-                                            isWaiting = false
+                        if found {
+                            
+                            if isWaiting{
+                                Image(systemName: "arrow.clockwise.circle")
+                                    .resizable().frame(width: 50, height: 50).foregroundColor(verde).padding()
+                                    .rotationEffect(.degrees(isRotating ? 360 : 0))
+                                    .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
+                                    .offset(y:100)
+                                    .onAppear{
+                                        self.isRotating = true
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                            withAnimation {
+                                                isWaiting = false
+                                            }
                                         }
                                     }
-                                }
+                            }
+                            else{
+                                CardScan(prod: $product)
+                                
+                            }
+                            
                         }
-                        else{
-                            CardScan(prod: $product)
+                        
+                        else {
+                            VStack{
+                                Text("Sorry, this product is not in our database...")
+                                    .opacity(found ? 0 : 1) // Nasconde il testo se found è true
+                                Image("sad").resizable()
+                                    .scaledToFill()
+                                    .frame(width: 80, height: 80)//.shadow(radius: 10)
+                            }.offset(y:100)
                             
                         }
                         
                     }
                     
-                    else {
-                        VStack{
-                            Text("Sorry, this product is not in our database...")
-                                .opacity(found ? 0 : 1) // Nasconde il testo se found è true
-                            Image("sad").resizable()
-                                .scaledToFill()
-                                .frame(width: 80, height: 80).shadow(radius: 10)
-                        }.offset(y:100)
-                        
-                    }
-                    
                 }
+            }
+            .sheet(isPresented: $isShowingScanner) {
+                ScannerView(scannedCode: $scannedCode)
                 
             }
-        }
-        .sheet(isPresented: $isShowingScanner) {
-            ScannerView(scannedCode: $scannedCode)
-           
-        }
-        .onReceive(Just(scannedCode)) { code in
-            guard let code = code else { return }
-            fetchDataFromURL(barcode: code)
-            isShowingScanner = false
-            
-            
-            if(!(chronology.contains(where: {$0.barcode == self.product.barcode})) && !deleteChronology && found){
+            .onReceive(Just(scannedCode)) { code in
+                guard let code = code else { return }
+                fetchDataFromURL(barcode: code)
+                isShowingScanner = false
                 
-                //In questo punto prendo la data attuale e la metto nel campo product.others
-                let now = Date()
-                let formattedDate = dateFormatter.string(from: now)
-                self.product.others = formattedDate
-                chronology.append(self.product)
-                saveProductsToUserDefaults()
+                
+                if(!(chronology.contains(where: {$0.barcode == self.product.barcode})) && !deleteChronology && found){
+                    
+                    //In questo punto prendo la data attuale e la metto nel campo product.others
+                    let now = Date()
+                    let formattedDate = dateFormatter.string(from: now)
+                    self.product.others = formattedDate
+                    chronology.append(self.product)
+                    saveProductsToUserDefaults()
+                }
             }
-            
-            
-        }
+      //  }.navigationTitle("Scan")
     }
     
     //save
@@ -224,7 +224,6 @@ struct ScannerView: UIViewControllerRepresentable {
 struct CardScan : View{
     @Binding public var prod: Product
     
-    
     var body : some View{
         VStack{
             
@@ -233,7 +232,6 @@ struct CardScan : View{
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundColor(.white)
                     .shadow(radius: 5).frame(width:350,height:120)
-                
                 
                 
                 NavigationLink(destination: ProductView(product: $prod)){
@@ -257,26 +255,25 @@ struct CardScan : View{
                                 if prod.category == "Hair"{
                                     Image("Hair").resizable()
                                         .scaledToFit()
-                                        .frame(width: 35, height: 35)
+                                        .frame(width: 50, height: 50)
                                 }
                                 else if prod.category == "Body"{
                                     Image("Bodycare").resizable()
                                         .scaledToFit()
-                                        .frame(width: 35, height: 35)
+                                        .frame(width: 50, height: 50)
                                 }else if prod.category == "Make-up"{
                                     Image("Makeup").resizable()
                                         .scaledToFit()
-                                        .frame(width: 35, height: 35)
+                                        .frame(width: 50, height: 50)
                                 }else if prod.category == "Skincare"{
                                     Image("Skincare").resizable()
                                         .scaledToFit()
-                                        .frame(width: 35, height: 35)
+                                        .frame(width: 50, height: 50)
                                 }else{
                                     Image("BunnyHome").resizable()
                                         .scaledToFit()
-                                        .frame(width: 35, height: 35)
+                                        .frame(width: 50, height: 50)
                                 }
-                                
                                 
                                 Text((prod.isCrueltyFree == true ? "Cruelty-free" : prod.isCrueltyFree == false ? "No" : "Unknown"))
                             }
@@ -319,6 +316,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession: AVCaptureSession!
     
     var hapticEngine: CHHapticEngine? //per la vibrazione
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

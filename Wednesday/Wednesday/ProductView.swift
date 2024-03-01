@@ -33,12 +33,12 @@ struct ProductView: View
                     {
                         Text(product.name).bold().font(.title2)
                         
-                        Text("\(product.company), \(product.country)").fontWeight(.semibold)
+                        Text("\(product.company), \(product.country)").fontWeight(.semibold).offset(y:-5)
+                        
+                        Text(product.category)
 
                         Text(product.description).lineLimit(nil).multilineTextAlignment(.leading).fixedSize(horizontal: false, vertical: true)
                         
-                        Text(product.category)
-                       
                         HStack{
                             Spacer()
                             

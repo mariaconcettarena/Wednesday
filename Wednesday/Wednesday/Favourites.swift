@@ -63,7 +63,7 @@ struct Favourites: View {
                 {
                     HStack(spacing: 10)
                     {
-                        VStack(spacing: 200)
+                        VStack(spacing: 150)
                         {
                             ForEach($products.indices, id:\.self)
                             {
@@ -88,7 +88,7 @@ struct Favourites: View {
                                // .offset(x:40,y:10)
                         }
                         
-                        VStack(spacing: 200)
+                        VStack(spacing: 150)
                         {
                             ForEach($products.indices, id:\.self)
                             {
@@ -107,7 +107,7 @@ struct Favourites: View {
                                 }
                                 
                             }.frame(maxWidth: .infinity)
-                                .offset(x: 20, y:60)
+                                .offset(x: 7, y:50)
                             
                             //.padding(.top, 60)
                                 //.offset(x:10,y:40)

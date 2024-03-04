@@ -63,15 +63,14 @@ struct Favourites: View {
                                 selectedCategories.insert("All")
                             }
 
-                        }.onChange(of: selectedCategories) { _ in
+                        }
+//quando seleziono una categoria diversa da all, rimuovo la selezione su all
+                        .onChange(of: selectedCategories) { _ in
                             if selectedCategories.count > 1 && selectedCategories.contains("All") {
                                 selectedCategories.remove("All")
                             }
                             
-//                            if selectedCategories.contains("All") {
-//                                selectedCategories.removeAll()
-//                            }
-                            
+//quando deseleziono le categorie selezionate, si resetta alla categoria All
                             if selectedCategories.isEmpty {
                                 selectedCategories.removeAll()
                                 selectedCategories.insert("All")

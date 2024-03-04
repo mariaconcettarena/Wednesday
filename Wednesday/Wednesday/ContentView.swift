@@ -12,7 +12,9 @@ import AVKit
 struct ContentView: View {
     
     
-
+    @ObservedObject var monitor = NetworkMonitor()
+    @State private var showAlertSheet = false
+         
     
     @State private var isBunnyMoving = false
     @Binding public var chronology: [Product]
@@ -28,60 +30,76 @@ struct ContentView: View {
     var body: some View {
 
         NavigationView {
-            
-            ZStack{
-                sfondo.ignoresSafeArea()
+            if(monitor.isConnected)
+            {
                 
-                VStack(alignment: .leading, spacing: 15){
+                ZStack
+                {
+                    sfondo.ignoresSafeArea()
                     
-                    Image("Bunny")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 120, height: 250)
-                        .offset(x: isBunnyMoving ? 100 : 100, y: isBunnyMoving ? 50 : 100)
-               
-                     /*Image(images[currentIndex])
-                        .resizable().scaledToFit()
-                     .frame(width: 270, height: 600) .position(x: UIScreen.main.bounds.width / 2 + 95, y: UIScreen.main.bounds.height / 2)
-                                  //.aspectRatio(contentMode: .fit)
-                                  .onReceive(timer) { _ in
-                                      // Ogni volta che il timer si attiva, passa all'immagine successiva
-                                      currentIndex = (currentIndex + 1) % images.count
-                                  }*/
-                    
-                    
-                    
-                } .onAppear {
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                        withAnimation(Animation.easeInOut(duration: 1)) {
-                            self.isBunnyMoving.toggle()
+                    VStack(alignment: .leading, spacing: 15){
+                        
+                        Image("Bunny")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 120, height: 250)
+                            .offset(x: isBunnyMoving ? 100 : 100, y: isBunnyMoving ? 50 : 100)
+                        
+                        /*Image(images[currentIndex])
+                         .resizable().scaledToFit()
+                         .frame(width: 270, height: 600) .position(x: UIScreen.main.bounds.width / 2 + 95, y: UIScreen.main.bounds.height / 2)
+                         //.aspectRatio(contentMode: .fit)
+                         .onReceive(timer) { _ in
+                         // Ogni volta che il timer si attiva, passa all'immagine successiva
+                         currentIndex = (currentIndex + 1) % images.count
+                         }*/
+                        
+                        
+                        
+                    } .onAppear {
+                        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                            withAnimation(Animation.easeInOut(duration: 1)) {
+                                self.isBunnyMoving.toggle()
+                            }
                         }
                     }
-                }
-                .offset(x:-100,y:-250)
-                .shadow(radius: 10)
-                
-                
-                VStack(alignment: .center){
+                    .offset(x:-100,y:-250)
+                    .shadow(radius: 10)
                     
-                    Text("Hello!")
-                        .font(.title)
-                        .bold().offset(x:-100,y:70)
+                    
+                    VStack(alignment: .center){
                         
+                        Text("Hello!")
+                            .font(.title)
+                            .bold().offset(x:-100,y:70)
+                        
+                        
+                        Text("Scan barcode to get full information about product.")
+                            .padding(.vertical, 5).offset(y:50)
+                        
+                        //dati dalla scansione
+                        Scanning(chronology: $chronology, favourites: $favourite, product: $product,deleteChronology: $deleteChronology)
+                    }
+                    .padding(.horizontal)
                     
-                    Text("Scan barcode to get full information about product.")
-                        .padding(.vertical, 5).offset(y:50)
                     
-                    //dati dalla scansione
-                    Scanning(chronology: $chronology, favourites: $favourite, product: $product,deleteChronology: $deleteChronology)
                 }
-                .padding(.horizontal)
-                
-                
+            }
+            else
+            {
+                VStack {
+                            Image(systemName: "wifi.slash")
+                                .font(.system(size: 56))
+                            Text("Not connected!")
+                                .padding()
+                           
+                        }
+                        
+                    }
             }
         }
     }
-}
+
 
 
 

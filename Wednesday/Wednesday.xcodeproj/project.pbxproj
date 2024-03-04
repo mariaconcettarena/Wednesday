@@ -10,6 +10,7 @@
 		2C4869CA2B7A5BC000CBEDC2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */; };
 		2CB1EC062B8F536F006ABDC4 /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 2CB1EC052B8F536F006ABDC4 /* NavigationSearchBar */; };
 		2CD45C192B85FA360045E398 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CD45C1B2B85FA360045E398 /* Localizable.strings */; };
+		CD4C73B62B95D893009F9838 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C73B52B95D893009F9838 /* NetworkMonitor.swift */; };
 		E430E0202B7CDDED00C1B61C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E430E01F2B7CDDED00C1B61C /* Colors.swift */; };
 		E43FB0FC2B7ACAC100B431C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43FB0FB2B7ACAC100B431C7 /* Card.swift */; };
 		E447BB022B7E2B1D00A94E91 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E447BB012B7E2B1D00A94E91 /* SwiftSoup */; };
@@ -28,6 +29,7 @@
 		2C4869C92B7A5BC000CBEDC2 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		2CD45C1A2B85FA360045E398 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CD45C1C2B85FA380045E398 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CD4C73B52B95D893009F9838 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E430E01F2B7CDDED00C1B61C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E43FB0FB2B7ACAC100B431C7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E46569ED2B7A1BC800EBF1E0 /* BunCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BunCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 				E46569F02B7A1BC800EBF1E0 /* WednesdayApp.swift */,
 				E46569F82B7A1BCA00EBF1E0 /* Preview Content */,
 				E4A9A90C2B84E58B00F0A579 /* ProductView.swift */,
+				CD4C73B52B95D893009F9838 /* NetworkMonitor.swift */,
 			);
 			path = Wednesday;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				E46569F32B7A1BC800EBF1E0 /* ContentView.swift in Sources */,
 				E4A9A90D2B84E58B00F0A579 /* ProductView.swift in Sources */,
 				E4656A012B7A1FA300EBF1E0 /* Chronology.swift in Sources */,
+				CD4C73B62B95D893009F9838 /* NetworkMonitor.swift in Sources */,
 				E46569F12B7A1BC800EBF1E0 /* WednesdayApp.swift in Sources */,
 				2C4869CA2B7A5BC000CBEDC2 /* Onboarding.swift in Sources */,
 			);
@@ -334,7 +338,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.2;
 				DEVELOPMENT_ASSET_PATHS = "\"Wednesday/Preview Content\"";
-				DEVELOPMENT_TEAM = 595ULKU252;
+				DEVELOPMENT_TEAM = 6R2JUS5B89;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BunCode;
@@ -367,7 +371,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.2;
 				DEVELOPMENT_ASSET_PATHS = "\"Wednesday/Preview Content\"";
-				DEVELOPMENT_TEAM = 595ULKU252;
+				DEVELOPMENT_TEAM = 6R2JUS5B89;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BunCode;

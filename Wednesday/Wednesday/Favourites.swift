@@ -143,9 +143,9 @@ struct Favourites: View {
                     
                     .navigationSearchBar(text: $productFilter, scopeSelection: $scopeSelection, options: [
                         .automaticallyShowsSearchBar: true,
-                        .obscuresBackgroundDuringPresentation: true,
+                        .obscuresBackgroundDuringPresentation: false,
                         .hidesNavigationBarDuringPresentation: true,
-                        .hidesSearchBarWhenScrolling: false,
+                        .hidesSearchBarWhenScrolling: true,
                         .placeholder: "Search"],
                         actions: [
                             .onCancelButtonClicked: {

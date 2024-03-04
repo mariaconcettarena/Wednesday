@@ -52,7 +52,9 @@ struct Chronology: View {
                                 {
                                     /* logica search bar: se il nome del prodotto in minuscolo contiene il productFilter(ciò che scriviamo) in minuscolo oppure non sciviamo nulla, visualizziamo la card */
                                     if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased()))){
-                                        Card1(favourites: $favourites, product: $products[index])
+                                        
+                                            Card1(favourites: $favourites, product: $products[index])
+                                        
                                     }
                                 }
                                 
@@ -74,8 +76,9 @@ struct Chronology: View {
                                 {
                                     if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased()))){
                                         
-                                        Card1(favourites: $favourites, product: $products[index])
-                                    }
+                                            Card1(favourites: $favourites, product: $products[index])
+                                        }
+                                    
                                 }
                                 
                             }.frame(maxWidth: .infinity)
@@ -95,9 +98,9 @@ struct Chronology: View {
                 .navigationTitle("Chronology").padding(.leading, -40)
                 .navigationSearchBar(text: $productFilter, scopeSelection: $scopeSelection, options: [
                     .automaticallyShowsSearchBar: true,
-                    .obscuresBackgroundDuringPresentation: true,
+                    .obscuresBackgroundDuringPresentation: false,
                     .hidesNavigationBarDuringPresentation: true,
-                    .hidesSearchBarWhenScrolling: false,
+                    .hidesSearchBarWhenScrolling: true,
                     .placeholder: "Search"],
                     actions: [
                         .onCancelButtonClicked: {

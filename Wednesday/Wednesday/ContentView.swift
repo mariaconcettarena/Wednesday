@@ -67,15 +67,17 @@ struct ContentView: View {
                     .shadow(radius: 10)
                     
                     
-                    VStack(alignment: .center){
+                    VStack(alignment: .leading){
                         
                         Text("Hello!")
                             .font(.title)
-                            .bold().offset(x:-100,y:70)
+                            .bold()
+                            .offset(y:70)
                         
                         
                         Text("Scan barcode to get full information about product.")
-                            .padding(.vertical, 5).offset(y:50)
+                            .padding(.vertical)
+                            .offset(y:50)
                         
                         //dati dalla scansione
                         Scanning(chronology: $chronology, favourites: $favourite, product: $product,deleteChronology: $deleteChronology)

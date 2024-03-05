@@ -252,30 +252,39 @@ struct CardScan : View{
                             Text(prod.name).foregroundColor(.black).font(.title3).bold().scaleEffect()
                             
                             HStack{ //cambio l'immagine del coniglio in base alla categoria del prodotto scansionato
-                                if prod.category == "Hair"{
-                                    Image("Hair").resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50, height: 50)
+                                if prod.isCrueltyFree{
+                                    if prod.category == "Hair"{
+                                        Image("Hair").resizable()
+                                            .scaledToFit()
+                                            .frame(width: 50, height: 50)
+                                    }
+                                    else if prod.category == "Body"{
+                                        Image("Bodycare").resizable()
+                                            .scaledToFit()
+                                            .frame(width: 50, height: 50)
+                                    }else if prod.category == "Make-up"{
+                                        Image("Makeup").resizable()
+                                            .scaledToFit()
+                                            .frame(width: 50, height: 50)
+                                    }else if prod.category == "Skincare"{
+                                        Image("Skincare").resizable()
+                                            .scaledToFit()
+                                            .frame(width: 50, height: 50)
+                                    }else{
+                                        Image("Perfume").resizable()
+                                            .scaledToFit()
+                                            .frame(width: 50, height: 50)
+                                    }
                                 }
-                                else if prod.category == "Body"{
-                                    Image("Bodycare").resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50, height: 50)
-                                }else if prod.category == "Make-up"{
-                                    Image("Makeup").resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50, height: 50)
-                                }else if prod.category == "Skincare"{
-                                    Image("Skincare").resizable()
-                                        .scaledToFit()
-                                        .frame(width: 50, height: 50)
-                                }else{
-                                    Image("Perfume").resizable()
+                                else{
+                                    Image("sad").resizable()
                                         .scaledToFit()
                                         .frame(width: 50, height: 50)
                                 }
                                 
-                                Text((prod.isCrueltyFree == true ? "Cruelty-free" : prod.isCrueltyFree == false ? "No" : "Unknown"))
+                               
+                                
+                                Text((prod.isCrueltyFree == true ? "Cruelty-free" : prod.isCrueltyFree == false ? "Not cruelty-free" : "Unknown"))
                             }
                         }.padding()
                     }

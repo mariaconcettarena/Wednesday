@@ -25,7 +25,7 @@ struct Favourites: View {
     var body: some View
     {
         
-        var category = ["All","Make-up", "Skincare", "Bodycare", "Hair", "Perfume"]
+        var category = ["All","Makeup", "Skincare", "Bodycare", "Hair", "Perfume"]
         
         NavigationView
         {

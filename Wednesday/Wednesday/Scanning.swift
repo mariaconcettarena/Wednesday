@@ -100,7 +100,7 @@ struct Scanning: View {
                             VStack{
                                 Text("Sorry, this product is not in our database...")
                                     .opacity(found ? 0 : 1) // Nasconde il testo se found è true
-                                Image("sad").resizable()
+                                Image("notfound").resizable()
                                     .scaledToFill()
                                     .frame(width: 80, height: 80)//.shadow(radius: 10)
                             }.offset(y:100)
@@ -262,7 +262,7 @@ struct CardScan : View{
                                         Image("Bodycare").resizable()
                                             .scaledToFit()
                                             .frame(width: 50, height: 50)
-                                    }else if prod.category == "Make-up"{
+                                    }else if prod.category == "Makeup"{
                                         Image("Makeup").resizable()
                                             .scaledToFit()
                                             .frame(width: 50, height: 50)

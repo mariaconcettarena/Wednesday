@@ -270,7 +270,7 @@ struct CardScan : View{
                                         .scaledToFit()
                                         .frame(width: 50, height: 50)
                                 }else{
-                                    Image("BunnyHome").resizable()
+                                    Image("Perfume").resizable()
                                         .scaledToFit()
                                         .frame(width: 50, height: 50)
                                 }

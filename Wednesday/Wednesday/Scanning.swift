@@ -258,7 +258,7 @@ struct CardScan : View{
                                             .scaledToFit()
                                             .frame(width: 50, height: 50)
                                     }
-                                    else if prod.category == "Body"{
+                                    else if prod.category == "Bodycare"{
                                         Image("Bodycare").resizable()
                                             .scaledToFit()
                                             .frame(width: 50, height: 50)

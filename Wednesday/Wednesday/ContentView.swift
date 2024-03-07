@@ -80,9 +80,14 @@ struct ContentView: View {
                             .offset(y:50)
                         
                         //dati dalla scansione
-                        Scanning(chronology: $chronology, favourites: $favourite, product: $product,deleteChronology: $deleteChronology)
+                        
                     }
                     .padding(.horizontal)
+                    .padding(.bottom, 100)
+                    
+                    Scanning(chronology: $chronology, favourites: $favourite, product: $product,deleteChronology: $deleteChronology)
+                    
+                  
                     
                     
                 }

@@ -39,12 +39,12 @@ struct Scanning: View {
     @State private var isShowingScanner = false
     @State private var scannedCode: String?
     
-    @Binding public var chronology: [Product]
+    @Binding public var history: [Product]
     @Binding public var favourites: [Product]
     
     @Binding public var product : Product
     @State public var found : Bool = true
-    @Binding public var deleteChronology : Bool
+    @Binding public var deletehistory : Bool
     
     @State public var isWaiting: Bool = true
     
@@ -56,7 +56,7 @@ struct Scanning: View {
             VStack{
                 Button(action: {
                     isShowingScanner = true
-                    deleteChronology = false
+                    deletehistory = false
                 }) {
                     
                     Image(systemName: "barcode.viewfinder")
@@ -121,13 +121,13 @@ struct Scanning: View {
                 isShowingScanner = false
                 
                 
-                if(!(chronology.contains(where: {$0.barcode == self.product.barcode})) && !deleteChronology && found){
+                if(!(history.contains(where: {$0.barcode == self.product.barcode})) && !deletehistory && found){
                     
                     //In questo punto prendo la data attuale e la metto nel campo product.others
                     let now = Date()
                     let formattedDate = dateFormatter.string(from: now)
                     self.product.others = formattedDate
-                    chronology.append(self.product)
+                    history.append(self.product)
                     saveProductsToUserDefaults()
                 }
             }
@@ -137,11 +137,12 @@ struct Scanning: View {
     //save
     func saveProductsToUserDefaults() {
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(chronology) {
+        if let encoded = try? encoder.encode(history) {
             UserDefaults.standard.set(encoded, forKey: "products")
         }
     }
     
+
     
     
     // Funzione per ottenere i dati dall'URL
@@ -282,17 +283,13 @@ struct CardScan : View{
                                         .frame(width: 50, height: 50)
                                 }
                                 
-                               
-                                
                                 Text((prod.isCrueltyFree == true ? "Cruelty-free" : prod.isCrueltyFree == false ? "Not cruelty-free" : "Unknown"))
                             }
                         }.padding()
                     }
                     
                 }.background(Color.clear)
-                
             }
-            
         }.offset(x:0,y:100)
     }
     

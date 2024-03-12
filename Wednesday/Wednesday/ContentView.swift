@@ -17,10 +17,10 @@ struct ContentView: View {
          
     
     @State private var isBunnyMoving = false
-    @Binding public var chronology: [Product]
+    @Binding public var history: [Product]
     @Binding public var favourite: [Product]
     @Binding public var product: Product
-    @Binding public var deleteChronology: Bool
+    @Binding public var deleteHistory: Bool
     
     
     let images: [String] = ["an1","an2", "an3"]
@@ -80,7 +80,7 @@ struct ContentView: View {
                             .offset(y:50)
                         
                         //dati dalla scansione
-                        Scanning(chronology: $chronology, favourites: $favourite, product: $product,deleteChronology: $deleteChronology)
+                        Scanning(history: $history, favourites: $favourite, product: $product,deletehistory: $deleteHistory)
                     }
                     .padding(.horizontal)
                     

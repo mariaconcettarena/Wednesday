@@ -21,10 +21,7 @@ struct ProductView: View
                 if let decodedImage = self.decodeBase64ToImage(base64String: product.image)
                 {
                     Image(uiImage: decodedImage).resizable(capInsets: EdgeInsets()).padding().scaledToFit()
-                  
                 }
-                
-        
                 
                 VStack
                 {
@@ -41,6 +38,7 @@ struct ProductView: View
                         
                         HStack{
                             Spacer()
+                            Text((product.isCrueltyFree == true ? "Cruelty-free" : product.isCrueltyFree == false ? "Not cruelty-free" : "Unknown")).bold()
                             
                             if product.category == "Hair"{
                                 Image("Hair").resizable()
@@ -70,12 +68,7 @@ struct ProductView: View
                                     .frame(width: 80, height: 80)
                             }
                         }
-                            
-                            
-                        
-                        
-                      
-                        
+                          
                     }.frame(maxWidth: .infinity, alignment: .leading)
                         .padding()
                         .padding(.bottom, 80)
@@ -84,13 +77,7 @@ struct ProductView: View
                         .cornerRadius(30, corners: [.topLeft, .topRight])
                 }
             }
-           
-            
-            
         }
-        
-
-        
     }
     
     func decodeBase64ToImage(base64String: String) -> UIImage?

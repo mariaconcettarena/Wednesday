@@ -15,12 +15,12 @@ struct WednesdayApp: App {
     
     @State private var isPresentingOnboarding = false
     
-    @State public var chronology: [Product] = []
+    @State public var history: [Product] = []
     @State public var favourites: [Product] = []
     @State public var product = Product (barcode: "", name: "", company: "", description: "", image: "", category: "", country: "", isCrueltyFree: false, others: "")
     
     @State public var found : Bool = false
-    @State public var deleteChronology : Bool = false
+    @State public var deletehistory : Bool = false
 
     
     var body: some Scene {
@@ -31,12 +31,12 @@ struct WednesdayApp: App {
         
             TabView
             {
-                ContentView(chronology: $chronology, favourite: $favourites, product: $product, deleteChronology: $deleteChronology).tabItem {
+                ContentView(history: $history, favourite: $favourites, product: $product, deleteHistory: $deletehistory).tabItem {
                             Label("Scan", systemImage: "barcode.viewfinder")
                         }.tag(0)
                     
-                Chronology(products: $chronology, favourites: $favourites, product: $product, deleteChronology: $deleteChronology).tabItem {
-                        Label("Chronology", systemImage: "timer")
+                History(products: $history, favourites: $favourites, product: $product, deleteHistory: $deletehistory).tabItem {
+                        Label("History", systemImage: "timer")
                     }.tag(1)
                     
                 Favourites(products: $favourites, favourites: $favourites, product: $product).tabItem {

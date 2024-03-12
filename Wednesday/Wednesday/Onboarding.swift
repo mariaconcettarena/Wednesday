@@ -17,12 +17,7 @@ struct Onboarding: View {
     
     @Binding public var isPresentingOnboarding : Bool
     
-    
-    
     var body: some View {
-        
-       
-        
         
         NavigationStack{
             ZStack{
@@ -51,7 +46,7 @@ struct Onboarding: View {
                         
                         HStack{
                             Image(systemName: "timer").offset(x:30)
-                            Text("Chronology").offset(x:30)
+                            Text("History").offset(x:30)
                         }.font(.title3).bold()
                             .foregroundColor(.accentColor)
                         
@@ -79,7 +74,6 @@ struct Onboarding: View {
                         isPresentingOnboarding = false // Imposta il valore su false per chiudere l'onboarding
                     }) {
                         Text("Let's start!")
-                        
                             .frame(width: 290, height: 50)
                             .background(Color.accentColor)
                             .foregroundColor(.white)

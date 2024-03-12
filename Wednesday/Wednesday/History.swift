@@ -10,9 +10,9 @@ import SwiftUI
 import NavigationSearchBar
 
 
-struct Chronology: View {
+struct History: View {
     @State private var isShowingNextPage = false
-    @Binding public var products: [Product]  // CHRONOLOGY
+    @Binding public var products: [Product]  // History
     @Binding public var favourites: [Product]
     
     @State private var productFilter = ""
@@ -20,7 +20,7 @@ struct Chronology: View {
     
     @Binding public var product: Product
     
-    @Binding public var deleteChronology : Bool
+    @Binding public var deleteHistory : Bool
     
     
     @State private var showAlert = false
@@ -95,7 +95,7 @@ struct Chronology: View {
                     Spacer(minLength:300)
                     
                 }
-                .navigationTitle("Chronology").padding(.leading, -40)
+                .navigationTitle("History").padding(.leading, -40)
                 .navigationSearchBar(text: $productFilter, scopeSelection: $scopeSelection, options: [
                     .automaticallyShowsSearchBar: true,
                     .obscuresBackgroundDuringPresentation: false,
@@ -158,7 +158,7 @@ struct Chronology: View {
                                 secondaryButton: .destructive(Text("Delete all")) {
                                     //deleteCards = true // Nascondi le card
                                     products.removeAll()
-                                    deleteChronology = true
+                                    deleteHistory = true
                                     saveProductsToUserDefaults()
                                 
                                 }
@@ -242,6 +242,6 @@ struct Chronology: View {
 
 
 /*#Preview {
- Chronology()
+ History()
  }*/
 

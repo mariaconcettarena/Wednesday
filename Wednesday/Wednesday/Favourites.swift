@@ -11,7 +11,7 @@ import NavigationSearchBar
 
 struct Favourites: View {
     @State private var isShowingNextPage = false
-    @Binding public var products: [Product]  // CHRONOLOGY
+    @Binding public var products: [Product]  // History
     @Binding public var favourites: [Product]
     @State private var productFilter = ""
     @State private var scopeSelection : Int = 0
@@ -31,8 +31,6 @@ struct Favourites: View {
         {
             VStack
             {
-          
-                
                 //scroll orizzontale con le categorie
                 ScrollView(.horizontal, showsIndicators: false)
                 {
@@ -107,7 +105,6 @@ struct Favourites: View {
                             }.frame(maxWidth: .infinity)
                             
                                 .offset(x:30,y:20)
-                               // .offset(x:40,y:10)
                         }
                         
                         VStack(spacing: 150)
@@ -123,16 +120,12 @@ struct Favourites: View {
                                         if(((products[index].name.lowercased()).contains(productFilter.lowercased())) || productFilter == "" || ((products[index].company.lowercased()).contains(productFilter.lowercased())))
                                         {
                                             Card1(favourites: $favourites, product: $products[index])
-                                           
                                         }
                                     }
                                 }
                                 
                             }.frame(maxWidth: .infinity)
                                 .offset(x: 7, y:50)
-                            
-                            //.padding(.top, 60)
-                                //.offset(x:10,y:40)
                         }
                         
                     }.padding(.top, 80)
@@ -172,11 +165,6 @@ struct Favourites: View {
             }
         }
     }
-    
-    
-
-    
-    
     
 }
 

@@ -36,7 +36,7 @@ struct WednesdayApp: App {
                         }.tag(0)
                     
                 History(products: $history, favourites: $favourites, product: $product, deleteHistory: $deletehistory).tabItem {
-                        Label("History", systemImage: "timer")
+                        Label("History", systemImage: "clock")
                     }.tag(1)
                     
                 Favourites(products: $favourites, favourites: $favourites, product: $product).tabItem {

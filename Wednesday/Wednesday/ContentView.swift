@@ -14,7 +14,7 @@ struct ContentView: View {
     
     @ObservedObject var monitor = NetworkMonitor()
     @State private var showAlertSheet = false
-         
+    
     
     @State private var isBunnyMoving = false
     @Binding public var history: [Product]
@@ -28,11 +28,10 @@ struct ContentView: View {
     let timer = Timer.publish(every: 0.4, on: .main, in: .common).autoconnect()
     
     var body: some View {
-
+        
         NavigationView {
             if(monitor.isConnected)
             {
-                
                 ZStack
                 {
                     sfondo.ignoresSafeArea()
@@ -44,17 +43,6 @@ struct ContentView: View {
                             .scaledToFit()
                             .frame(width: 120, height: 250)
                             .offset(x: isBunnyMoving ? 100 : 100, y: isBunnyMoving ? 50 : 100)
-                        
-                        /*Image(images[currentIndex])
-                         .resizable().scaledToFit()
-                         .frame(width: 270, height: 600) .position(x: UIScreen.main.bounds.width / 2 + 95, y: UIScreen.main.bounds.height / 2)
-                         //.aspectRatio(contentMode: .fit)
-                         .onReceive(timer) { _ in
-                         // Ogni volta che il timer si attiva, passa all'immagine successiva
-                         currentIndex = (currentIndex + 1) % images.count
-                         }*/
-                        
-                        
                         
                     } .onAppear {
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
@@ -83,25 +71,20 @@ struct ContentView: View {
                         Scanning(history: $history, favourites: $favourite, product: $product,deletehistory: $deleteHistory)
                     }
                     .padding(.horizontal)
-                    
-                    
                 }
             }
             else
             {
                 VStack {
-                            Image(systemName: "wifi.slash")
-                                .font(.system(size: 56))
-                            Text("Not connected!")
-                                .padding()
-                           
-                        }
-                        
-                    }
+                    Image(systemName: "wifi.slash")
+                        .font(.system(size: 56))
+                    Text("Not connected!")
+                        .padding()
+                }
             }
         }
     }
-
+}
 
 
 

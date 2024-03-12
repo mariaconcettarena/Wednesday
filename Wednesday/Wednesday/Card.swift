@@ -5,23 +5,16 @@
 //
 
 import SwiftUI
-//import Foundation
-
-
 
 struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
 {
-    
     @Binding public var favourites: [Product]
     @Binding public var product: Product
     
     var body: some View
     {
-        
-        
         ZStack
         {
-         
             //sfondo della card, verdechiaro
             RoundedRectangle(cornerRadius: 20)
                 .foregroundColor(verdeCard)
@@ -75,14 +68,13 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                         .fill(verde)
                         .frame(maxWidth: .infinity) // Imposta la larghezza massima del rettangolo verde
                         .frame(height: 40)
-                    //.frame(height: 50)
                         .overlay(
                             VStack(alignment: .center)
                             {   //nome prodotto
                                 Text(product.name).scaleEffect(0.8)
                                     .foregroundColor(.white)
                                     .font(.headline).multilineTextAlignment(.center)
-                                //.lineLimit(nil)
+                             
                                 //company
                                 Text(product.company).scaleEffect(0.8)
                                     .foregroundColor(.white)
@@ -93,16 +85,12 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
                                 //Aggiungo la data di scansione nel campo others
                                 //Text(product.others) .foregroundColor(.white)
                             }
-                            //.padding(.leading)
                         )
                 }
                 }
             }
         }
         .padding().frame(width: 90, height: 110)
-        //.frame(width: 150, height: 230)
-        
-        //}
     }
     
     func decodeBase64ToImage(base64String: String) -> UIImage?
@@ -123,8 +111,6 @@ struct Card1: View //VIENE MOSTRATA SE CLICCO SULLA CARD DA CRONOLOGIA/PREFERITI
             UserDefaults.standard.set(encoded, forKey: "favourites")
         }
     }
-
-    
 }
 
 

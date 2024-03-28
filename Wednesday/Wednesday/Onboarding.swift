@@ -45,7 +45,7 @@ struct Onboarding: View {
                         
                         
                         HStack{
-                            Image(systemName: "timer").offset(x:30)
+                            Image(systemName: "clock").offset(x:30)
                             Text("History").offset(x:30)
                         }.font(.title3).bold()
                             .foregroundColor(.accentColor)
